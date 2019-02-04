@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicFantasyBeyond", "BasicFantasyBeyond\BasicFantasyBeyond.csproj", "{F7120D53-0FFB-4E12-87A1-A734EDEC7E3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicFantasyBeyond.Tests", "BasicFantasyBeyond.Tests\BasicFantasyBeyond.Tests.csproj", "{054E7C1F-6BBE-489E-84C6-F2BAC5E223EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F7120D53-0FFB-4E12-87A1-A734EDEC7E3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7120D53-0FFB-4E12-87A1-A734EDEC7E3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7120D53-0FFB-4E12-87A1-A734EDEC7E3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7120D53-0FFB-4E12-87A1-A734EDEC7E3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{054E7C1F-6BBE-489E-84C6-F2BAC5E223EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{054E7C1F-6BBE-489E-84C6-F2BAC5E223EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{054E7C1F-6BBE-489E-84C6-F2BAC5E223EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{054E7C1F-6BBE-489E-84C6-F2BAC5E223EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7E53810E-748A-476D-A829-B13389C524D6}
+	EndGlobalSection
+EndGlobal
