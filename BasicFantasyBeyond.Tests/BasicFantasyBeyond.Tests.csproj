@@ -99,9 +99,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BasicFantasyBeyond\BasicFantasyBeyond.csproj">
+    <ProjectReference Include="..\BasicFantasyBeyond\BasicFantasyBeyond.WebMVC.csproj">
       <Project>{F7120D53-0FFB-4E12-87A1-A734EDEC7E3A}</Project>
-      <Name>BasicFantasyBeyond</Name>
+      <Name>BasicFantasyBeyond.WebMVC</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
