@@ -6,19 +6,36 @@ using System.Web;
 
 namespace BasicFantasyBeyond.Models
 {
-    public enum CharacterRace { Human, Elf, Dwarf, Halfling};
-    public enum CharacterClass { Fighter, Thief, Cleric, MagicUser};
+    public enum CharacterRace { Human, Elf, Dwarf, Halfling };
+    public enum CharacterClass { Fighter, Thief, Cleric, MagicUser };
+    [Flags]
+    public enum CharacterAbilities
+    {
+        None = 0,
+        Darkvision = 1 << 0,
+        DetectConstruction = 1 << 1,
+        DetectSecretDoors = 1 << 2,
+        GhoulImmune = 1 << 3,
+        ReduceSurprise = 1 << 4,
+        HalflingAttackBonus = 1 << 5,
+        HalflingACBonus = 1 << 6,
+        HalflingInitiative = 1 << 7,
+        HalflingHiding = 1 << 8,
+        HumanXPBonus = 1 << 9,
+        TurnUndead = 1 << 10,
+        ThiefSkills = 1 << 11
+    }
 
     public class Character
     {
         [Key]
         public int CharacterID { get; set; }
+
         [Required]
+        [MinLength(2, ErrorMessage ="Please enter at least 2 characters.")]
+        [MaxLength(30, ErrorMessage ="There are too many characters in this field.")]
         public string CharacterName { get; set; }
-        [Required]
-        public CharacterRace CharacterRace { get; set; }
-        [Required]
-        public CharacterClass CharacterClass { get; set; }
+
         [Required]
         public short CharacterStr { get; set; }
         [Required]
@@ -32,8 +49,26 @@ namespace BasicFantasyBeyond.Models
         [Required]
         public short CharacterCha { get; set; }
 
+        [Required]
+        public CharacterRace CharacterRace { get; set; }
+
+        [Required]
+        public CharacterClass CharacterClass { get; set; }
+
+        public short CharacterXP { get; set; }
+
+        [Required]
+        public short CharacterLevel { get; set; }
+
+        public short CharacterAC { get; set; }
+
+        public short CharacterHP { get; set; }
+
+        public short CharacterAttackBonus { get; set; }
+
+        public CharacterAbilities CharacterAbilities { get; set; }
+
         public string CharacterNotes { get; set; }
 
-        
     }
 }
