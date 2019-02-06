@@ -55,18 +55,17 @@ namespace BasicFantasyBeyond.Models
         [Required]
         public CharacterClass CharacterClass { get; set; }
 
-        public short CharacterXP { get; set; }
+        public CharacterAbilities? CharacterAbilities { get; set; }
 
-        [Required]
-        public short CharacterLevel { get; set; }
+        public short? CharacterXP { get; set; }
 
-        public short CharacterAC { get; set; }
+        public short? CharacterLevel { get; set; }
 
-        public short CharacterHP { get; set; }
+        public short? CharacterAC { get; set; }
 
-        public short CharacterAttackBonus { get; set; }
+        public short? CharacterHP { get; set; }
 
-        public CharacterAbilities CharacterAbilities { get; set; }
+        public short? CharacterAttackBonus { get; set; }
 
         public string CharacterNotes { get; set; }
 

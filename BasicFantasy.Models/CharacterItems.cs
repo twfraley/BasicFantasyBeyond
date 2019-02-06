@@ -11,9 +11,9 @@ namespace BasicFantasyBeyond.Models
     {
         [Key]
         public int CharacterItemsID { get; set; }
-
+        [Required]
         public virtual int CharacterID { get; set; }
-
+        [Required]
         public virtual int ItemID { get; set; }
     }
 }

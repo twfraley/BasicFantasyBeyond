@@ -21,11 +21,14 @@ namespace BasicFantasyBeyond.Models
         [Required]
         public EquipmentType EquipmentType { get; set; }
 
+        [Required]
+        public bool IsEquipped { get; set; }
+
         public string Damage { get; set; }
 
-        public DamageType DamageType { get; set; }
+        public DamageType? DamageType { get; set; }
 
-        public int ArmorClassBonus { get; set; }
+        public int? ArmorClassBonus { get; set; }
 
         public string ItemNotes { get; set; }
     }
