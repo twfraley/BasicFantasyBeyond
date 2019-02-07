@@ -3,6 +3,7 @@ using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using BasicFantasyBeyond.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -33,6 +34,9 @@ namespace BasicFantasyBeyond.Data
         }
 
         public DbSet<Character> Characters { get; set; }
+        public DbSet<Equipment> Equipment { get; set; }
+        public DbSet<CharacterItems> CharacterItems { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder

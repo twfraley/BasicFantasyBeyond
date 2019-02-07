@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicFantasyBeyond.Contract
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicFantasyBeyond.Data", "BasicFantasyBeyond.Data\BasicFantasyBeyond.Data.csproj", "{73A2FBAB-A5BA-499D-B7B0-DE49CD316302}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicFantasyBeyond.Services", "BasicFantasyBeyond.Services\BasicFantasyBeyond.Services.csproj", "{1E0827DB-7204-4728-A129-995F7481A59B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{73A2FBAB-A5BA-499D-B7B0-DE49CD316302}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73A2FBAB-A5BA-499D-B7B0-DE49CD316302}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73A2FBAB-A5BA-499D-B7B0-DE49CD316302}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E0827DB-7204-4728-A129-995F7481A59B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E0827DB-7204-4728-A129-995F7481A59B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E0827DB-7204-4728-A129-995F7481A59B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E0827DB-7204-4728-A129-995F7481A59B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

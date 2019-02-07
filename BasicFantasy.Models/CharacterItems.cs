@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BasicFantasyBeyond.Models
 {
-    class CharacterItem
+    public class CharacterItems
     {
         [Key]
         public int CharacterItemsID { get; set; }
