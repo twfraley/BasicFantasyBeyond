@@ -1,0 +1,74 @@
+﻿@model BasicFantasyBeyond.Models.Equipment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details of Equipment</h2>
+
+<div>
+    <h4>Equipment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EquipmentType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EquipmentType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsEquipped)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsEquipped)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Damage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Damage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DamageType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DamageType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArmorClassBonus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArmorClassBonus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemNotes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemNotes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ItemID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
