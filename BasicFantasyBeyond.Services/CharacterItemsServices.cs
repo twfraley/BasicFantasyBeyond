@@ -8,5 +8,6 @@ namespace BasicFantasyBeyond.Services
 {
     class CharacterItemsServices
     {
+
     }
 }

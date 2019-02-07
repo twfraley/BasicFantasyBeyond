@@ -54,6 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Character.cs" />
+    <Compile Include="CharacterItems.cs" />
+    <Compile Include="Equipment.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,8 +65,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BasicFantasy.Models\BasicFantasyBeyond.Models.csproj">
-      <Project>{1006A790-4DDF-4793-80A3-6166FD7475C9}</Project>
+    <ProjectReference Include="..\BasicFantasyBeyond.Models\BasicFantasyBeyond.Models.csproj">
+      <Project>{BFC6227D-E832-4900-8668-A9B2F3A38741}</Project>
       <Name>BasicFantasyBeyond.Models</Name>
     </ProjectReference>
   </ItemGroup>

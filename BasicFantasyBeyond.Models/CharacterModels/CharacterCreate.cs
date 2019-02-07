@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace BasicFantasyBeyond.Models
+namespace BasicFantasyBeyond.Models.CharacterModels
 {
     public enum CharacterRace { Human, Elf, Dwarf, Halfling };
     public enum CharacterClass { Fighter, Thief, Cleric, MagicUser };
@@ -26,14 +27,11 @@ namespace BasicFantasyBeyond.Models
         ThiefSkills = 1 << 11
     }
 
-    public class Character
+    public class CharacterCreate
     {
-        [Key]
-        public int CharacterID { get; set; }
-
         [Required]
-        [MinLength(2, ErrorMessage ="Please enter at least 2 characters.")]
-        [MaxLength(30, ErrorMessage ="There are too many characters in this field.")]
+        [MinLength(2, ErrorMessage = "Please enter at least 2 characters.")]
+        [MaxLength(40, ErrorMessage = "There are too many characters in this field.")]
         public string CharacterName { get; set; }
 
         [Required]
@@ -55,19 +53,7 @@ namespace BasicFantasyBeyond.Models
         [Required]
         public CharacterClass CharacterClass { get; set; }
 
-        public CharacterAbilities? CharacterAbilities { get; set; }
-
-        public short? CharacterXP { get; set; }
-
-        public short? CharacterLevel { get; set; }
-
-        public short? CharacterAC { get; set; }
-
-        public short? CharacterHP { get; set; }
-
-        public short? CharacterAttackBonus { get; set; }
-
-        public string CharacterNotes { get; set; }
+        public override string ToString() => CharacterName;
 
     }
 }
