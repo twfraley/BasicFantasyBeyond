@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BasicFantasyBeyond.Models
+namespace BasicFantasyBeyond.Data
 {
-
+    
     public class Equipment
     {
         [Key]

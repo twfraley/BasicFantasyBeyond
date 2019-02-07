@@ -17,7 +17,7 @@ namespace BasicFantasyBeyond.Services
             userID = _userID;
         }
         
-        public bool CreateCharacterItems(CharacterItemsCreate model)
+        public bool AddCharacterItems(CharacterItemsCreate model)
         {
             var entity =
                 new CharacterItems()
@@ -84,7 +84,7 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-        public bool DeleteEquipmentfromCharacter(int equipmentID)
+        public bool RemoveEquipmentfromCharacter(int equipmentID)
         {
             using (var ctx = new ApplicationDbContext())
             {

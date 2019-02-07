@@ -17,4 +17,3 @@ namespace BasicFantasyBeyond.Models
         public virtual int ItemID { get; set; }
     }
 }
-}
