@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharacterItemsCreate.cs" />
     <Compile Include="CharacterModels\CharacterCreate.cs" />
     <Compile Include="EquipmentModels\EquipmentCreate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

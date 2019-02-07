@@ -25,7 +25,11 @@ namespace BasicFantasyBeyond.Services
                 new Equipment()
                 {
                     ItemName = model.ItemName,
-
+                    EquipmentType = model.EquipmentType,
+                    Damage = model.Damage,
+                    DamageType = model.DamageType,
+                    ArmorClassBonus = model.ArmorClassBonus,
+                    ItemNotes = model.ItemNotes
                 };
 
             using (ApplicationDbContext ctx = new ApplicationDbContext())

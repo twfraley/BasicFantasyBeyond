@@ -20,6 +20,10 @@ namespace BasicFantasyBeyond.Services
 
 		public bool CreateCharacter(CharacterCreate model)
         {
+			// -----------------------
+			// Do backend stuff to generate the rest of Character object here
+			// -----------------------
+
             var entity =
                 new Character()
                 {
