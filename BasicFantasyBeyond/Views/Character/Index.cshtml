@@ -1,0 +1,123 @@
+﻿@model IEnumerable<BasicFantasyBeyond.Data.Character>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CharacterName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CharacterStr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CharacterDex)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CharacterCon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CharacterInt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CharacterWis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CharacterCha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CharacterRace)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CharacterClass)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CharacterAbilities)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CharacterXP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CharacterLevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CharacterAC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CharacterHP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CharacterAttackBonus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CharacterNotes)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CharacterName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CharacterStr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CharacterDex)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CharacterCon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CharacterInt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CharacterWis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CharacterCha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CharacterRace)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CharacterClass)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CharacterAbilities)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CharacterXP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CharacterLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CharacterAC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CharacterHP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CharacterAttackBonus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CharacterNotes)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CharacterID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CharacterID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CharacterID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -14,7 +14,7 @@ namespace BasicFantasyBeyond.Data
 
         [Required]
         public Guid OwnerID { get; set; }
-
+        
         [Required]
         [MinLength(2, ErrorMessage = "Please enter at least 2 characters.")]
         [MaxLength(40, ErrorMessage = "There are too many characters in this field.")]

@@ -138,5 +138,17 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
+		public bool DeleteCharacter(int characterID)
+        {
+			using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Characters.Single(e => e.CharacterID == characterID && e.OwnerID == _userID);
+
+                ctx.Characters.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
     }
 }
