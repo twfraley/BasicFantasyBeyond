@@ -10,7 +10,7 @@ namespace BasicFantasyBeyond.Models.EquipmentModels
     public class EquipmentEdit
     {
         [Key]
-        public int EquipmentID {get;set;}
+        public int ItemID {get;set;}
         [Required]
         public string ItemName { get; set; }
         public EquipmentType EquipmentType { get; set; }

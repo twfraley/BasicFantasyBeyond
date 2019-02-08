@@ -62,14 +62,14 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-        public EquipmentDetails GetEquipmentByID(int equipmentID)
+        public EquipmentDetails GetEquipmentByID(int itemID)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                     .Equipment
-                    .Single(e => e.ItemID == equipmentID);
+                    .Single(e => e.ItemID == itemID);
                 return
                     new EquipmentDetails
                     {

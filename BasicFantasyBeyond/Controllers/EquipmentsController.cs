@@ -63,8 +63,9 @@ namespace BasicFantasyBeyond.Controllers
             var service = EquipmentServices();
             var detail = service.GetEquipmentByID(id);
             var model =
-                new EquipmentEdit
+                new EquipmentDetails
                 {
+                    ItemID = detail.ItemID,
                     ItemName=detail.ItemName,
                     EquipmentType = detail.EquipmentType,
                     IsEquipped = detail.IsEquipped,
