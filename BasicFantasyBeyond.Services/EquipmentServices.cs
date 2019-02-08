@@ -53,7 +53,6 @@ namespace BasicFantasyBeyond.Services
                             ItemID = e.ItemID,
                             ItemName = e.ItemName,
                             EquipmentType = e.EquipmentType,
-                            IsEquipped = e.IsEquipped,
                             Damage = e.Damage,
                             DamageType = e.DamageType,
                             ArmorClassBonus = e.ArmorClassBonus,
@@ -63,7 +62,7 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-        public Equipment GetEquipmentByID(int equipmentID)
+        public EquipmentDetails GetEquipmentByID(int equipmentID)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -72,7 +71,7 @@ namespace BasicFantasyBeyond.Services
                     .Equipment
                     .Single(e => e.ItemID == equipmentID);
                 return
-                    new Equipment
+                    new EquipmentDetails
                     {
                         ItemID = entity.ItemID,
                         ItemName = entity.ItemName,

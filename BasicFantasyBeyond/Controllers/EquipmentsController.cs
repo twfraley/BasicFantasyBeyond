@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using BasicFantasyBeyond.Data;
 using BasicFantasyBeyond.Models;
 using BasicFantasyBeyond.Models.EquipmentModels;
 using BasicFantasyBeyond.Services;
@@ -43,11 +42,11 @@ namespace BasicFantasyBeyond.Controllers
 
             if (service.CreateEquipment(model))
             {
-                TempData["SaveResult"] = "Your Equipment was created.";
+                TempData["SaveResult"] = "Your equipment was created.";
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Your Character could not be created.");
+            ModelState.AddModelError("", "Your equipment could not be created.");
             return View(model);
         }
 
@@ -93,11 +92,11 @@ namespace BasicFantasyBeyond.Controllers
 
             if (service.UpdateEquipment(model))
             {
-                TempData["SaveResult"] = "Your character was updated.";
+                TempData["SaveResult"] = "Your equipment was updated.";
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Your character could not be updated.");
+            ModelState.AddModelError("", "Your equipment could not be updated.");
             return View(model);
         }
 
@@ -120,7 +119,7 @@ namespace BasicFantasyBeyond.Controllers
             
             service.DeleteEquipment(id);
 
-            TempData["SaveResult"] = "Your character was deleted";
+            TempData["SaveResult"] = "Your equipment was deleted";
 
             return RedirectToAction("Index");
         }
