@@ -20,9 +20,7 @@ namespace BasicFantasyBeyond.Services
 
 		public bool CreateCharacter(CharacterCreate model)
         {
-			// -----------------------
-			// Do backend stuff to generate the rest of Character object here
-			// -----------------------
+            CharacterAbilities characterAbilities = GenerateCharacterAbilities(model.CharacterClass, model.CharacterRace);
 
             var entity =
                 new Character()
@@ -36,7 +34,8 @@ namespace BasicFantasyBeyond.Services
                     CharacterWis = model.CharacterWis,
                     CharacterCha = model.CharacterCha,
                     CharacterRace = model.CharacterRace,
-                    CharacterClass = model.CharacterClass
+                    CharacterClass = model.CharacterClass,
+                    CharacterAbilities = characterAbilities
                 };
 
 			using (ApplicationDbContext ctx = new ApplicationDbContext())
@@ -44,6 +43,37 @@ namespace BasicFantasyBeyond.Services
                 ctx.Characters.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
+        }
+
+        public CharacterAbilities GenerateCharacterAbilities(CharacterClass characterClass, CharacterRace characterRace)
+        {
+            CharacterAbilities characterAbilities = CharacterAbilities.None;
+
+            if (characterRace == CharacterRace.Dwarf)
+            {
+                characterAbilities |= CharacterAbilities.Darkvision;
+                characterAbilities |= CharacterAbilities.DetectConstruction;
+            }
+            if (characterRace == CharacterRace.Elf)
+            {
+                characterAbilities |= CharacterAbilities.Darkvision;
+                characterAbilities |= CharacterAbilities.GhoulImmune;
+                characterAbilities |= CharacterAbilities.DetectSecretDoors;
+                characterAbilities |= CharacterAbilities.ReduceSurprise;
+            }
+            if (characterRace == CharacterRace.Halfling)
+            {
+                characterAbilities |= CharacterAbilities.HalflingACBonus;
+                characterAbilities |= CharacterAbilities.HalflingAttackBonus;
+                characterAbilities |= CharacterAbilities.HalflingHiding;
+                characterAbilities |= CharacterAbilities.HalflingInitiative;
+            }
+            if (characterRace == CharacterRace.Human)
+            {
+                characterAbilities |= CharacterAbilities.HumanXPBonus;
+            }
+
+            return characterAbilities;
         }
 
 		public IEnumerable<Character> GetCharacters()

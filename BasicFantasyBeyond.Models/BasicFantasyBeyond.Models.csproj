@@ -44,7 +44,9 @@
   <ItemGroup>
     <Compile Include="CharacterItemsCreate.cs" />
     <Compile Include="CharacterModels\CharacterCreate.cs" />
+    <Compile Include="CharacterModels\CharacterEdit.cs" />
     <Compile Include="EquipmentModels\EquipmentCreate.cs" />
+    <Compile Include="EquipmentModels\EquipmentEdit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

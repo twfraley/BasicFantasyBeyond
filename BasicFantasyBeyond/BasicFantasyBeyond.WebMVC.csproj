@@ -274,6 +274,14 @@
       <Project>{73A2FBAB-A5BA-499D-B7B0-DE49CD316302}</Project>
       <Name>BasicFantasyBeyond.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BasicFantasyBeyond.Models\BasicFantasyBeyond.Models.csproj">
+      <Project>{BFC6227D-E832-4900-8668-A9B2F3A38741}</Project>
+      <Name>BasicFantasyBeyond.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BasicFantasyBeyond.Services\BasicFantasyBeyond.Services.csproj">
+      <Project>{1E0827DB-7204-4728-A129-995F7481A59B}</Project>
+      <Name>BasicFantasyBeyond.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

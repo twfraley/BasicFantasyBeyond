@@ -7,32 +7,22 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BasicFantasyBeyond.Data;
+using BasicFantasyBeyond.Models.CharacterModels;
+using BasicFantasyBeyond.Services;
+using Microsoft.AspNet.Identity;
 
 namespace BasicFantasyBeyond.Controllers
 {
     public class CharacterController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         // GET: Characters
         public ActionResult Index()
         {
-            return View(db.Characters.ToList());
-        }
+            var userID = Guid.Parse(User.Identity.GetUserId());
+            var service = new CharacterServices(userID);
+            var model = service.GetCharacters();
 
-        // GET: Characters/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Character character = db.Characters.Find(id);
-            if (character == null)
-            {
-                return HttpNotFound();
-            }
-            return View(character);
+            return View(model);
         }
 
         // GET: Characters/Create
@@ -42,40 +32,54 @@ namespace BasicFantasyBeyond.Controllers
         }
 
         // POST: Characters/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CharacterID,OwnerID,CharacterName,CharacterStr,CharacterDex,CharacterCon,CharacterInt,CharacterWis,CharacterCha,CharacterRace,CharacterClass,CharacterAbilities,CharacterXP,CharacterLevel,CharacterAC,CharacterHP,CharacterAttackBonus,CharacterNotes")] Character character)
+        public ActionResult Create(CharacterCreate model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Characters.Add(character);
-                db.SaveChanges();
+                return View(model);
+            }
+
+            var service = CharacterServices();
+
+            if (service.CreateCharacter(model))
+            {
+                TempData["SaveResult"] = "Your Character was created.";
                 return RedirectToAction("Index");
             }
 
-            return View(character);
+            ModelState.AddModelError("", "Your Character could not be created.");
+            return View(model);
         }
 
-        // GET: Characters/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Character character = db.Characters.Find(id);
-            if (character == null)
-            {
-                return HttpNotFound();
-            }
-            return View(character);
+            var svc = CharacterServices();
+            Character model = svc.GetCharacterByID(id);
+
+            return View(model);
         }
 
-        // POST: Characters/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        public ActionResult Edit(int id)
+        {
+            var service = CharacterServices();
+            var detail = service.GetCharacterByID(id);
+            var model =
+                new CharacterEdit
+                {
+                    CharacterName = detail.CharacterName,
+                    CharacterStr = detail.CharacterStr,
+                    CharacterDex = detail.CharacterDex,
+                    CharacterCon = detail.CharacterCon,
+                    CharacterInt = detail.CharacterInt,
+                    CharacterWis = detail.CharacterWis,
+                    CharacterCha = detail.CharacterCha
+                };
+            return View(model);
+        }
+
+        // POST: Characters/Edit/
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CharacterID,OwnerID,CharacterName,CharacterStr,CharacterDex,CharacterCon,CharacterInt,CharacterWis,CharacterCha,CharacterRace,CharacterClass,CharacterAbilities,CharacterXP,CharacterLevel,CharacterAC,CharacterHP,CharacterAttackBonus,CharacterNotes")] Character character)
@@ -115,13 +119,11 @@ namespace BasicFantasyBeyond.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+        private CharacterServices CharacterServices()
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            var userID = Guid.Parse(User.Identity.GetUserId());
+            var service = new CharacterServices(userID);
+            return service;
         }
     }
 }
