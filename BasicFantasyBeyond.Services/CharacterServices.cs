@@ -76,7 +76,7 @@ namespace BasicFantasyBeyond.Services
             return characterAbilities;
         }
 
-		public IEnumerable<Character> GetCharacters()
+		public IEnumerable<CharacterListItem> GetCharacters()
         {
 			using (var ctx = new ApplicationDbContext())
             {
@@ -86,25 +86,13 @@ namespace BasicFantasyBeyond.Services
                     .Where(e => e.OwnerID == _userID)
                     .Select(
                         e =>
-                        new Character
+                        new CharacterListItem
                         {
                             CharacterID = e.CharacterID,
                             CharacterName = e.CharacterName,
-                            CharacterStr = e.CharacterStr,
-                            CharacterDex = e.CharacterDex,
-                            CharacterCon = e.CharacterCon,
-                            CharacterInt = e.CharacterInt,
-                            CharacterWis = e.CharacterWis,
-                            CharacterCha = e.CharacterCha,
                             CharacterRace = e.CharacterRace,
                             CharacterClass = e.CharacterClass,
-							CharacterAbilities = e.CharacterAbilities,
-							CharacterXP = e.CharacterXP,
 							CharacterLevel = e.CharacterLevel,
-							CharacterAC = e.CharacterAC,
-							CharacterHP = e.CharacterHP,
-							CharacterAttackBonus = e.CharacterAttackBonus,
-							CharacterNotes = e.CharacterNotes
                         });
                 return query.ToArray();
             }
@@ -142,7 +130,7 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-		public bool UpdateCharacter(Character model)
+		public bool UpdateCharacter(CharacterEdit model)
         {
 			using (var ctx = new ApplicationDbContext())
             {
@@ -158,15 +146,7 @@ namespace BasicFantasyBeyond.Services
                 entity.CharacterInt = model.CharacterInt;
                 entity.CharacterWis = model.CharacterWis;
                 entity.CharacterCha = model.CharacterCha;
-                entity.CharacterRace = model.CharacterRace;
-                entity.CharacterClass = model.CharacterClass;
-                entity.CharacterAbilities = model.CharacterAbilities;
                 entity.CharacterXP = model.CharacterXP;
-                entity.CharacterLevel = model.CharacterLevel;
-                entity.CharacterAC = model.CharacterAC;
-                entity.CharacterHP = model.CharacterHP;
-                entity.CharacterAttackBonus = model.CharacterAttackBonus;
-                entity.CharacterNotes = model.CharacterNotes;
 
                 return ctx.SaveChanges() == 1;
             }

@@ -53,9 +53,8 @@ namespace BasicFantasyBeyond.Models.CharacterModels
         [Required]
         public CharacterClass CharacterClass { get; set; }
 
-        public CharacterAbilities CharacterAbilities { get; set; }
-
         public override string ToString() => CharacterName;
 
     }
+
 }

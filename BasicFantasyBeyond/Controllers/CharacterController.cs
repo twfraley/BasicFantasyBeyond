@@ -68,13 +68,15 @@ namespace BasicFantasyBeyond.Controllers
             var model =
                 new CharacterEdit
                 {
+                    CharacterID = detail.CharacterID,
                     CharacterName = detail.CharacterName,
                     CharacterStr = detail.CharacterStr,
                     CharacterDex = detail.CharacterDex,
                     CharacterCon = detail.CharacterCon,
                     CharacterInt = detail.CharacterInt,
                     CharacterWis = detail.CharacterWis,
-                    CharacterCha = detail.CharacterCha
+                    CharacterCha = detail.CharacterCha,
+                    CharacterXP = detail.CharacterXP
                 };
             return View(model);
         }
@@ -82,40 +84,49 @@ namespace BasicFantasyBeyond.Controllers
         // POST: Characters/Edit/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CharacterID,OwnerID,CharacterName,CharacterStr,CharacterDex,CharacterCon,CharacterInt,CharacterWis,CharacterCha,CharacterRace,CharacterClass,CharacterAbilities,CharacterXP,CharacterLevel,CharacterAC,CharacterHP,CharacterAttackBonus,CharacterNotes")] Character character)
+        public ActionResult Edit(int id, CharacterEdit model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View(model);
+
+            if(model.CharacterID != id)
             {
-                db.Entry(character).State = EntityState.Modified;
-                db.SaveChanges();
+                ModelState.AddModelError("", "Id Missmatch");
+                return View(model);
+            }
+
+            var service = CharacterServices();
+
+            if (service.UpdateCharacter(model))
+            {
+                TempData["SaveResult"] = "Your character was updated.";
                 return RedirectToAction("Index");
             }
-            return View(character);
+
+            ModelState.AddModelError("", "Your character could not be updated.");
+            return View(model);
         }
 
-        // GET: Characters/Delete/5
-        public ActionResult Delete(int? id)
+
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Character character = db.Characters.Find(id);
-            if (character == null)
-            {
-                return HttpNotFound();
-            }
-            return View(character);
+            var svc = CharacterServices();
+            var model = svc.GetCharacterByID(id);
+
+            return View(model);
         }
 
-        // POST: Characters/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteCharacter(int id)
         {
-            Character character = db.Characters.Find(id);
-            db.Characters.Remove(character);
-            db.SaveChanges();
+            var service = CharacterServices();
+            
+            service.DeleteCharacter(id);
+
+            TempData["SaveResult"] = "Your note was deleted";
+
             return RedirectToAction("Index");
         }
 
