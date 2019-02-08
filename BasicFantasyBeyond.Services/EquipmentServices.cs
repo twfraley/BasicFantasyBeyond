@@ -39,7 +39,7 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-        public IEnumerable<Equipment> GetEquipment()
+        public IEnumerable<EquipmentListItem> GetEquipment()
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -48,7 +48,7 @@ namespace BasicFantasyBeyond.Services
                     Equipment
                     .Select(
                         e =>
-                        new Equipment
+                        new EquipmentListItem
                         {
                             ItemID = e.ItemID,
                             ItemName = e.ItemName,
@@ -86,7 +86,7 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-        public bool UpdateEquipment(Equipment model)
+        public bool UpdateEquipment(EquipmentDetails model)
         {
             using (var ctx = new ApplicationDbContext())
             {

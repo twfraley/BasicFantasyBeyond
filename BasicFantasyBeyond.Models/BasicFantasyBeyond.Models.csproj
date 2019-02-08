@@ -42,13 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CharacterItemsCreate.cs" />
+    <Compile Include="CharcterItemsModels\CharacterItemsCreate.cs" />
     <Compile Include="CharacterModels\CharacterCreate.cs" />
     <Compile Include="CharacterModels\CharacterDetails.cs" />
     <Compile Include="CharacterModels\CharacterEdit.cs" />
     <Compile Include="CharacterModels\CharacterListItem.cs" />
     <Compile Include="EquipmentModels\EquipmentCreate.cs" />
-    <Compile Include="EquipmentModels\EquipmentDelete.cs" />
     <Compile Include="EquipmentModels\EquipmentDetails.cs" />
     <Compile Include="EquipmentModels\EquipmentEdit.cs" />
     <Compile Include="EquipmentModels\EquipmentListItem.cs" />

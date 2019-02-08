@@ -8,121 +8,127 @@ using System.Web;
 using System.Web.Mvc;
 using BasicFantasyBeyond.Data;
 using BasicFantasyBeyond.Models;
+using BasicFantasyBeyond.Models.EquipmentModels;
+using BasicFantasyBeyond.Services;
+using Microsoft.AspNet.Identity;
 
 namespace BasicFantasyBeyond.Controllers
 {
     public class EquipmentsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
-        // GET: Equipments
         public ActionResult Index()
         {
-            return View(db.Equipment.ToList());
+            var userID = Guid.Parse(User.Identity.GetUserId());
+            var service = new EquipmentServices(userID);
+            var model = service.GetEquipment();
+
+            return View(model);
         }
 
-        // GET: Equipments/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Equipment equipment = db.Equipment.Find(id);
-            if (equipment == null)
-            {
-                return HttpNotFound();
-            }
-            return View(equipment);
-        }
-
-        // GET: Equipments/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Equipments/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ItemID,ItemName,EquipmentType,IsEquipped,Damage,DamageType,ArmorClassBonus,ItemNotes")] Equipment equipment)
+        public ActionResult Create(EquipmentCreate model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Equipment.Add(equipment);
-                db.SaveChanges();
+                return View(model);
+            }
+
+            var service = EquipmentServices();
+
+            if (service.CreateEquipment(model))
+            {
+                TempData["SaveResult"] = "Your Equipment was created.";
                 return RedirectToAction("Index");
             }
 
-            return View(equipment);
+            ModelState.AddModelError("", "Your Character could not be created.");
+            return View(model);
         }
 
-        // GET: Equipments/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Equipment equipment = db.Equipment.Find(id);
-            if (equipment == null)
-            {
-                return HttpNotFound();
-            }
-            return View(equipment);
+            var svc = EquipmentServices();
+            var model = svc.GetEquipmentByID(id);
+
+            return View(model);
         }
 
-        // POST: Equipments/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        public ActionResult Edit(int id)
+        {
+            var service = EquipmentServices();
+            var detail = service.GetEquipmentByID(id);
+            var model =
+                new EquipmentEdit
+                {
+                    ItemName=detail.ItemName,
+                    EquipmentType = detail.EquipmentType,
+                    IsEquipped = detail.IsEquipped,
+                    Damage = detail.Damage,
+                    DamageType = detail.DamageType,
+                    ArmorClassBonus = detail.ArmorClassBonus,
+                    ItemNotes = detail.ItemNotes
+                };
+            return View(model);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ItemID,ItemName,EquipmentType,IsEquipped,Damage,DamageType,ArmorClassBonus,ItemNotes")] Equipment equipment)
+        public ActionResult Edit(int id, EquipmentDetails model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View(model);
+
+            if(model.ItemID != id)
             {
-                db.Entry(equipment).State = EntityState.Modified;
-                db.SaveChanges();
+                ModelState.AddModelError("", "Id Missmatch");
+                return View(model);
+            }
+
+            var service = EquipmentServices();
+
+            if (service.UpdateEquipment(model))
+            {
+                TempData["SaveResult"] = "Your character was updated.";
                 return RedirectToAction("Index");
             }
-            return View(equipment);
+
+            ModelState.AddModelError("", "Your character could not be updated.");
+            return View(model);
         }
 
-        // GET: Equipments/Delete/5
-        public ActionResult Delete(int? id)
+
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Equipment equipment = db.Equipment.Find(id);
-            if (equipment == null)
-            {
-                return HttpNotFound();
-            }
-            return View(equipment);
+            var svc = EquipmentServices();
+            var model = svc.GetEquipmentByID(id);
+
+            return View(model);
         }
 
-        // POST: Equipments/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteEquipment(int id)
         {
-            Equipment equipment = db.Equipment.Find(id);
-            db.Equipment.Remove(equipment);
-            db.SaveChanges();
+            var service = EquipmentServices();
+            
+            service.DeleteEquipment(id);
+
+            TempData["SaveResult"] = "Your character was deleted";
+
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+        private EquipmentServices EquipmentServices()
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-    }
+            var userID = Guid.Parse(User.Identity.GetUserId());
+            var service = new EquipmentServices(userID);
+            return service;
+        }    }
 }
