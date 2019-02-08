@@ -45,10 +45,12 @@
     <Compile Include="CharacterItemsCreate.cs" />
     <Compile Include="CharacterModels\CharacterCreate.cs" />
     <Compile Include="CharacterModels\CharacterDelete.cs" />
+    <Compile Include="CharacterModels\CharacterDetails.cs" />
     <Compile Include="CharacterModels\CharacterEdit.cs" />
     <Compile Include="CharacterModels\CharacterListItem.cs" />
     <Compile Include="EquipmentModels\EquipmentCreate.cs" />
     <Compile Include="EquipmentModels\EquipmentDelete.cs" />
+    <Compile Include="EquipmentModels\EquipmentDetails.cs" />
     <Compile Include="EquipmentModels\EquipmentEdit.cs" />
     <Compile Include="EquipmentModels\EquipmentListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

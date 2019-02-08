@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BasicFantasyBeyond.Models.CharacterModels
 {
-    class CharacterDelete
+    public class CharacterDelete
     {
     }
 }

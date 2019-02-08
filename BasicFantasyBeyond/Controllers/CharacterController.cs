@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using BasicFantasyBeyond.Data;
 using BasicFantasyBeyond.Models.CharacterModels;
 using BasicFantasyBeyond.Services;
 using Microsoft.AspNet.Identity;
@@ -56,7 +55,7 @@ namespace BasicFantasyBeyond.Controllers
         public ActionResult Details(int id)
         {
             var svc = CharacterServices();
-            Character model = svc.GetCharacterByID(id);
+            CharacterDetails model = svc.GetCharacterByID(id);
 
             return View(model);
         }
@@ -125,7 +124,7 @@ namespace BasicFantasyBeyond.Controllers
             
             service.DeleteCharacter(id);
 
-            TempData["SaveResult"] = "Your note was deleted";
+            TempData["SaveResult"] = "Your character was deleted";
 
             return RedirectToAction("Index");
         }

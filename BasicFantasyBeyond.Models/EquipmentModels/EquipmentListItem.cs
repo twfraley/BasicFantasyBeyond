@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BasicFantasyBeyond.Models.EquipmentModels
 {
-    class EquipmentListItem
+    public class EquipmentListItem
     {
     }
 }

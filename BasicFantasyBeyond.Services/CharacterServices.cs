@@ -98,7 +98,7 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-		public Character GetCharacterByID(int characterID)
+		public CharacterDetails GetCharacterByID(int characterID)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -107,7 +107,7 @@ namespace BasicFantasyBeyond.Services
                     .Characters
                     .Single(e => e.CharacterID == characterID && e.OwnerID == _userID);
                 return
-                    new Character
+                    new CharacterDetails
                     {
                         CharacterID = entity.CharacterID,
                         CharacterName = entity.CharacterName,
