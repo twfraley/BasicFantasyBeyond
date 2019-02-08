@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="CharacterItemsCreate.cs" />
     <Compile Include="CharacterModels\CharacterCreate.cs" />
-    <Compile Include="CharacterModels\CharacterDelete.cs" />
     <Compile Include="CharacterModels\CharacterDetails.cs" />
     <Compile Include="CharacterModels\CharacterEdit.cs" />
     <Compile Include="CharacterModels\CharacterListItem.cs" />

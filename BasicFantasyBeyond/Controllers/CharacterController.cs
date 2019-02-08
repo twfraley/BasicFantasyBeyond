@@ -14,7 +14,6 @@ namespace BasicFantasyBeyond.Controllers
 {
     public class CharacterController : Controller
     {
-        // GET: Characters
         public ActionResult Index()
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
@@ -24,13 +23,11 @@ namespace BasicFantasyBeyond.Controllers
             return View(model);
         }
 
-        // GET: Characters/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Characters/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CharacterCreate model)
@@ -55,7 +52,7 @@ namespace BasicFantasyBeyond.Controllers
         public ActionResult Details(int id)
         {
             var svc = CharacterServices();
-            CharacterDetails model = svc.GetCharacterByID(id);
+            var model = svc.GetCharacterByID(id);
 
             return View(model);
         }
@@ -80,7 +77,6 @@ namespace BasicFantasyBeyond.Controllers
             return View(model);
         }
 
-        // POST: Characters/Edit/
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, CharacterEdit model)
