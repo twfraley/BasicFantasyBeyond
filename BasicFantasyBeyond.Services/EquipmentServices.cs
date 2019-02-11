@@ -80,7 +80,7 @@ namespace BasicFantasyBeyond.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Equipment.Single(e => e.ItemID == model.ItemID);
+                var entity = ctx.Equipment.FirstOrDefault(e => e.ItemID == model.ItemID);
 
                 entity.ItemID = model.ItemID;
                 entity.ItemName = model.ItemName;
