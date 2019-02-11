@@ -72,7 +72,14 @@ namespace BasicFantasyBeyond.Services
             {
                 characterAbilities |= CharacterAbilities.HumanXPBonus;
             }
-
+            if(characterClass == CharacterClass.Thief)
+            {
+                characterAbilities |= CharacterAbilities.ThiefSkills;
+            }
+            if(characterClass == CharacterClass.Cleric)
+            {
+                characterAbilities |= CharacterAbilities.TurnUndead;
+            }
             return characterAbilities;
         }
 
@@ -130,7 +137,7 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-		public bool UpdateCharacter(CharacterEdit model)
+		public bool UpdateCharacter(CharacterDetails model)
         {
 			using (var ctx = new ApplicationDbContext())
             {

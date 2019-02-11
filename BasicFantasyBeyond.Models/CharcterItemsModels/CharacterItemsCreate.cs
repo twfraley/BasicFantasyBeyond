@@ -9,7 +9,7 @@ namespace BasicFantasyBeyond.Models
 {
     public class CharacterItemsCreate
     {
-        [Key]
+        [Required]
         public int CharacterItemsID { get; set; }
         [Required]
         public virtual int CharacterID { get; set; }

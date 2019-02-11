@@ -62,8 +62,9 @@ namespace BasicFantasyBeyond.Controllers
             var service = CharacterServices();
             var detail = service.GetCharacterByID(id);
             var model =
-                new CharacterEdit
+                new CharacterDetails
                 {
+                    OwnerID = detail.OwnerID,
                     CharacterID = detail.CharacterID,
                     CharacterName = detail.CharacterName,
                     CharacterStr = detail.CharacterStr,
@@ -72,14 +73,22 @@ namespace BasicFantasyBeyond.Controllers
                     CharacterInt = detail.CharacterInt,
                     CharacterWis = detail.CharacterWis,
                     CharacterCha = detail.CharacterCha,
-                    CharacterXP = detail.CharacterXP
+                    CharacterRace = detail.CharacterRace,
+                    CharacterClass = detail.CharacterClass,
+                    CharacterAbilities = detail.CharacterAbilities,
+                    CharacterXP = detail.CharacterXP,
+                    CharacterLevel = detail.CharacterLevel,
+                    CharacterAC = detail.CharacterAC,
+                    CharacterHP = detail.CharacterHP,
+                    CharacterAttackBonus = detail.CharacterAttackBonus,
+                    CharacterNotes = detail.CharacterNotes
                 };
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, CharacterEdit model)
+        public ActionResult Edit(int id, CharacterDetails model)
         {
             if (!ModelState.IsValid) return View(model);
 

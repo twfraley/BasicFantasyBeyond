@@ -9,7 +9,7 @@ namespace BasicFantasyBeyond.Models.CharacterModels
 {
     public class CharacterDetails
     {
-        [Key]
+        [Required]
         public int CharacterID { get; set; }
         public Guid OwnerID { get; set; }
         public string CharacterName { get; set; }

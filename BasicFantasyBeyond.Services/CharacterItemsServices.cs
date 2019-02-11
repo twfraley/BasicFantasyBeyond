@@ -16,7 +16,7 @@ namespace BasicFantasyBeyond.Services
         {
             userID = _userID;
         }
-        
+
         public bool AddCharacterItems(CharacterItemsCreate model)
         {
             var entity =
@@ -37,34 +37,34 @@ namespace BasicFantasyBeyond.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query =
-                    ctx.
-                    CharacterItems
-                    .Select(
-                        e =>
-                        new CharacterItems
-                        {
-                            CharacterID = e.CharacterID,
-                            ItemID = e.ItemID
-                        });
+                var query = ctx.CharacterItems.Select(e => new CharacterItems
+                {
+                    CharacterID = e.CharacterID,
+                    ItemID = e.ItemID
+                });
+
                 return query.ToArray();
             }
         }
 
-        public CharacterItems GetCharacterItemsByCharacterID(int characterID)
+        public IEnumerable<CharacterItemsCreate> GetCharacterItemsByCharacterID(int characterID)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                    .CharacterItems
-                    .Single(e => e.CharacterID == characterID);
-                return
-                    new CharacterItems
+                var query = ctx.CharacterItems.Where(e => e.CharacterID == characterID);
+
+                //Make list and add to list methods
+
+                foreach (var model in query)
+                {
+                    var itemList = new CharacterItemsCreate
                     {
-                        CharacterID = entity.CharacterID,
-                        ItemID = entity.ItemID
+                        CharacterID = model.CharacterID,
+                        ItemID = model.ItemID
                     };
+                }
+
+                
             }
         }
 
