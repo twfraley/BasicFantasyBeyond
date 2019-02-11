@@ -51,9 +51,9 @@ namespace BasicFantasyBeyond.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.CharacterItems.Where(e => e.CharacterID == characterID);
+                List<CharacterItemsCreate> characterItems = new List<CharacterItemsCreate>();
 
-                //Make list and add to list methods
+                var query = ctx.CharacterItems.Where(e => e.CharacterID == characterID);
 
                 foreach (var model in query)
                 {
@@ -62,20 +62,23 @@ namespace BasicFantasyBeyond.Services
                         CharacterID = model.CharacterID,
                         ItemID = model.ItemID
                     };
-                }
 
-                
+                    AddCharacterItems(itemList);
+                }
+                return characterItems;
+
+                void AddCharacterItems(CharacterItemsCreate item)
+                {
+                    characterItems.Add(item);
+                }
             }
         }
 
-        public bool UpdateCharacterItems(CharacterItems model)
+        public bool UpdateCharacterItems(CharacterItemsCreate model)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                    .CharacterItems
-                    .Single(e => e.CharacterID == model.CharacterID);
+                var entity = ctx.CharacterItems.Single(e => e.CharacterID == model.CharacterID);
 
                 entity.ItemID = model.ItemID;
                 entity.CharacterID = model.CharacterID;
