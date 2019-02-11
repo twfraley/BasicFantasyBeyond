@@ -18,9 +18,9 @@ namespace BasicFantasyBeyond.Services
             userID = _userID;
         }
 
-		public bool CreateCharacter(CharacterCreate model)
+        public bool CreateCharacter(CharacterCreate model)
         {
-            CharacterAbilities characterAbilities = GenerateCharacterAbilities(model.CharacterClass, model.CharacterRace);
+            var characterAbilities = GenerateCharacterAbilities(model.CharacterClass, model.CharacterRace);
 
             var entity =
                 new Character()
@@ -38,7 +38,7 @@ namespace BasicFantasyBeyond.Services
                     CharacterAbilities = characterAbilities
                 };
 
-			using (ApplicationDbContext ctx = new ApplicationDbContext())
+            using (ApplicationDbContext ctx = new ApplicationDbContext())
             {
                 ctx.Characters.Add(entity);
                 return ctx.SaveChanges() == 1;
@@ -72,47 +72,38 @@ namespace BasicFantasyBeyond.Services
             {
                 characterAbilities |= CharacterAbilities.HumanXPBonus;
             }
-            if(characterClass == CharacterClass.Thief)
+            if (characterClass == CharacterClass.Thief)
             {
                 characterAbilities |= CharacterAbilities.ThiefSkills;
             }
-            if(characterClass == CharacterClass.Cleric)
+            if (characterClass == CharacterClass.Cleric)
             {
                 characterAbilities |= CharacterAbilities.TurnUndead;
             }
             return characterAbilities;
         }
 
-		public IEnumerable<CharacterListItem> GetCharacters()
+        public IEnumerable<CharacterListItem> GetCharacters()
         {
-			using (var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
-                var query =
-                    ctx.
-                    Characters
-                    .Where(e => e.OwnerID == _userID)
-                    .Select(
-                        e =>
-                        new CharacterListItem
-                        {
-                            CharacterID = e.CharacterID,
-                            CharacterName = e.CharacterName,
-                            CharacterRace = e.CharacterRace,
-                            CharacterClass = e.CharacterClass,
-							CharacterLevel = e.CharacterLevel,
-                        });
+                var query = ctx.Characters.Where(e => e.OwnerID == _userID).Select(e => new CharacterListItem
+                {
+                    CharacterID = e.CharacterID,
+                    CharacterName = e.CharacterName,
+                    CharacterRace = e.CharacterRace,
+                    CharacterClass = e.CharacterClass,
+                    CharacterLevel = e.CharacterLevel,
+                });
                 return query.ToArray();
             }
         }
 
-		public CharacterDetails GetCharacterByID(int characterID)
+        public CharacterDetails GetCharacterByID(int characterID)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                    .Characters
-                    .Single(e => e.CharacterID == characterID && e.OwnerID == _userID);
+                var entity = ctx.Characters.Single(e => e.CharacterID == characterID && e.OwnerID == _userID);
                 return
                     new CharacterDetails
                     {
@@ -137,14 +128,13 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-		public bool UpdateCharacter(CharacterDetails model)
+        public bool UpdateCharacter(CharacterDetails model)
         {
-			using (var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                    .Characters
-                    .Single(e => e.CharacterID == model.CharacterID && e.OwnerID == _userID);
+                var characterAbilities = GenerateCharacterAbilities(model.CharacterClass, model.CharacterRace);
+
+                var entity = ctx.Characters.Single(e => e.CharacterID == model.CharacterID && e.OwnerID == _userID);
 
                 entity.CharacterName = model.CharacterName;
                 entity.CharacterStr = model.CharacterStr;
@@ -153,15 +143,23 @@ namespace BasicFantasyBeyond.Services
                 entity.CharacterInt = model.CharacterInt;
                 entity.CharacterWis = model.CharacterWis;
                 entity.CharacterCha = model.CharacterCha;
+                entity.CharacterRace = model.CharacterRace;
+                entity.CharacterClass = model.CharacterClass;
+                entity.CharacterAbilities = characterAbilities;
                 entity.CharacterXP = model.CharacterXP;
+                entity.CharacterLevel = model.CharacterLevel;
+                entity.CharacterAC = model.CharacterAC;
+                entity.CharacterHP = model.CharacterHP;
+                entity.CharacterAttackBonus = model.CharacterAttackBonus;
+                entity.CharacterNotes = model.CharacterNotes;
 
                 return ctx.SaveChanges() == 1;
             }
         }
 
-		public bool DeleteCharacter(int characterID)
+        public bool DeleteCharacter(int characterID)
         {
-			using (var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Characters.Single(e => e.CharacterID == characterID && e.OwnerID == _userID);
 

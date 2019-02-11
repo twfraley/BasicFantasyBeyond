@@ -17,7 +17,7 @@ namespace BasicFantasyBeyond.Services
             userID = _userID;
         }
 
-        public bool AddCharacterItems(CharacterItemsCreate model)
+        public bool AddCharacterItems(CharacterItemsModel model)
         {
             var entity =
                 new CharacterItems()
@@ -33,11 +33,11 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-        public IEnumerable<CharacterItems> GetCharacterItems()
+        public IEnumerable<CharacterItemsModel> GetCharacterItems()
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.CharacterItems.Select(e => new CharacterItems
+                var query = ctx.CharacterItems.Select(e => new CharacterItemsModel
                 {
                     CharacterID = e.CharacterID,
                     ItemID = e.ItemID
@@ -47,17 +47,17 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-        public IEnumerable<CharacterItemsCreate> GetCharacterItemsByCharacterID(int characterID)
+        public IEnumerable<CharacterItemsModel> GetCharacterItemsByCharacterID(int characterID)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                List<CharacterItemsCreate> characterItems = new List<CharacterItemsCreate>();
+                List<CharacterItemsModel> characterItems = new List<CharacterItemsModel>();
 
                 var query = ctx.CharacterItems.Where(e => e.CharacterID == characterID);
 
                 foreach (var model in query)
                 {
-                    var itemList = new CharacterItemsCreate
+                    var itemList = new CharacterItemsModel
                     {
                         CharacterID = model.CharacterID,
                         ItemID = model.ItemID
@@ -67,14 +67,14 @@ namespace BasicFantasyBeyond.Services
                 }
                 return characterItems;
 
-                void AddCharacterItems(CharacterItemsCreate item)
+                void AddCharacterItems(CharacterItemsModel item)
                 {
                     characterItems.Add(item);
                 }
             }
         }
 
-        public bool UpdateCharacterItems(CharacterItemsCreate model)
+        public bool UpdateCharacterItems(CharacterItemsModel model)
         {
             using (var ctx = new ApplicationDbContext())
             {
