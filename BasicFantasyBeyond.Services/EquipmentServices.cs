@@ -21,8 +21,7 @@ namespace BasicFantasyBeyond.Services
 
         public bool CreateEquipment(EquipmentCreate model)
         {
-            var entity =
-                new Equipment()
+            var entity = new Equipment()
                 {
                     ItemName = model.ItemName,
                     EquipmentType = model.EquipmentType,
@@ -43,12 +42,7 @@ namespace BasicFantasyBeyond.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query =
-                    ctx.
-                    Equipment
-                    .Select(
-                        e =>
-                        new EquipmentListItem
+                var query = ctx.Equipment.Select(e => new EquipmentListItem
                         {
                             ItemID = e.ItemID,
                             ItemName = e.ItemName,
@@ -66,10 +60,7 @@ namespace BasicFantasyBeyond.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                    .Equipment
-                    .Single(e => e.ItemID == itemID);
+                var entity = ctx.Equipment.Single(e => e.ItemID == itemID);
                 return
                     new EquipmentDetails
                     {
@@ -89,10 +80,7 @@ namespace BasicFantasyBeyond.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                    .Equipment
-                    .Single(e => e.ItemID == model.ItemID);
+                var entity = ctx.Equipment.Single(e => e.ItemID == model.ItemID);
 
                 entity.ItemID = model.ItemID;
                 entity.ItemName = model.ItemName;
