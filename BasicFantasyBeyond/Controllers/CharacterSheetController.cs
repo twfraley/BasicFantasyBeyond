@@ -53,27 +53,27 @@ namespace BasicFantasyBeyond.Controllers
             return View(model);
         }
 
-        public ActionResult Edit(int id)
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
         {
             var service = CharacterSheetServices();
-            var detail = service.GetCharacterSheetByCharacterID(id);
-            var model =
-                new CharacterSheetModel
-                {
-                    CharacterItemsID = detail.CharacterItemsID,
-                    ItemID = detail.ItemID,
-                    CharacterID = detail.CharacterID
-                };
+            var model = service.GetCharacterSheetByCharacterID(id);
+
             return View(model);
         }
 
         [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, CharacterSheetModel model)
+        public ActionResult DeleteCharacterSheet(int id)
         {
-            if (!ModelState.IsValid) return View(model);
+            var service = CharacterSheetServices();
 
-            if (
+            service.RemoveEquipmentfromCharacter(id);
+
+            TempData["SaveResult"] = "Your equipment was delted";
+
+            return RedirectToAction("Index");
         }
 
         private CharacterSheetServices CharacterSheetServices()
