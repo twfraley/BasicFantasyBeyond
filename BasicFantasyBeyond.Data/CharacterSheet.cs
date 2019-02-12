@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BasicFantasyBeyond.Data
 {
-    public class CharacterItems
+    public class CharacterSheet
     {
         [Key]
         public int CharacterItemsID { get; set; }

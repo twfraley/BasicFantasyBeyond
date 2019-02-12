@@ -75,7 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CharacterItemsServices.cs" />
+    <Compile Include="CharacterSheetServices.cs" />
     <Compile Include="EquipmentServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

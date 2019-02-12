@@ -76,9 +76,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Character.cs" />
-    <Compile Include="CharacterItems.cs" />
+    <Compile Include="CharacterSheet.cs" />
     <Compile Include="Equipment.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\201902081830061_InitialCreate.cs" />
+    <Compile Include="Migrations\201902081830061_InitialCreate.Designer.cs">
+      <DependentUpon>201902081830061_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902121859034_InitialCreate1.cs" />
+    <Compile Include="Migrations\201902121859034_InitialCreate1.Designer.cs">
+      <DependentUpon>201902121859034_InitialCreate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902122057072_migration.cs" />
+    <Compile Include="Migrations\201902122057072_migration.Designer.cs">
+      <DependentUpon>201902122057072_migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +103,17 @@
       <Project>{BFC6227D-E832-4900-8668-A9B2F3A38741}</Project>
       <Name>BasicFantasyBeyond.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201902081830061_InitialCreate.resx">
+      <DependentUpon>201902081830061_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902121859034_InitialCreate1.resx">
+      <DependentUpon>201902121859034_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902122057072_migration.resx">
+      <DependentUpon>201902122057072_migration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

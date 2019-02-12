@@ -12,11 +12,11 @@ namespace BasicFantasyBeyond.Services
 {
     public class EquipmentServices
     {
-        private readonly Guid _userID;
+        private Guid _userID;
 
         public EquipmentServices(Guid userID)
         {
-            userID = _userID;
+            _userID = userID;
         }
 
         public bool CreateEquipment(EquipmentCreate model)

@@ -1,4 +1,4 @@
-﻿@model BasicFantasyBeyond.Models.CharacterModels.CharacterDetails
+﻿@model BasicFantasyBeyond.Models.CharcterSheetModels.CharacterSheet
 
 @{
     ViewBag.Title = "Details";
@@ -11,136 +11,136 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.CharacterName)
+            @Html.DisplayNameFor(model => model.CharacterDetails.CharacterName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CharacterName)
+            @Html.DisplayFor(model => model.CharacterDetails.CharacterName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CharacterStr)
+            @Html.DisplayNameFor(model => model.CharacterDetails.CharacterStr)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CharacterStr)
+            @Html.DisplayFor(model => model.CharacterDetails.CharacterStr)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CharacterDex)
+            @Html.DisplayNameFor(model => model.CharacterDetails.CharacterDex)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CharacterDex)
+            @Html.DisplayFor(model => model.CharacterDetails.CharacterDex)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CharacterCon)
+            @Html.DisplayNameFor(model => model.CharacterDetails.CharacterCon)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CharacterCon)
+            @Html.DisplayFor(model => model.CharacterDetails.CharacterCon)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CharacterInt)
+            @Html.DisplayNameFor(model => model.CharacterDetails.CharacterInt)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CharacterInt)
+            @Html.DisplayFor(model => model.CharacterDetails.CharacterInt)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CharacterWis)
+            @Html.DisplayNameFor(model => model.CharacterDetails.CharacterWis)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CharacterWis)
+            @Html.DisplayFor(model => model.CharacterDetails.CharacterWis)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CharacterCha)
+            @Html.DisplayNameFor(model => model.CharacterDetails.CharacterCha)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CharacterCha)
+            @Html.DisplayFor(model => model.CharacterDetails.CharacterCha)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CharacterRace)
+            @Html.DisplayNameFor(model => model.CharacterDetails.CharacterRace)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CharacterRace)
+            @Html.DisplayFor(model => model.CharacterDetails.CharacterRace)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CharacterClass)
+            @Html.DisplayNameFor(model => model.CharacterDetails.CharacterClass)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CharacterClass)
+            @Html.DisplayFor(model => model.CharacterDetails.CharacterClass)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CharacterAbilities)
+            @Html.DisplayNameFor(model => model.CharacterDetails.CharacterAbilities)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CharacterAbilities)
+            @Html.DisplayFor(model => model.CharacterDetails.CharacterAbilities)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CharacterXP)
+            @Html.DisplayNameFor(model => model.CharacterDetails.CharacterXP)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CharacterXP)
+            @Html.DisplayFor(model => model.CharacterDetails.CharacterXP)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CharacterLevel)
+            @Html.DisplayNameFor(model => model.CharacterDetails.CharacterLevel)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CharacterLevel)
+            @Html.DisplayFor(model => model.CharacterDetails.CharacterLevel)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CharacterAC)
+            @Html.DisplayNameFor(model => model.CharacterDetails.CharacterAC)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CharacterAC)
+            @Html.DisplayFor(model => model.CharacterDetails.CharacterAC)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CharacterHP)
+            @Html.DisplayNameFor(model => model.CharacterDetails.CharacterHP)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CharacterHP)
+            @Html.DisplayFor(model => model.CharacterDetails.CharacterHP)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CharacterAttackBonus)
+            @Html.DisplayNameFor(model => model.CharacterDetails.CharacterAttackBonus)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CharacterAttackBonus)
+            @Html.DisplayFor(model => model.CharacterDetails.CharacterAttackBonus)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CharacterNotes)
+            @Html.DisplayNameFor(model => model.CharacterDetails.CharacterNotes)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CharacterNotes)
+            @Html.DisplayFor(model => model.CharacterDetails.CharacterNotes)
         </dd> 
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit Character", "Edit", new { id = Model.CharacterID }) |
+    @Html.ActionLink("Edit Character", "Edit", new { id = Model.CharacterDetails.CharacterID }) |
     @Html.ActionLink("Back to Character List", "Index")
 </p>

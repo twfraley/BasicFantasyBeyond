@@ -35,7 +35,7 @@ namespace BasicFantasyBeyond.Data
 
         public DbSet<Character> Characters { get; set; }
         public DbSet<Equipment> Equipment { get; set; }
-        public DbSet<CharacterItems> CharacterItems { get; set; }
+        public DbSet<CharacterSheet> CharacterSheet { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

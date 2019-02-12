@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BasicFantasyBeyond.Models;
 using BasicFantasyBeyond.Models.CharacterModels;
 using BasicFantasyBeyond.Services;
 using Microsoft.AspNet.Identity;
@@ -42,10 +43,10 @@ namespace BasicFantasyBeyond.Controllers
             if (service.CreateCharacter(model))
             {
                 var id = Guid.Parse(User.Identity.GetUserId());
-                var characterID = service.GetLastCharacterIDFromUser(id);
+                int characterID = service.GetLastCharacterIDFromUser(id);
 
                 TempData["SaveResult"] = "Your Character was created.";
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit","Character", new { id = characterID});
             }
 
             ModelState.AddModelError("", "Your Character could not be created.");
@@ -88,35 +89,6 @@ namespace BasicFantasyBeyond.Controllers
                 };
             return View(model);
         }
-
-        //public ActionResult ManageItems(int characterID)
-        //{
-        //    var service = CharacterServices();
-        //    var detail = service.GetCharacterByID(characterID);
-        //    var model =
-        //        new CharacterDetails
-        //        {
-        //            OwnerID = detail.OwnerID,
-        //            CharacterID = detail.CharacterID,
-        //            CharacterName = detail.CharacterName,
-        //            CharacterStr = detail.CharacterStr,
-        //            CharacterDex = detail.CharacterDex,
-        //            CharacterCon = detail.CharacterCon,
-        //            CharacterInt = detail.CharacterInt,
-        //            CharacterWis = detail.CharacterWis,
-        //            CharacterCha = detail.CharacterCha,
-        //            CharacterRace = detail.CharacterRace,
-        //            CharacterClass = detail.CharacterClass,
-        //            CharacterAbilities = detail.CharacterAbilities,
-        //            CharacterXP = detail.CharacterXP,
-        //            CharacterLevel = detail.CharacterLevel,
-        //            CharacterAC = detail.CharacterAC,
-        //            CharacterHP = detail.CharacterHP,
-        //            CharacterAttackBonus = detail.CharacterAttackBonus,
-        //            CharacterNotes = detail.CharacterNotes
-        //        };
-        //    return View(model);
-        //}
 
         [HttpPost]
         [ValidateAntiForgeryToken]
