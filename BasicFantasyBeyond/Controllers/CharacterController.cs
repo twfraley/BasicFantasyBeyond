@@ -41,6 +41,9 @@ namespace BasicFantasyBeyond.Controllers
 
             if (service.CreateCharacter(model))
             {
+                var id = Guid.Parse(User.Identity.GetUserId());
+                var characterID = service.GetLastCharacterIDFromUser(id);
+
                 TempData["SaveResult"] = "Your Character was created.";
                 return RedirectToAction("Index");
             }
@@ -86,13 +89,42 @@ namespace BasicFantasyBeyond.Controllers
             return View(model);
         }
 
+        //public ActionResult ManageItems(int characterID)
+        //{
+        //    var service = CharacterServices();
+        //    var detail = service.GetCharacterByID(characterID);
+        //    var model =
+        //        new CharacterDetails
+        //        {
+        //            OwnerID = detail.OwnerID,
+        //            CharacterID = detail.CharacterID,
+        //            CharacterName = detail.CharacterName,
+        //            CharacterStr = detail.CharacterStr,
+        //            CharacterDex = detail.CharacterDex,
+        //            CharacterCon = detail.CharacterCon,
+        //            CharacterInt = detail.CharacterInt,
+        //            CharacterWis = detail.CharacterWis,
+        //            CharacterCha = detail.CharacterCha,
+        //            CharacterRace = detail.CharacterRace,
+        //            CharacterClass = detail.CharacterClass,
+        //            CharacterAbilities = detail.CharacterAbilities,
+        //            CharacterXP = detail.CharacterXP,
+        //            CharacterLevel = detail.CharacterLevel,
+        //            CharacterAC = detail.CharacterAC,
+        //            CharacterHP = detail.CharacterHP,
+        //            CharacterAttackBonus = detail.CharacterAttackBonus,
+        //            CharacterNotes = detail.CharacterNotes
+        //        };
+        //    return View(model);
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, CharacterDetails model)
         {
             if (!ModelState.IsValid) return View(model);
 
-            if(model.CharacterID != id)
+            if (model.CharacterID != id)
             {
                 ModelState.AddModelError("", "Id Missmatch");
                 return View(model);
@@ -126,7 +158,7 @@ namespace BasicFantasyBeyond.Controllers
         public ActionResult DeleteCharacter(int id)
         {
             var service = CharacterServices();
-            
+
             service.DeleteCharacter(id);
 
             TempData["SaveResult"] = "Your character was deleted";

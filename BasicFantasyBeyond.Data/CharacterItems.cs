@@ -12,8 +12,10 @@ namespace BasicFantasyBeyond.Data
         [Key]
         public int CharacterItemsID { get; set; }
         [Required]
-        public virtual int CharacterID { get; set; }
+        public int CharacterID { get; set; }
+        public virtual Character Character { get; set; }
         [Required]
-        public virtual int ItemID { get; set; }
+        public int ItemID { get; set; }
+        public virtual Equipment Equipment {get;set;}
     }
 }

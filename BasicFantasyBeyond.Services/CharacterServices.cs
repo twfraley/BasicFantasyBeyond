@@ -15,7 +15,7 @@ namespace BasicFantasyBeyond.Services
 
         public CharacterServices(Guid userID)
         {
-            userID = _userID;
+            _userID = userID;
         }
 
         public bool CreateCharacter(CharacterCreate model)
@@ -125,6 +125,22 @@ namespace BasicFantasyBeyond.Services
                         CharacterAttackBonus = entity.CharacterAttackBonus,
                         CharacterNotes = entity.CharacterNotes
                     };
+            }
+        }
+
+        public int GetLastCharacterIDFromUser(Guid guid)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                int characterID = 0;
+                foreach (Character character in ctx.Characters)
+                {
+                    if (character.OwnerID == guid)
+                    {
+                        characterID = character.CharacterID;
+                    }
+                }
+                return characterID;
             }
         }
 
