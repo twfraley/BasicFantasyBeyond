@@ -48,32 +48,33 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-        //public IEnumerable<CharacterSheetModel> GetCharacterSheetByCharacterID(int characterID)
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        List<CharacterSheetModel> characterSheet = new List<CharacterSheetModel>();
+        public IEnumerable<CharacterSheetModel> GetCharacterSheetByCharacterID(int characterID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                List<CharacterSheetModel> characterSheet = new List<CharacterSheetModel>();
 
-        //        var query = ctx.CharacterSheet.Where(e => e.CharacterID == characterID);
+                var query = ctx.CharacterSheet.Where(e => e.CharacterID == characterID);
 
-        //        foreach (var model in query)
-        //        {
-        //            var itemList = new CharacterSheetModel
-        //            {
-        //                CharacterID = model.CharacterID,
-        //                ItemID = model.ItemID
-        //            };
+                foreach (var model in query)
+                {
+                    var listItem = new CharacterSheetModel
+                    {
+                        CharacterID = model.CharacterID,
+                        ItemID = model.ItemID
+                    };
 
-        //            AddCharacterSheet(itemList);
-        //        }
-        //        return characterSheet;
+                    AddCharacterSheet(listItem);
+                }
 
-        //        void AddCharacterSheet(CharacterSheet item)
-        //        {
-        //            characterSheet.Add(item);
-        //        }
-        //    }
-        //}
+                return characterSheet;
+
+                void AddCharacterSheet(CharacterSheetModel item)
+                {
+                    characterSheet.Add(item);
+                }
+            }
+        }
 
         public bool UpdateCharacterSheet(CharacterSheetModel model)
         {
@@ -88,7 +89,7 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-        public bool RemoveEquipmentfromCharacter(int equipmentID)
+        public bool RemoveItemFromCharacter(int equipmentID)
         {
             using (var ctx = new ApplicationDbContext())
             {
