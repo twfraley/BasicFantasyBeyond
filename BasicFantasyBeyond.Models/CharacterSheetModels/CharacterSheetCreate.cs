@@ -18,6 +18,6 @@ namespace BasicFantasyBeyond.Models.CharcterSheetModels
         public virtual CharacterDetails Character { get; set; }
         [Required]
         public int ItemID { get; set; }
-        public virtual EquipmentDetails Equipment { get; set; }
+        public virtual ItemDetails Equipment { get; set; }
     }
 }

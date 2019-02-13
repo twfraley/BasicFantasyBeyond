@@ -81,9 +81,9 @@
     <Compile Include="CharacterModels\CharacterDetails.cs" />
     <Compile Include="CharacterModels\CharacterEdit.cs" />
     <Compile Include="CharacterModels\CharacterListItem.cs" />
-    <Compile Include="EquipmentModels\EquipmentCreate.cs" />
-    <Compile Include="EquipmentModels\EquipmentDetails.cs" />
-    <Compile Include="EquipmentModels\EquipmentListItem.cs" />
+    <Compile Include="EquipmentModels\ItemCreate.cs" />
+    <Compile Include="EquipmentModels\ItemDetails.cs" />
+    <Compile Include="EquipmentModels\ItemListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

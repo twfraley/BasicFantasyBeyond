@@ -13,13 +13,13 @@ using Microsoft.AspNet.Identity;
 
 namespace BasicFantasyBeyond.Controllers
 {
-    public class EquipmentsController : Controller
+    public class ItemController : Controller
     {
         public ActionResult Index()
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
-            var service = new EquipmentServices(userID);
-            var model = service.GetEquipment();
+            var service = new ItemServices(userID);
+            var model = service.GetItems();
 
             return View(model);
         }
@@ -31,43 +31,43 @@ namespace BasicFantasyBeyond.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(EquipmentCreate model)
+        public ActionResult Create(ItemCreate model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            var service = EquipmentServices();
+            var service = ItemServices();
 
             if (service.CreateEquipment(model))
             {
-                TempData["SaveResult"] = "Your equipment was created.";
+                TempData["SaveResult"] = "The equipment was created.";
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Your equipment could not be created.");
+            ModelState.AddModelError("", "The equipment could not be created.");
             return View(model);
         }
 
         public ActionResult Details(int id)
         {
-            var svc = EquipmentServices();
-            var model = svc.GetEquipmentByID(id);
+            var svc = ItemServices();
+            var model = svc.GetItemByID(id);
 
             return View(model);
         }
 
         public ActionResult Edit(int id)
         {
-            var service = EquipmentServices();
-            var detail = service.GetEquipmentByID(id);
+            var service = ItemServices();
+            var detail = service.GetItemByID(id);
             var model =
-                new EquipmentDetails
+                new ItemDetails
                 {
                     ItemID = detail.ItemID,
                     ItemName=detail.ItemName,
-                    EquipmentType = detail.EquipmentType,
+                    ItemType = detail.ItemType,
                     IsEquipped = detail.IsEquipped,
                     Damage = detail.Damage,
                     DamageType = detail.DamageType,
@@ -79,7 +79,7 @@ namespace BasicFantasyBeyond.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, EquipmentDetails model)
+        public ActionResult Edit(int id, ItemDetails model)
         {
             if (!ModelState.IsValid) return View(model);
 
@@ -89,15 +89,15 @@ namespace BasicFantasyBeyond.Controllers
                 return View(model);
             }
 
-            var service = EquipmentServices();
+            var service = ItemServices();
 
-            if (service.UpdateEquipment(model))
+            if (service.UpdateItem(model))
             {
-                TempData["SaveResult"] = "Your equipment was updated.";
+                TempData["SaveResult"] = "The equipment was updated.";
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Your equipment could not be updated.");
+            ModelState.AddModelError("", "The equipment could not be updated.");
             return View(model);
         }
 
@@ -105,8 +105,8 @@ namespace BasicFantasyBeyond.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            var svc = EquipmentServices();
-            var model = svc.GetEquipmentByID(id);
+            var svc = ItemServices();
+            var model = svc.GetItemByID(id);
 
             return View(model);
         }
@@ -116,19 +116,19 @@ namespace BasicFantasyBeyond.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteEquipment(int id)
         {
-            var service = EquipmentServices();
+            var service = ItemServices();
             
-            service.DeleteEquipment(id);
+            service.DeleteItem(id);
 
-            TempData["SaveResult"] = "Your equipment was deleted";
+            TempData["SaveResult"] = "The equipment was deleted";
 
             return RedirectToAction("Index");
         }
 
-        private EquipmentServices EquipmentServices()
+        private ItemServices ItemServices()
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
-            var service = new EquipmentServices(userID);
+            var service = new ItemServices(userID);
             return service;
         }    }
 }

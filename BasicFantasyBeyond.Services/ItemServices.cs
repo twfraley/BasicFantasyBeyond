@@ -10,21 +10,22 @@ using System.Threading.Tasks;
 
 namespace BasicFantasyBeyond.Services
 {
-    public class EquipmentServices
+    public class ItemServices
     {
         private Guid _userID;
 
-        public EquipmentServices(Guid userID)
+        public ItemServices(Guid userID)
         {
             _userID = userID;
         }
 
-        public bool CreateEquipment(EquipmentCreate model)
+        public bool CreateEquipment(ItemCreate model)
         {
             var entity = new Equipment()
                 {
                     ItemName = model.ItemName,
-                    EquipmentType = model.EquipmentType,
+                    UsableBy = model.UsableBy,
+                    ItemType = model.EquipmentType,
                     Damage = model.Damage,
                     DamageType = model.DamageType,
                     ArmorClassBonus = model.ArmorClassBonus,
@@ -33,20 +34,21 @@ namespace BasicFantasyBeyond.Services
 
             using (ApplicationDbContext ctx = new ApplicationDbContext())
             {
-                ctx.Equipment.Add(entity);
+                ctx.Items.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public IEnumerable<EquipmentListItem> GetEquipment()
+        public IEnumerable<ItemListItem> GetItems()
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Equipment.Select(e => new EquipmentListItem
+                var query = ctx.Items.Select(e => new ItemListItem
                         {
                             ItemID = e.ItemID,
                             ItemName = e.ItemName,
-                            EquipmentType = e.EquipmentType,
+                            UsableBy = e.UsableBy,
+                            ItemType = e.ItemType,
                             Damage = e.Damage,
                             DamageType = e.DamageType,
                             ArmorClassBonus = e.ArmorClassBonus,
@@ -56,17 +58,18 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-        public EquipmentDetails GetEquipmentByID(int itemID)
+        public ItemDetails GetItemByID(int itemID)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Equipment.Single(e => e.ItemID == itemID);
+                var entity = ctx.Items.Single(e => e.ItemID == itemID);
                 return
-                    new EquipmentDetails
+                    new ItemDetails
                     {
                         ItemID = entity.ItemID,
                         ItemName = entity.ItemName,
-                        EquipmentType = entity.EquipmentType,
+                        UsableBy = entity.UsableBy,
+                        ItemType = entity.ItemType,
                         IsEquipped = entity.IsEquipped,
                         Damage = entity.Damage,
                         DamageType = entity.DamageType,
@@ -76,15 +79,16 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-        public bool UpdateEquipment(EquipmentDetails model)
+        public bool UpdateItem(ItemDetails model)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Equipment.FirstOrDefault(e => e.ItemID == model.ItemID);
+                var entity = ctx.Items.FirstOrDefault(e => e.ItemID == model.ItemID);
 
                 entity.ItemID = model.ItemID;
                 entity.ItemName = model.ItemName;
-                entity.EquipmentType = model.EquipmentType;
+                entity.UsableBy = model.UsableBy;
+                entity.ItemType = model.ItemType;
                 entity.IsEquipped = model.IsEquipped;
                 entity.Damage = model.Damage;
                 entity.DamageType = model.DamageType;
@@ -95,13 +99,13 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-        public bool DeleteEquipment(int equipmentID)
+        public bool DeleteItem(int itemID)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Equipment.Single(e => e.ItemID == equipmentID);
+                var entity = ctx.Items.Single(e => e.ItemID == itemID);
 
-                ctx.Equipment.Remove(entity);
+                ctx.Items.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
             }

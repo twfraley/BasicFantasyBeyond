@@ -7,27 +7,17 @@ using System.Threading.Tasks;
 
 namespace BasicFantasyBeyond.Models.EquipmentModels
 {
-    public enum EquipmentType { Weapon, Armor, Shield, Gear }
-    public enum DamageType { Piercing, Bludgeoning, Slashing }
-    [Flags]
-    public enum UsableBy
+    public class ItemDetails
     {
-        None = 0,
-        Fighter = 1 << 0,
-        Cleric = 1 << 1,
-        Thief = 1 << 2,
-        MagicUser = 1 << 3
-    }
-
-    public class EquipmentCreate
-    {
+        public int ItemID { get; set; }
         [Required]
         public string ItemName { get; set; }
         public UsableBy UsableBy { get; set; }
-        public EquipmentType EquipmentType { get; set; }
+        public ItemType ItemType { get; set; }
         public string Damage { get; set; }
         public DamageType? DamageType { get; set; }
         public int? ArmorClassBonus { get; set; }
         public string ItemNotes { get; set; }
+        public bool IsEquipped { get; set; }
     }
 }

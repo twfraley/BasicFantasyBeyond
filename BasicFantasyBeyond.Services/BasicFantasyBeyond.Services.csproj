@@ -76,7 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacterSheetServices.cs" />
-    <Compile Include="EquipmentServices.cs" />
+    <Compile Include="ItemServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
