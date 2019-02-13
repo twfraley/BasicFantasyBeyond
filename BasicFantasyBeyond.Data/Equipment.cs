@@ -18,6 +18,9 @@ namespace BasicFantasyBeyond.Data
         public string ItemName { get; set; }
 
         [Required]
+        public UsableBy UsableBy { get; set; }
+
+        [Required]
         public EquipmentType EquipmentType { get; set; }
 
         public bool IsEquipped { get; set; }

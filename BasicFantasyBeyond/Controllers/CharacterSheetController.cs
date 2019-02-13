@@ -45,22 +45,22 @@ namespace BasicFantasyBeyond.Controllers
             return View(model);
         }
 
-        public ActionResult Details (int id)
-        {
-            var svc = CharacterSheetServices();
-            var model = svc.GetCharacterSheetByCharacterID(id);
+        //public ActionResult Details (int id)
+        //{
+        //    var svc = CharacterSheetServices();
+        //    var model = svc.GetCharacterSheetByCharacterID(id);
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
-        [ActionName("Delete")]
-        public ActionResult Delete(int id)
-        {
-            var service = CharacterSheetServices();
-            var model = service.GetCharacterSheetByCharacterID(id);
+        //[ActionName("Delete")]
+        //public ActionResult Delete(int id)
+        //{
+        //    var service = CharacterSheetServices();
+        //    var model = service.GetCharacterSheetByCharacterID(id);
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
         [HttpPost]
         [ActionName("Delete")]
