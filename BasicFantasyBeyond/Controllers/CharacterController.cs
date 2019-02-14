@@ -46,7 +46,7 @@ namespace BasicFantasyBeyond.Controllers
                 int characterID = service.GetLastCharacterIDFromUser(id);
 
                 TempData["SaveResult"] = "Your Character was created.";
-                return RedirectToAction("Edit","Character", new { id = characterID});
+                return RedirectToAction("Details","CharacterSheet", new { id = characterID});
             }
 
             ModelState.AddModelError("", "Your Character could not be created.");

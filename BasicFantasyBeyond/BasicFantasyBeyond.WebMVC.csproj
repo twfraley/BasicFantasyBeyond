@@ -254,10 +254,11 @@
     <Content Include="Views\Equipments\Edit.cshtml" />
     <Content Include="Views\Equipments\Index.cshtml" />
     <Content Include="Views\Character\ManageItems.cshtml" />
+    <Content Include="Views\Character\CharacterSheet.cshtml" />
+    <Content Include="Views\CharacterSheet\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CharacterSheet\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -16,7 +16,11 @@ namespace BasicFantasyBeyond.Models.EquipmentModels
         Fighter = 1 << 0,
         Cleric = 1 << 1,
         Thief = 1 << 2,
-        MagicUser = 1 << 3
+        MagicUser = 1 << 3,
+        Human = 1 << 4,
+        Elf = 1 << 5,
+        Halfling = 1 << 6,
+        Dwarf = 1 << 7
     }
 
     public class ItemCreate

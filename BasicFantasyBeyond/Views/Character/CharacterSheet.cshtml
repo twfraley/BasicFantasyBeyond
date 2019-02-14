@@ -1,0 +1,17 @@
+﻿@model=BasicFantasyBeyond.Models.CharacterSheetModels.CharacterSheetModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>CharacterSheet</h2>
+
+<div>
+    <h4>Character</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model=> model.Character.CharacterName)
+        </dt>
+    </dl>
+</div>

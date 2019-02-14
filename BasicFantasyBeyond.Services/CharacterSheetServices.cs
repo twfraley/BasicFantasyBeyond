@@ -1,6 +1,6 @@
 ﻿using BasicFantasyBeyond.Data;
 using BasicFantasyBeyond.Models;
-using BasicFantasyBeyond.Models.CharcterSheetModels;
+using BasicFantasyBeyond.Models.CharacterSheetModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +18,10 @@ namespace BasicFantasyBeyond.Services
             _userID = userID;
         }
 
-        public bool AddCharacterSheet(CharacterSheetCreate model)
+        public bool AddCharacterSheet(Models.CharacterSheetModels.CharacterItem model)
         {
             var entity =
-                new CharacterSheet()
+                new Data.CharacterItem()
                 {
                     CharacterID = model.CharacterID,
                     ItemID = model.ItemID
@@ -34,28 +34,35 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-        public IEnumerable<CharacterSheetModel> GetCharacterSheetByCharacterID(int characterID)
+        public IEnumerable<Item> GetItemsByCharacterID(int characterID)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                List<CharacterSheetModel> characterSheet = new List<CharacterSheetModel>();
+                List<Item> characterSheet = new List<Item>();
 
                 var query = ctx.CharacterSheet.Where(e => e.CharacterID == characterID);
 
                 foreach (var model in query)
                 {
-                    var listItem = new CharacterSheetModel
+                    var listItem = new Item
                     {
-                        CharacterID = model.CharacterID,
-                        ItemID = model.ItemID
+                        ItemID = model.ItemID,
+                        ItemName = model.Equipment.ItemName,
+                        UsableBy = model.Equipment.UsableBy,
+                        ItemType = model.Equipment.ItemType,
+                        IsEquipped = model.Equipment.IsEquipped,
+                        Damage = model.Equipment.Damage,
+                        DamageType = model.Equipment.DamageType,
+                        ArmorClassBonus = model.Equipment.ArmorClassBonus,
+                        ItemNotes = model.Equipment.ItemNotes
                     };
 
-                    AddCharacterSheetToList(listItem);
+                    AddCharacterItemToList(listItem);
                 }
 
                 return characterSheet;
 
-                void AddCharacterSheetToList(CharacterSheetModel item)
+                void AddCharacterItemToList(Item item)
                 {
                     characterSheet.Add(item);
                 }
@@ -63,7 +70,7 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-        public bool UpdateCharacterSheet(CharacterSheetModel model)
+        public bool UpdateCharacterItem(Models.CharacterSheetModels.CharacterItem model)
         {
             using (var ctx = new ApplicationDbContext())
             {

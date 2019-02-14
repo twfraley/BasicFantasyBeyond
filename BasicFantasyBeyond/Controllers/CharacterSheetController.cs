@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using BasicFantasyBeyond.Services;
-using BasicFantasyBeyond.Models.CharcterSheetModels;
+using BasicFantasyBeyond.Models.CharacterSheetModels;
 
 namespace BasicFantasyBeyond.Controllers
 {
@@ -27,7 +27,7 @@ namespace BasicFantasyBeyond.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CharacterSheetCreate model)
+        public ActionResult Create(CharacterItem model)
         {
             if (!ModelState.IsValid)
             {
@@ -48,12 +48,7 @@ namespace BasicFantasyBeyond.Controllers
         public ActionResult Details(int id)
         {
             var svc = CharacterSheetServices();
-            var model = svc.GetCharacterSheetByCharacterID(id);
-
-            foreach (var item in model)
-            {
-
-            }
+            var model = svc.GetItemsByCharacterID(id);
 
             return View(model);
         }
@@ -62,7 +57,7 @@ namespace BasicFantasyBeyond.Controllers
         public ActionResult Delete(int id)
         {
             var service = CharacterSheetServices();
-            var model = service.GetCharacterSheetByCharacterID(id);
+            var model = service.GetItemsByCharacterID(id);
 
             return View(model);
         }
@@ -70,7 +65,7 @@ namespace BasicFantasyBeyond.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteCharacterSheet(int id)
+        public ActionResult DeleteCharacterItem(int id)
         {
             var service = CharacterSheetServices();
 

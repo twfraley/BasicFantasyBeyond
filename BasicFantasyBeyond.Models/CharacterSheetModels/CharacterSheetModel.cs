@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BasicFantasyBeyond.Models.CharcterSheetModels
+namespace BasicFantasyBeyond.Models.CharacterSheetModels
 {
     public class CharacterSheetModel
     {
@@ -16,8 +16,6 @@ namespace BasicFantasyBeyond.Models.CharcterSheetModels
         [Required]
         public int CharacterID { get; set; }
         public virtual CharacterDetails Character { get; set; }
-        [Required]
-        public int ItemID { get; set; }
-        public virtual ItemDetails Equipment { get; set; }
+        public IEnumerable<ItemListItem> Items { get; set; }
     }
 }
