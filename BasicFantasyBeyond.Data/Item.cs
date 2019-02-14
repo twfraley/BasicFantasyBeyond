@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace BasicFantasyBeyond.Data
 {
     
-    public class Equipment
+    public class Item
     {
         [Key]
         public int ItemID { get; set; }

@@ -38,10 +38,10 @@ namespace BasicFantasyBeyond.Controllers
 
             if (service.AddCharacterSheet(model))
             {
-                TempData["SaveResult"] = "Your equipment was created.";
+                TempData["SaveResult"] = "Item added to character";
                 return RedirectToAction("Index");
             }
-            ModelState.AddModelError("", "Your equipment could not be created.");
+            ModelState.AddModelError("", "Item could not be added to character.");
             return View(model);
         }
 
@@ -49,6 +49,11 @@ namespace BasicFantasyBeyond.Controllers
         {
             var svc = CharacterSheetServices();
             var model = svc.GetCharacterSheetByCharacterID(id);
+
+            foreach (var item in model)
+            {
+
+            }
 
             return View(model);
         }

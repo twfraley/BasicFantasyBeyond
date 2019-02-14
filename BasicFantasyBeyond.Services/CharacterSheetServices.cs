@@ -34,20 +34,6 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-        public IEnumerable<CharacterSheetModel> GetCharacterSheet()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query = ctx.CharacterSheet.Select(e => new CharacterSheetModel
-                {
-                    CharacterID = e.CharacterID,
-                    ItemID = e.ItemID
-                });
-
-                return query.ToArray();
-            }
-        }
-
         public IEnumerable<CharacterSheetModel> GetCharacterSheetByCharacterID(int characterID)
         {
             using (var ctx = new ApplicationDbContext())
@@ -64,15 +50,16 @@ namespace BasicFantasyBeyond.Services
                         ItemID = model.ItemID
                     };
 
-                    AddCharacterSheet(listItem);
+                    AddCharacterSheetToList(listItem);
                 }
 
                 return characterSheet;
 
-                void AddCharacterSheet(CharacterSheetModel item)
+                void AddCharacterSheetToList(CharacterSheetModel item)
                 {
                     characterSheet.Add(item);
                 }
+
             }
         }
 
@@ -80,7 +67,7 @@ namespace BasicFantasyBeyond.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.CharacterSheet.Single(e => e.CharacterID == model.CharacterID);
+                var entity = ctx.CharacterSheet.Single(e => e.CharacterItemsID == model.CharacterItemsID);
 
                 entity.ItemID = model.ItemID;
                 entity.CharacterID = model.CharacterID;

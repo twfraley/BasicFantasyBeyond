@@ -16,6 +16,6 @@ namespace BasicFantasyBeyond.Data
         public virtual Character Character { get; set; }
         [Required]
         public int ItemID { get; set; }
-        public virtual Equipment Equipment {get;set;}
+        public virtual Item Equipment {get;set;}
     }
 }

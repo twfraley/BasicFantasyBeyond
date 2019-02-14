@@ -21,7 +21,7 @@ namespace BasicFantasyBeyond.Services
 
         public bool CreateEquipment(ItemCreate model)
         {
-            var entity = new Equipment()
+            var entity = new Item()
                 {
                     ItemName = model.ItemName,
                     UsableBy = model.UsableBy,

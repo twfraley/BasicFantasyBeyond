@@ -77,7 +77,7 @@
   <ItemGroup>
     <Compile Include="Character.cs" />
     <Compile Include="CharacterSheet.cs" />
-    <Compile Include="Equipment.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Migrations\201902081830061_InitialCreate.cs" />
     <Compile Include="Migrations\201902081830061_InitialCreate.Designer.cs">
@@ -98,6 +98,10 @@
     <Compile Include="Migrations\201902131708385_ChangeEquipmentToItem.cs" />
     <Compile Include="Migrations\201902131708385_ChangeEquipmentToItem.Designer.cs">
       <DependentUpon>201902131708385_ChangeEquipmentToItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902141452190_ChangeEquipmentToItem1.cs" />
+    <Compile Include="Migrations\201902141452190_ChangeEquipmentToItem1.Designer.cs">
+      <DependentUpon>201902141452190_ChangeEquipmentToItem1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902131708385_ChangeEquipmentToItem.resx">
       <DependentUpon>201902131708385_ChangeEquipmentToItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902141452190_ChangeEquipmentToItem1.resx">
+      <DependentUpon>201902141452190_ChangeEquipmentToItem1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
