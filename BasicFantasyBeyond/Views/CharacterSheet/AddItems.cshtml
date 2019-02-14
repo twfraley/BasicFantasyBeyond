@@ -1,10 +1,9 @@
-﻿@model BasicFantasyBeyond.Models.CharacterSheetModels.CharacterSheetModel
-
+﻿@model BasicFantasyBeyond.Models.CharacterSheetModels.AddCharacterItemsModel
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "AddItems";
 }
 
-<h2>Details of Character</h2>
+<h2>AddItems</h2>
 
 <div>
     <h4>Character</h4>
@@ -62,12 +61,14 @@
             Class:
         </dt>
         <dd>
-            @Html.DisplayFor(model=> model.CharacterClass)
+            @Html.DisplayFor(model => model.CharacterClass)
         </dd>
 
     </dl>
 
-
+</div>
+<div>
+    <h4>Items</h4>
     <table class="table">
         @foreach (var item in Model.Items)
         {
@@ -84,7 +85,6 @@
 
 </div>
 <p>
-    @Html.ActionLink("Manage Items", "AddItems", new { id = Model.CharacterID }) |
-    @Html.ActionLink("Edit Character","Edit","Character",new { id = Model.CharacterID },"") |
+    @Html.ActionLink("Edit Character", "Edit", "Character", new { id = Model.CharacterID }, "") |
     @Html.ActionLink("Back to Character List", "Index", "Character")
 </p>

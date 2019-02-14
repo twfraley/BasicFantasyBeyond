@@ -13,7 +13,7 @@ using Microsoft.AspNet.Identity;
 
 namespace BasicFantasyBeyond.Controllers
 {
-    public class ItemController : Controller
+    public class ItemsController : Controller
     {
         public ActionResult Index()
         {

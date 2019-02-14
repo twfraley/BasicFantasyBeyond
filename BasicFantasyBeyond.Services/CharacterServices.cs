@@ -45,43 +45,6 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-        public CharacterAbilities GenerateCharacterAbilities(CharacterClass characterClass, CharacterRace characterRace)
-        {
-            CharacterAbilities characterAbilities = CharacterAbilities.None;
-
-            if (characterRace == CharacterRace.Dwarf)
-            {
-                characterAbilities |= CharacterAbilities.Darkvision;
-                characterAbilities |= CharacterAbilities.DetectConstruction;
-            }
-            if (characterRace == CharacterRace.Elf)
-            {
-                characterAbilities |= CharacterAbilities.Darkvision;
-                characterAbilities |= CharacterAbilities.GhoulImmune;
-                characterAbilities |= CharacterAbilities.DetectSecretDoors;
-                characterAbilities |= CharacterAbilities.ReduceSurprise;
-            }
-            if (characterRace == CharacterRace.Halfling)
-            {
-                characterAbilities |= CharacterAbilities.HalflingACBonus;
-                characterAbilities |= CharacterAbilities.HalflingAttackBonus;
-                characterAbilities |= CharacterAbilities.HalflingHiding;
-                characterAbilities |= CharacterAbilities.HalflingInitiative;
-            }
-            if (characterRace == CharacterRace.Human)
-            {
-                characterAbilities |= CharacterAbilities.HumanXPBonus;
-            }
-            if (characterClass == CharacterClass.Thief)
-            {
-                characterAbilities |= CharacterAbilities.ThiefSkills;
-            }
-            if (characterClass == CharacterClass.Cleric)
-            {
-                characterAbilities |= CharacterAbilities.TurnUndead;
-            }
-            return characterAbilities;
-        }
 
         public IEnumerable<CharacterListItem> GetCharacters()
         {
@@ -183,6 +146,45 @@ namespace BasicFantasyBeyond.Services
 
                 return ctx.SaveChanges() == 1;
             }
+        }
+
+        private CharacterAbilities GenerateCharacterAbilities(CharacterClass characterClass, CharacterRace characterRace)
+        {
+            CharacterAbilities characterAbilities = CharacterAbilities.None;
+
+            if (characterRace == CharacterRace.Dwarf)
+            {
+                characterAbilities |= CharacterAbilities.Darkvision;
+                characterAbilities |= CharacterAbilities.DetectConstruction;
+            }
+            if (characterRace == CharacterRace.Elf)
+            {
+                characterAbilities |= CharacterAbilities.Darkvision;
+                characterAbilities |= CharacterAbilities.GhoulImmune;
+                characterAbilities |= CharacterAbilities.DetectSecretDoors;
+                characterAbilities |= CharacterAbilities.ReduceSurprise;
+            }
+            if (characterRace == CharacterRace.Halfling)
+            {
+                characterAbilities |= CharacterAbilities.HalflingACBonus;
+                characterAbilities |= CharacterAbilities.HalflingAttackBonus;
+                characterAbilities |= CharacterAbilities.HalflingHiding;
+                characterAbilities |= CharacterAbilities.HalflingInitiative;
+            }
+            if (characterRace == CharacterRace.Human)
+            {
+                characterAbilities |= CharacterAbilities.HumanXPBonus;
+            }
+            if (characterClass == CharacterClass.Thief)
+            {
+                characterAbilities |= CharacterAbilities.ThiefSkills;
+            }
+            if (characterClass == CharacterClass.Cleric)
+            {
+                characterAbilities |= CharacterAbilities.TurnUndead;
+            }
+
+            return characterAbilities;
         }
 
     }

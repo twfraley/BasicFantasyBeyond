@@ -1,4 +1,4 @@
-﻿@model BasicFantasyBeyond.Models.EquipmentModels.EquipmentDetails
+﻿@model BasicFantasyBeyond.Models.EquipmentModels.ItemDetails
 
 @{
     ViewBag.Title = "Details";
@@ -19,11 +19,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EquipmentType)
+            @Html.DisplayNameFor(model => model.ItemType)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.EquipmentType)
+            @Html.DisplayFor(model => model.ItemType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsableBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsableBy)
         </dd>
 
         <dt>

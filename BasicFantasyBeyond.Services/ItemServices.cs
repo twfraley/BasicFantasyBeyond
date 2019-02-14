@@ -21,16 +21,18 @@ namespace BasicFantasyBeyond.Services
 
         public bool CreateEquipment(ItemCreate model)
         {
+            var usableBy = GenerateUsableBy(model);
+
             var entity = new Item()
-                {
-                    ItemName = model.ItemName,
-                    UsableBy = model.UsableBy,
-                    ItemType = model.EquipmentType,
-                    Damage = model.Damage,
-                    DamageType = model.DamageType,
-                    ArmorClassBonus = model.ArmorClassBonus,
-                    ItemNotes = model.ItemNotes
-                };
+            {
+                ItemName = model.ItemName,
+                UsableBy = usableBy,
+                ItemType = model.EquipmentType,
+                Damage = model.Damage,
+                DamageType = model.DamageType,
+                ArmorClassBonus = model.ArmorClassBonus,
+                ItemNotes = model.ItemNotes
+            };
 
             using (ApplicationDbContext ctx = new ApplicationDbContext())
             {
@@ -44,16 +46,16 @@ namespace BasicFantasyBeyond.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var query = ctx.Items.Select(e => new ItemListItem
-                        {
-                            ItemID = e.ItemID,
-                            ItemName = e.ItemName,
-                            UsableBy = e.UsableBy,
-                            ItemType = e.ItemType,
-                            Damage = e.Damage,
-                            DamageType = e.DamageType,
-                            ArmorClassBonus = e.ArmorClassBonus,
-                            ItemNotes = e.ItemNotes
-                        });
+                {
+                    ItemID = e.ItemID,
+                    ItemName = e.ItemName,
+                    UsableBy = e.UsableBy,
+                    ItemType = e.ItemType,
+                    Damage = e.Damage,
+                    DamageType = e.DamageType,
+                    ArmorClassBonus = e.ArmorClassBonus,
+                    ItemNotes = e.ItemNotes
+                });
                 return query.ToArray();
             }
         }
@@ -68,6 +70,14 @@ namespace BasicFantasyBeyond.Services
                     {
                         ItemID = entity.ItemID,
                         ItemName = entity.ItemName,
+                        UsableByHuman = entity.UsableBy.HasFlag(UsableBy.Human),
+                        UsableByElf = entity.UsableBy.HasFlag(UsableBy.Elf),
+                        UsableByHalfling = entity.UsableBy.HasFlag(UsableBy.Halfling),
+                        UsableByDwarf = entity.UsableBy.HasFlag(UsableBy.Dwarf),
+                        UsableByFighter = entity.UsableBy.HasFlag(UsableBy.Fighter),
+                        UsableByCleric = entity.UsableBy.HasFlag(UsableBy.Cleric),
+                        UsableByThief = entity.UsableBy.HasFlag(UsableBy.Thief),
+                        UsableByMagicUser = entity.UsableBy.HasFlag(UsableBy.MagicUser),
                         UsableBy = entity.UsableBy,
                         ItemType = entity.ItemType,
                         IsEquipped = entity.IsEquipped,
@@ -83,18 +93,20 @@ namespace BasicFantasyBeyond.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
+                var usableBy = GenerateUsableBy(model);
+
                 var entity = ctx.Items.FirstOrDefault(e => e.ItemID == model.ItemID);
 
                 entity.ItemID = model.ItemID;
                 entity.ItemName = model.ItemName;
-                entity.UsableBy = model.UsableBy;
+                entity.UsableBy = usableBy;
                 entity.ItemType = model.ItemType;
                 entity.IsEquipped = model.IsEquipped;
                 entity.Damage = model.Damage;
                 entity.DamageType = model.DamageType;
                 entity.ArmorClassBonus = model.ArmorClassBonus;
                 entity.ItemNotes = model.ItemNotes;
-                
+
                 return ctx.SaveChanges() == 1;
             }
         }
@@ -109,6 +121,38 @@ namespace BasicFantasyBeyond.Services
 
                 return ctx.SaveChanges() == 1;
             }
+        }
+
+        private UsableBy GenerateUsableBy(ItemCreate model)
+        {
+            UsableBy usableBy = UsableBy.None;
+
+            if (model.UsableByHuman) usableBy |= UsableBy.Human;
+            if (model.UsableByElf) usableBy |= UsableBy.Elf;
+            if (model.UsableByHalfling) usableBy |= UsableBy.Halfling;
+            if (model.UsableByDwarf) usableBy |= UsableBy.Dwarf;
+            if (model.UsableByFighter) usableBy |= UsableBy.Fighter;
+            if (model.UsableByCleric) usableBy |= UsableBy.Cleric;
+            if (model.UsableByThief) usableBy |= UsableBy.Thief;
+            if (model.UsableByMagicUser) usableBy |= UsableBy.MagicUser;
+
+            return usableBy;
+        }
+
+        private UsableBy GenerateUsableBy(ItemDetails model)
+        {
+            UsableBy usableBy = UsableBy.None;
+
+            if (model.UsableByHuman) usableBy |= UsableBy.Human;
+            if (model.UsableByElf) usableBy |= UsableBy.Elf;
+            if (model.UsableByHalfling) usableBy |= UsableBy.Halfling;
+            if (model.UsableByDwarf) usableBy |= UsableBy.Dwarf;
+            if (model.UsableByFighter) usableBy |= UsableBy.Fighter;
+            if (model.UsableByCleric) usableBy |= UsableBy.Cleric;
+            if (model.UsableByThief) usableBy |= UsableBy.Thief;
+            if (model.UsableByMagicUser) usableBy |= UsableBy.MagicUser;
+
+            return usableBy;
         }
 
     }

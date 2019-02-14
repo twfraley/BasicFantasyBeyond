@@ -1,4 +1,4 @@
-﻿@model BasicFantasyBeyond.Models.EquipmentModels.EquipmentDetails
+﻿@model BasicFantasyBeyond.Models.EquipmentModels.ItemDetails
 
 @{
     ViewBag.Title = "Edit";
@@ -10,13 +10,12 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Equipment</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ItemID)
-
         <div class="form-group">
             @Html.LabelFor(model => model.ItemName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -26,20 +25,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.EquipmentType, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ItemType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.EquipmentType, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.EquipmentType, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsEquipped, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsEquipped)
-                    @Html.ValidationMessageFor(model => model.IsEquipped, "", new { @class = "text-danger" })
-                </div>
+                @Html.EnumDropDownListFor(model => model.ItemType, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ItemType, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -64,6 +53,28 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ArmorClassBonus, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ArmorClassBonus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label col-md-2">Usable By:</p>
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.UsableByHuman)
+                Human
+                @Html.CheckBoxFor(model => model.UsableByElf)
+                Dwarf
+                @Html.CheckBoxFor(model => model.UsableByHalfling)
+                Halfling
+                @Html.CheckBoxFor(model => model.UsableByDwarf)
+                Dwarf
+                @Html.CheckBoxFor(model => model.UsableByFighter)
+                Fighter
+                @Html.CheckBoxFor(model => model.UsableByCleric)
+                Cleric
+                @Html.CheckBoxFor(model => model.UsableByThief)
+                Thief
+                @Html.CheckBoxFor(model => model.UsableByMagicUser)
+                Magic User
             </div>
         </div>
 

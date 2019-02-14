@@ -25,9 +25,20 @@ namespace BasicFantasyBeyond.Models.EquipmentModels
 
     public class ItemCreate
     {
+        [Key]
+        public int ItemID { get; set; }
         [Required]
         public string ItemName { get; set; }
-        public UsableBy UsableBy { get; set; }
+        public bool UsableByHuman { get; set; }
+        public bool UsableByElf { get; set; }
+        public bool UsableByHalfling { get; set; }
+        public bool UsableByDwarf { get; set; }
+        public bool UsableByFighter { get; set; }
+        public bool UsableByCleric { get; set; }
+        public bool UsableByThief { get; set; }
+        public bool UsableByMagicUser { get; set; }
+        public UsableBy? UsableBy { get; set; }
+        [Required]
         public ItemType EquipmentType { get; set; }
         public string Damage { get; set; }
         public DamageType? DamageType { get; set; }

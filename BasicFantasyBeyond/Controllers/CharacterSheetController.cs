@@ -55,6 +55,14 @@ namespace BasicFantasyBeyond.Controllers
             return View(model);
         }
 
+        public ActionResult AddItems(int id)
+        {
+            var svc = CharacterSheetServices();
+            var model = svc.GetAvailableEquipment(id);
+
+            return View(model);
+        }
+
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {

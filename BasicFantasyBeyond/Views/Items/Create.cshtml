@@ -1,4 +1,4 @@
-﻿@model BasicFantasyBeyond.Models.EquipmentModels.EquipmentCreate
+﻿@model BasicFantasyBeyond.Models.EquipmentModels.ItemCreate
 
 @{
     ViewBag.Title = "Create";
@@ -52,6 +52,28 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ArmorClassBonus, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ArmorClassBonus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p class="control-label col-md-2">Usable By:</p>
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.UsableByHuman, new { @checked = "checked" })
+                Human
+                @Html.CheckBoxFor(model => model.UsableByElf, new { @checked = "checked" })
+                Elf
+                @Html.CheckBoxFor(model => model.UsableByHalfling, new { @checked = "checked" })
+                Halfling
+                @Html.CheckBoxFor(model => model.UsableByDwarf, new { @checked = "checked" })
+                Dwarf
+                @Html.CheckBoxFor(model => model.UsableByFighter, new { @checked = "checked" })
+                Fighter
+                @Html.CheckBoxFor(model => model.UsableByCleric, new { @checked = "checked" })
+                Cleric
+                @Html.CheckBoxFor(model => model.UsableByThief, new { @checked = "checked" })
+                Thief
+                @Html.CheckBoxFor(model => model.UsableByMagicUser, new { @checked = "checked" })
+                Magic User
             </div>
         </div>
 

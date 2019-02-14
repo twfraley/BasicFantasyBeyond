@@ -105,6 +105,205 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
+        public AddCharacterItemsModel GetAvailableEquipment(int characterID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var character = ctx.Characters.Single(c => c.CharacterID == characterID);
+                List<ItemListItem> itemList = new List<ItemListItem>();
+
+                if (character.CharacterRace == Models.CharacterModels.CharacterRace.Elf)
+                {
+                    var entity = ctx.Items.Where(e => e.UsableBy.HasFlag(UsableBy.Elf));
+                    foreach (var item in entity)
+                    {
+                        var listItem = new ItemListItem
+                        {
+                            ItemID = item.ItemID,
+                            ItemName = item.ItemName,
+                            UsableBy = item.UsableBy,
+                            ItemType = item.ItemType,
+                            IsEquipped = item.IsEquipped,
+                            Damage = item.Damage,
+                            DamageType = item.DamageType,
+                            ArmorClassBonus = item.ArmorClassBonus,
+                            ItemNotes = item.ItemNotes
+                        };
+                        AddItemToList(listItem);
+                    }
+                }
+                if (character.CharacterRace == Models.CharacterModels.CharacterRace.Dwarf)
+                {
+                    var entity = ctx.Items.Where(e => e.UsableBy == UsableBy.Dwarf);
+                    foreach (var item in entity)
+                    {
+                        var listItem = new ItemListItem
+                        {
+                            ItemID = item.ItemID,
+                            ItemName = item.ItemName,
+                            UsableBy = item.UsableBy,
+                            ItemType = item.ItemType,
+                            IsEquipped = item.IsEquipped,
+                            Damage = item.Damage,
+                            DamageType = item.DamageType,
+                            ArmorClassBonus = item.ArmorClassBonus,
+                            ItemNotes = item.ItemNotes
+                        };
+                        AddItemToList(listItem);
+                    }
+                }
+                if (character.CharacterRace == Models.CharacterModels.CharacterRace.Human)
+                {
+                    var entity = ctx.Items.Where(e => e.UsableBy.HasFlag(UsableBy.Human));
+                    foreach (var item in entity)
+                    {
+                        var listItem = new ItemListItem
+                        {
+                            ItemID = item.ItemID,
+                            ItemName = item.ItemName,
+                            UsableBy = item.UsableBy,
+                            ItemType = item.ItemType,
+                            IsEquipped = item.IsEquipped,
+                            Damage = item.Damage,
+                            DamageType = item.DamageType,
+                            ArmorClassBonus = item.ArmorClassBonus,
+                            ItemNotes = item.ItemNotes
+                        };
+                        AddItemToList(listItem);
+                    }
+                }
+                if (character.CharacterRace == Models.CharacterModels.CharacterRace.Halfling)
+                {
+                    var entity = ctx.Items.Where(e => e.UsableBy == UsableBy.Halfling);
+                    foreach (var item in entity)
+                    {
+                        var listItem = new ItemListItem
+                        {
+                            ItemID = item.ItemID,
+                            ItemName = item.ItemName,
+                            UsableBy = item.UsableBy,
+                            ItemType = item.ItemType,
+                            IsEquipped = item.IsEquipped,
+                            Damage = item.Damage,
+                            DamageType = item.DamageType,
+                            ArmorClassBonus = item.ArmorClassBonus,
+                            ItemNotes = item.ItemNotes
+                        };
+                        AddItemToList(listItem);
+                    }
+                }
+                if (character.CharacterClass == Models.CharacterModels.CharacterClass.Fighter)
+                {
+                    var entity = ctx.Items.Where(e => e.UsableBy == UsableBy.Fighter);
+                    foreach (var item in entity)
+                    {
+                        var listItem = new ItemListItem
+                        {
+                            ItemID = item.ItemID,
+                            ItemName = item.ItemName,
+                            UsableBy = item.UsableBy,
+                            ItemType = item.ItemType,
+                            IsEquipped = item.IsEquipped,
+                            Damage = item.Damage,
+                            DamageType = item.DamageType,
+                            ArmorClassBonus = item.ArmorClassBonus,
+                            ItemNotes = item.ItemNotes
+                        };
+                        AddItemToList(listItem);
+                    }
+                }
+                if (character.CharacterClass == Models.CharacterModels.CharacterClass.Cleric)
+                {
+                    var entity = ctx.Items.Where(e => e.UsableBy == UsableBy.Cleric);
+                    foreach (var item in entity)
+                    {
+                        var listItem = new ItemListItem
+                        {
+                            ItemID = item.ItemID,
+                            ItemName = item.ItemName,
+                            UsableBy = item.UsableBy,
+                            ItemType = item.ItemType,
+                            IsEquipped = item.IsEquipped,
+                            Damage = item.Damage,
+                            DamageType = item.DamageType,
+                            ArmorClassBonus = item.ArmorClassBonus,
+                            ItemNotes = item.ItemNotes
+                        };
+                        AddItemToList(listItem);
+                    }
+                }
+                if (character.CharacterClass == Models.CharacterModels.CharacterClass.Thief)
+                {
+                    var entity = ctx.Items.Where(e => e.UsableBy == UsableBy.Thief);
+                    foreach (var item in entity)
+                    {
+                        var listItem = new ItemListItem
+                        {
+                            ItemID = item.ItemID,
+                            ItemName = item.ItemName,
+                            UsableBy = item.UsableBy,
+                            ItemType = item.ItemType,
+                            IsEquipped = item.IsEquipped,
+                            Damage = item.Damage,
+                            DamageType = item.DamageType,
+                            ArmorClassBonus = item.ArmorClassBonus,
+                            ItemNotes = item.ItemNotes
+                        };
+                        AddItemToList(listItem);
+                    }
+                }
+                if (character.CharacterClass == Models.CharacterModels.CharacterClass.MagicUser)
+                {
+                    var entity = ctx.Items.Where(e => e.UsableBy == UsableBy.MagicUser);
+                    foreach (var item in entity)
+                    {
+                        var listItem = new ItemListItem
+                        {
+                            ItemID = item.ItemID,
+                            ItemName = item.ItemName,
+                            UsableBy = item.UsableBy,
+                            ItemType = item.ItemType,
+                            IsEquipped = item.IsEquipped,
+                            Damage = item.Damage,
+                            DamageType = item.DamageType,
+                            ArmorClassBonus = item.ArmorClassBonus,
+                            ItemNotes = item.ItemNotes
+                        };
+                        AddItemToList(listItem);
+                    }
+                }
+
+                AddCharacterItemsModel model = new AddCharacterItemsModel
+                {
+                    CharacterID = character.CharacterID,
+                    OwnerID = character.OwnerID,
+                    CharacterName = character.CharacterName,
+                    CharacterStr = character.CharacterStr,
+                    CharacterDex = character.CharacterDex,
+                    CharacterCon = character.CharacterCon,
+                    CharacterInt = character.CharacterInt,
+                    CharacterWis = character.CharacterWis,
+                    CharacterCha = character.CharacterCha,
+                    CharacterRace = character.CharacterRace,
+                    CharacterClass = character.CharacterClass,
+                    CharacterAbilities = character.CharacterAbilities,
+                    CharacterXP = character.CharacterXP,
+                    CharacterLevel = character.CharacterLevel,
+                    CharacterAC = character.CharacterAC,
+                    CharacterHP = character.CharacterHP,
+                    CharacterAttackBonus = character.CharacterAttackBonus,
+                    CharacterNotes = character.CharacterNotes,
+                    Items = itemList
+                };
+
+                return model;
+
+                void AddItemToList(ItemListItem item)
+                {
+                    itemList.Add(item);
+                }
+            }
+        }
 
         public bool UpdateCharacterItem(CharacterItemModel model)
         {
