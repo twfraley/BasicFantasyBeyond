@@ -42,7 +42,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit Character", "Edit", new { id=item.CharacterID }) |
-            @Html.ActionLink("View Character Sheet", "Details", new { id=item.CharacterID }) |
+            @Html.ActionLink("View Character Sheet", "Details","CharacterSheet",new { id=item.CharacterID },"") |
             @Html.ActionLink("Delete Character", "Delete", new { id=item.CharacterID })
         </td>
     </tr>

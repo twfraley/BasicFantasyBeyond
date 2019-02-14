@@ -14,8 +14,10 @@ namespace BasicFantasyBeyond.Controllers
         public ActionResult Index()
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
-            var service = new CharacterServices(userID);
-            var model = service.GetCharacters();
+            var characterService = new CharacterServices(userID);
+            var itemService = new ItemServices(userID);
+            var characterSheetService = new CharacterSheetServices(userID);
+            var model = characterService.GetCharacters();
 
             return View(model);
         }
@@ -27,7 +29,7 @@ namespace BasicFantasyBeyond.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CharacterItem model)
+        public ActionResult Create(CharacterItemModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -36,7 +38,7 @@ namespace BasicFantasyBeyond.Controllers
 
             var service = CharacterSheetServices();
 
-            if (service.AddCharacterSheet(model))
+            if (service.AddCharacterItem(model))
             {
                 TempData["SaveResult"] = "Item added to character";
                 return RedirectToAction("Index");
@@ -48,7 +50,7 @@ namespace BasicFantasyBeyond.Controllers
         public ActionResult Details(int id)
         {
             var svc = CharacterSheetServices();
-            var model = svc.GetItemsByCharacterID(id);
+            var model = svc.GenerateCharacterSheet(id);
 
             return View(model);
         }
@@ -71,7 +73,7 @@ namespace BasicFantasyBeyond.Controllers
 
             service.RemoveItemFromCharacter(id);
 
-            TempData["SaveResult"] = "Your equipment was deleted";
+            TempData["SaveResult"] = "Item removed from character.";
 
             return RedirectToAction("Index");
         }
@@ -79,8 +81,10 @@ namespace BasicFantasyBeyond.Controllers
         private CharacterSheetServices CharacterSheetServices()
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
-            var service = new CharacterSheetServices(userID);
-            return service;
+            var characterService = new CharacterServices(userID);
+            var itemService = new ItemServices(userID);
+            var characterSheetService = new CharacterSheetServices(userID);
+            return characterSheetService;
         }
     }
 }

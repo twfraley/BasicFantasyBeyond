@@ -75,7 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CharacterSheetModels\CharacterItem.cs" />
+    <Compile Include="CharacterSheetModels\CharacterItemModel.cs" />
     <Compile Include="CharacterSheetModels\CharacterSheetModel.cs" />
     <Compile Include="CharacterModels\CharacterCreate.cs" />
     <Compile Include="CharacterModels\CharacterDetails.cs" />

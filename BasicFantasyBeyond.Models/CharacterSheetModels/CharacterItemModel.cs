@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BasicFantasyBeyond.Models.CharacterSheetModels
 {
-    public class CharacterItem
+    public class CharacterItemModel
     {
         [Key]
         public int CharacterItemsID { get; set; }
