@@ -300,7 +300,7 @@ namespace BasicFantasyBeyond.Services
 
                 void AddItemToList(ItemListItem item)
                 {
-                    itemList.Add(item);
+                    if (!itemList.Contains(item)) itemList.Add(item);
                 }
             }
         }
