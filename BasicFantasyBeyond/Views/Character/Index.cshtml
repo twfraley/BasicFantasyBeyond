@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Characters";
 }
-
 <h2>Characters</h2>
 
 <p>
@@ -26,27 +25,28 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        @Html.HiddenFor(modelItem => item.CharacterID)
-        <td>
-            @Html.DisplayFor(modelItem => item.CharacterName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CharacterLevel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CharacterRace)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CharacterClass)
-        </td>
-        <td>
-            @Html.ActionLink("Edit Character", "Edit", new { id=item.CharacterID }) |
-            @Html.ActionLink("View Character Sheet", "Details","CharacterSheet",new { id=item.CharacterID },"") |
-            @Html.ActionLink("Delete Character", "Delete", new { id=item.CharacterID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            @Html.HiddenFor(modelItem => item.CharacterID)
+            <td>
+                @Html.DisplayFor(modelItem => item.CharacterName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CharacterLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CharacterRace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CharacterClass)
+            </td>
+            <td>
+                @Html.ActionLink("Edit Character", "Edit", new { id = item.CharacterID }) |
+                @Html.ActionLink("View Character Sheet", "Details", "CharacterSheet", new { id = item.CharacterID }, "") |
+                @Html.ActionLink("Delete Character", "Delete", new { id = item.CharacterID })
+            </td>
+        </tr>
+    }
 
 </table>
