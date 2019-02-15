@@ -22,15 +22,15 @@ namespace BasicFantasyBeyond.Services
 
         public bool AddCharacterItem(int characterID, int itemID)
         {
-            var entity =
-                new CharacterItem()
-                {
-                    CharacterID = characterID,
-                    ItemID = itemID
-                };
-
             using (ApplicationDbContext ctx = new ApplicationDbContext())
             {
+                var entity =
+                    new CharacterItem()
+                    {
+                        CharacterID = characterID,
+                        ItemID = itemID
+                    };
+
                 ctx.CharacterSheet.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
@@ -38,10 +38,11 @@ namespace BasicFantasyBeyond.Services
 
         public CharacterSheetModel GenerateCharacterSheet(int characterID)
         {
+            var items = GetItemsByCharacterID(characterID);
+
             using (var ctx = new ApplicationDbContext())
             {
                 var detail = ctx.Characters.Single(e => e.CharacterID == characterID);
-                var items = GetItemsByCharacterID(characterID);
 
                 CharacterSheetModel characterSheet = new CharacterSheetModel()
                 {
@@ -72,38 +73,31 @@ namespace BasicFantasyBeyond.Services
 
         public IEnumerable<ItemListItem> GetItemsByCharacterID(int characterID)
         {
+            List<ItemListItem> itemList = new List<ItemListItem>();
+
             using (var ctx = new ApplicationDbContext())
             {
-                List<ItemListItem> itemList = new List<ItemListItem>();
-
                 var query = ctx.CharacterSheet.Where(e => e.CharacterID == characterID);
 
-                foreach (var model in query)
+                foreach (var item in query)
                 {
                     var listItem = new ItemListItem
                     {
-                        ItemID = model.ItemID,
-                        ItemName = model.Equipment.ItemName,
-                        UsableBy = model.Equipment.UsableBy,
-                        ItemType = model.Equipment.ItemType,
-                        IsEquipped = model.Equipment.IsEquipped,
-                        Damage = model.Equipment.Damage,
-                        DamageType = model.Equipment.DamageType,
-                        ArmorClassBonus = model.Equipment.ArmorClassBonus,
-                        ItemNotes = model.Equipment.ItemNotes
+                        ItemID = item.ItemID,
+                        ItemName = item.Equipment.ItemName,
+                        UsableBy = item.Equipment.UsableBy,
+                        ItemType = item.Equipment.ItemType,
+                        IsEquipped = item.Equipment.IsEquipped,
+                        Damage = item.Equipment.Damage,
+                        DamageType = item.Equipment.DamageType,
+                        ArmorClassBonus = item.Equipment.ArmorClassBonus,
+                        ItemNotes = item.Equipment.ItemNotes
                     };
 
-                    AddCharacterItemToList(listItem);
+                    itemList.Add(listItem);
                 }
-
-                return itemList;
-
-                void AddCharacterItemToList(ItemListItem item)
-                {
-                    itemList.Add(item);
-                }
-
             }
+                return itemList;
         }
 
         public AddCharacterItemsModel GetAvailableEquipment(int characterID)
@@ -130,7 +124,7 @@ namespace BasicFantasyBeyond.Services
                             ArmorClassBonus = item.ArmorClassBonus,
                             ItemNotes = item.ItemNotes
                         };
-                        AddItemToList(listItem);
+                        itemList.Add(listItem);
                     }
                 }
                 if (character.CharacterClass == CharacterClass.Cleric)
@@ -150,7 +144,7 @@ namespace BasicFantasyBeyond.Services
                             ArmorClassBonus = item.ArmorClassBonus,
                             ItemNotes = item.ItemNotes
                         };
-                        AddItemToList(listItem);
+                        itemList.Add(listItem);
                     }
                 }
                 if (character.CharacterClass == CharacterClass.Thief)
@@ -170,7 +164,7 @@ namespace BasicFantasyBeyond.Services
                             ArmorClassBonus = item.ArmorClassBonus,
                             ItemNotes = item.ItemNotes
                         };
-                        AddItemToList(listItem);
+                        itemList.Add(listItem);
                     }
                 }
                 if (character.CharacterClass == CharacterClass.MagicUser)
@@ -190,7 +184,7 @@ namespace BasicFantasyBeyond.Services
                             ArmorClassBonus = item.ArmorClassBonus,
                             ItemNotes = item.ItemNotes
                         };
-                        AddItemToList(listItem);
+                        itemList.Add(listItem);
                     }
                 }
 
@@ -200,7 +194,7 @@ namespace BasicFantasyBeyond.Services
                     {
                         if (!item.UsableBy.HasFlag(UsableBy.Halfling))
                         {
-                            RemoveItemFromList(item);
+                            itemList.Remove(item);
                         }
                     }
                 }
@@ -210,7 +204,7 @@ namespace BasicFantasyBeyond.Services
                     {
                         if (!item.UsableBy.HasFlag(UsableBy.Dwarf))
                         {
-                            RemoveItemFromList(item);
+                            itemList.Remove(item);
                         }
                     }
                 }
@@ -220,7 +214,7 @@ namespace BasicFantasyBeyond.Services
                     {
                         if (!item.UsableBy.HasFlag(UsableBy.Elf))
                         {
-                            RemoveItemFromList(item);
+                            itemList.Remove(item);
                         }
                     }
                 }
@@ -230,7 +224,7 @@ namespace BasicFantasyBeyond.Services
                     {
                         if (!item.UsableBy.HasFlag(UsableBy.Human))
                         {
-                            RemoveItemFromList(item);
+                            itemList.Remove(item);
                         }
                     }
                 }
@@ -260,15 +254,6 @@ namespace BasicFantasyBeyond.Services
 
                 return model;
 
-                void AddItemToList(ItemListItem item)
-                {
-                    if (!itemList.Contains(item)) itemList.Add(item);
-                }
-
-                void RemoveItemFromList(ItemListItem item)
-                {
-                    if (itemList.Contains(item)) itemList.Remove(item);
-                }
             }
         }
 

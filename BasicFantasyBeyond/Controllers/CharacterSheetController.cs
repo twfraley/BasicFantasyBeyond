@@ -35,7 +35,7 @@ namespace BasicFantasyBeyond.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("AddItems");
+                return RedirectToAction("AddItems", new { id = characterID });
             }
 
             var service = CharacterSheetServices();
@@ -49,10 +49,10 @@ namespace BasicFantasyBeyond.Controllers
             return RedirectToAction("AddItems");
         }
 
-        public ActionResult Details(int characterId)
+        public ActionResult Details(int id)
         {
             var svc = CharacterSheetServices();
-            var model = svc.GenerateCharacterSheet(characterId);
+            var model = svc.GenerateCharacterSheet(id);
 
             return View(model);
         }
