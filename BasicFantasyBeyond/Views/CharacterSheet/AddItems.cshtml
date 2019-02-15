@@ -67,69 +67,82 @@
     </dl>
 
 </div>
-<div>
-    <h4>Items</h4>
-    <table class="table">
-        @foreach (var item in Model.Items)
-        {
-            <tr class="text-danger">
-                <td>
-                    @Html.DisplayNameFor(modelItem => item.ItemName)
-                </td>
-                <td>
-                    @Html.DisplayNameFor(modelItem => item.ItemType)
-                </td>
-                <td>
-                    @Html.DisplayNameFor(modelItem => item.Damage)
-                </td>
-                <td>
-                    @Html.DisplayNameFor(modelItem => item.DamageType)
-                </td>
-                <td>
-                    @Html.DisplayNameFor(modelItem => item.Size)
-                </td>
-                <td>
-                    @Html.DisplayNameFor(modelItem => item.ArmorClassBonus)
-                </td>
-                <td>
-                    @Html.DisplayNameFor(modelItem => item.ItemNotes)
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ItemName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ItemType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Damage)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DamageType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Size)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ArmorClassBonus)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ItemNotes)
-                </td>
-            </tr>
-            <tr>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-            </tr>
-        }
-    </table>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <h4>Items</h4>
+        <table class="table">
+            @foreach (var item in Model.Items)
+            {
+                @Html.HiddenFor(model => item.ItemID)
+                @Html.HiddenFor(model => model.CharacterID)
+                <tr class="text-danger">
+                    <td>
+                        Add to Character?
+                    </td>
+                    <td>
+                        @Html.DisplayNameFor(modelItem => item.ItemName)
+                    </td>
+                    <td>
+                        @Html.DisplayNameFor(modelItem => item.ItemType)
+                    </td>
+                    <td>
+                        @Html.DisplayNameFor(modelItem => item.Damage)
+                    </td>
+                    <td>
+                        @Html.DisplayNameFor(modelItem => item.DamageType)
+                    </td>
+                    <td>
+                        @Html.DisplayNameFor(modelItem => item.Size)
+                    </td>
+                    <td>
+                        @Html.DisplayNameFor(modelItem => item.ArmorClassBonus)
+                    </td>
+                    <td>
+                        @Html.DisplayNameFor(modelItem => item.ItemNotes)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.ActionLink("Add", "Create", new { model = Model, itemID = item.ItemID })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ItemName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ItemType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Damage)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DamageType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Size)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ArmorClassBonus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ItemNotes)
+                    </td>
+                </tr>
+                <tr>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+            }
+        </table>
 
-</div>
+    </div>
+}
 <p>
     @Html.ActionLink("Edit Character", "Edit", "Character", new { id = Model.CharacterID }, "") |
     @Html.ActionLink("Back to Character List", "Index", "Character")

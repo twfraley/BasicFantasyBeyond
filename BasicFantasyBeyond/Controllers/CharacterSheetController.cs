@@ -22,29 +22,30 @@ namespace BasicFantasyBeyond.Controllers
             return View(model);
         }
 
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(CharacterItemModel model)
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+
+        public void Create(CharacterSheetModel model, int itemID)
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                RedirectToAction("Index");
             }
 
             var service = CharacterSheetServices();
 
-            if (service.AddCharacterItem(model))
+            if (service.AddCharacterItem(model, itemID))
             {
                 TempData["SaveResult"] = "Item added to character";
-                return RedirectToAction("Index");
+                RedirectToAction("Index");
             }
             ModelState.AddModelError("", "Item could not be added to character.");
-            return View(model);
+            View(model);
         }
 
         public ActionResult Details(int id)

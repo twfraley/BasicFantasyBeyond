@@ -1,5 +1,6 @@
 ﻿using BasicFantasyBeyond.Data;
 using BasicFantasyBeyond.Models;
+using BasicFantasyBeyond.Models.CharacterModels;
 using BasicFantasyBeyond.Models.CharacterSheetModels;
 using BasicFantasyBeyond.Models.EquipmentModels;
 using System;
@@ -19,13 +20,13 @@ namespace BasicFantasyBeyond.Services
             _userID = userID;
         }
 
-        public bool AddCharacterItem(CharacterItemModel model)
+        public bool AddCharacterItem(CharacterSheetModel model, int itemID)
         {
             var entity =
                 new CharacterItem()
                 {
                     CharacterID = model.CharacterID,
-                    ItemID = model.ItemID
+                    ItemID = itemID
                 };
 
             using (ApplicationDbContext ctx = new ApplicationDbContext())
@@ -112,9 +113,9 @@ namespace BasicFantasyBeyond.Services
                 var character = ctx.Characters.Single(c => c.CharacterID == characterID);
                 List<ItemListItem> itemList = new List<ItemListItem>();
 
-                if (character.CharacterRace == Models.CharacterModels.CharacterRace.Elf)
+                if (character.CharacterClass == CharacterClass.Fighter)
                 {
-                    var entity = ctx.Items.Where(e => e.UsableBy.HasFlag(UsableBy.Elf));
+                    var entity = ctx.Items.Where(e => e.UsableBy.HasFlag(UsableBy.Fighter));
                     foreach (var item in entity)
                     {
                         var listItem = new ItemListItem
@@ -132,9 +133,9 @@ namespace BasicFantasyBeyond.Services
                         AddItemToList(listItem);
                     }
                 }
-                if (character.CharacterRace == Models.CharacterModels.CharacterRace.Dwarf)
+                if (character.CharacterClass == CharacterClass.Cleric)
                 {
-                    var entity = ctx.Items.Where(e => e.UsableBy == UsableBy.Dwarf);
+                    var entity = ctx.Items.Where(e => e.UsableBy.HasFlag(UsableBy.Cleric));
                     foreach (var item in entity)
                     {
                         var listItem = new ItemListItem
@@ -152,9 +153,9 @@ namespace BasicFantasyBeyond.Services
                         AddItemToList(listItem);
                     }
                 }
-                if (character.CharacterRace == Models.CharacterModels.CharacterRace.Human)
+                if (character.CharacterClass == CharacterClass.Thief)
                 {
-                    var entity = ctx.Items.Where(e => e.UsableBy.HasFlag(UsableBy.Human));
+                    var entity = ctx.Items.Where(e => e.UsableBy.HasFlag(UsableBy.Thief));
                     foreach (var item in entity)
                     {
                         var listItem = new ItemListItem
@@ -172,9 +173,9 @@ namespace BasicFantasyBeyond.Services
                         AddItemToList(listItem);
                     }
                 }
-                if (character.CharacterRace == Models.CharacterModels.CharacterRace.Halfling)
+                if (character.CharacterClass == CharacterClass.MagicUser)
                 {
-                    var entity = ctx.Items.Where(e => e.UsableBy == UsableBy.Halfling);
+                    var entity = ctx.Items.Where(e => e.UsableBy.HasFlag(UsableBy.MagicUser));
                     foreach (var item in entity)
                     {
                         var listItem = new ItemListItem
@@ -192,84 +193,45 @@ namespace BasicFantasyBeyond.Services
                         AddItemToList(listItem);
                     }
                 }
-                if (character.CharacterClass == Models.CharacterModels.CharacterClass.Fighter)
+
+                if (character.CharacterRace == CharacterRace.Halfling)
                 {
-                    var entity = ctx.Items.Where(e => e.UsableBy == UsableBy.Fighter);
-                    foreach (var item in entity)
+                    foreach (var item in itemList)
                     {
-                        var listItem = new ItemListItem
+                        if (!item.UsableBy.HasFlag(UsableBy.Halfling))
                         {
-                            ItemID = item.ItemID,
-                            ItemName = item.ItemName,
-                            UsableBy = item.UsableBy,
-                            ItemType = item.ItemType,
-                            IsEquipped = item.IsEquipped,
-                            Damage = item.Damage,
-                            DamageType = item.DamageType,
-                            ArmorClassBonus = item.ArmorClassBonus,
-                            ItemNotes = item.ItemNotes
-                        };
-                        AddItemToList(listItem);
+                            RemoveItemFromList(item);
+                        }
                     }
                 }
-                if (character.CharacterClass == Models.CharacterModels.CharacterClass.Cleric)
+                if (character.CharacterRace == CharacterRace.Dwarf)
                 {
-                    var entity = ctx.Items.Where(e => e.UsableBy == UsableBy.Cleric);
-                    foreach (var item in entity)
+                    foreach (var item in itemList)
                     {
-                        var listItem = new ItemListItem
+                        if (!item.UsableBy.HasFlag(UsableBy.Dwarf))
                         {
-                            ItemID = item.ItemID,
-                            ItemName = item.ItemName,
-                            UsableBy = item.UsableBy,
-                            ItemType = item.ItemType,
-                            IsEquipped = item.IsEquipped,
-                            Damage = item.Damage,
-                            DamageType = item.DamageType,
-                            ArmorClassBonus = item.ArmorClassBonus,
-                            ItemNotes = item.ItemNotes
-                        };
-                        AddItemToList(listItem);
+                            RemoveItemFromList(item);
+                        }
                     }
                 }
-                if (character.CharacterClass == Models.CharacterModels.CharacterClass.Thief)
+                if (character.CharacterRace == CharacterRace.Elf)
                 {
-                    var entity = ctx.Items.Where(e => e.UsableBy == UsableBy.Thief);
-                    foreach (var item in entity)
+                    foreach (var item in itemList)
                     {
-                        var listItem = new ItemListItem
+                        if (!item.UsableBy.HasFlag(UsableBy.Elf))
                         {
-                            ItemID = item.ItemID,
-                            ItemName = item.ItemName,
-                            UsableBy = item.UsableBy,
-                            ItemType = item.ItemType,
-                            IsEquipped = item.IsEquipped,
-                            Damage = item.Damage,
-                            DamageType = item.DamageType,
-                            ArmorClassBonus = item.ArmorClassBonus,
-                            ItemNotes = item.ItemNotes
-                        };
-                        AddItemToList(listItem);
+                            RemoveItemFromList(item);
+                        }
                     }
                 }
-                if (character.CharacterClass == Models.CharacterModels.CharacterClass.MagicUser)
+                if (character.CharacterRace == CharacterRace.Human)
                 {
-                    var entity = ctx.Items.Where(e => e.UsableBy == UsableBy.MagicUser);
-                    foreach (var item in entity)
+                    foreach (var item in itemList)
                     {
-                        var listItem = new ItemListItem
+                        if (!item.UsableBy.HasFlag(UsableBy.Human))
                         {
-                            ItemID = item.ItemID,
-                            ItemName = item.ItemName,
-                            UsableBy = item.UsableBy,
-                            ItemType = item.ItemType,
-                            IsEquipped = item.IsEquipped,
-                            Damage = item.Damage,
-                            DamageType = item.DamageType,
-                            ArmorClassBonus = item.ArmorClassBonus,
-                            ItemNotes = item.ItemNotes
-                        };
-                        AddItemToList(listItem);
+                            RemoveItemFromList(item);
+                        }
                     }
                 }
 
@@ -301,6 +263,11 @@ namespace BasicFantasyBeyond.Services
                 void AddItemToList(ItemListItem item)
                 {
                     if (!itemList.Contains(item)) itemList.Add(item);
+                }
+
+                void RemoveItemFromList(ItemListItem item)
+                {
+                    if (itemList.Contains(item)) itemList.Remove(item);
                 }
             }
         }
