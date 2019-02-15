@@ -30,28 +30,29 @@ namespace BasicFantasyBeyond.Controllers
         //[HttpPost]
         //[ValidateAntiForgeryToken]
 
-        public void Create(CharacterSheetModel model, int itemID)
+        [ActionName("Create")]
+        public ActionResult Create(int characterID, int itemID)
         {
             if (!ModelState.IsValid)
             {
-                RedirectToAction("Index");
+                return RedirectToAction("AddItems");
             }
 
             var service = CharacterSheetServices();
 
-            if (service.AddCharacterItem(model, itemID))
+            if (service.AddCharacterItem(characterID, itemID))
             {
                 TempData["SaveResult"] = "Item added to character";
-                RedirectToAction("Index");
+                return RedirectToAction("Details", new {id = characterID});
             }
             ModelState.AddModelError("", "Item could not be added to character.");
-            View(model);
+            return RedirectToAction("AddItems");
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int characterId)
         {
             var svc = CharacterSheetServices();
-            var model = svc.GenerateCharacterSheet(id);
+            var model = svc.GenerateCharacterSheet(characterId);
 
             return View(model);
         }

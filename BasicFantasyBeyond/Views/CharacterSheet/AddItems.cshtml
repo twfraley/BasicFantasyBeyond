@@ -105,7 +105,7 @@
                 </tr>
                 <tr>
                     <td>
-                        @Html.ActionLink("Add", "Create", new { model = Model, itemID = item.ItemID })
+                        @Html.ActionLink("Add", "Create", new { characterID = Model.CharacterID, itemID = item.ItemID })
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ItemName)

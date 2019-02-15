@@ -20,12 +20,12 @@ namespace BasicFantasyBeyond.Services
             _userID = userID;
         }
 
-        public bool AddCharacterItem(CharacterSheetModel model, int itemID)
+        public bool AddCharacterItem(int characterID, int itemID)
         {
             var entity =
                 new CharacterItem()
                 {
-                    CharacterID = model.CharacterID,
+                    CharacterID = characterID,
                     ItemID = itemID
                 };
 
