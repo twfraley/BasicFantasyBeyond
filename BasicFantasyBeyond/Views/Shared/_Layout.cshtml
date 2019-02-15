@@ -9,30 +9,55 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Basic Fantasy Beyond", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @if (User.Identity.IsAuthenticated)
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Basic Fantasy Beyond</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                @{ if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Characters", "Index", "Character")</li>
-                        <li>@Html.ActionLink("Equipment", "Index", "Items")</li>
+                        <li class="nav-item active">
+                            <div class="nav-link">
+                                @Html.ActionLink("Characters", "Index", "Character", new { area = "" }, new { @class = "nav-link" })
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="nav-link">
+                                @Html.ActionLink("Items", "Index", "Items", new { area = "" }, new { @class = "nav-link" })
+                            </div>
+                        </li>
                     }
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Feedback", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+                }
+            </ul>
+            @Html.Partial("_LoginPartial")
         </div>
-    </div>
+    </nav>
+
+    @*<div class="navbar navbar-expand-lg bg-dark fixed-top">
+            <div class="container">
+                <div class="navbar-brand">
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    @Html.ActionLink("Basic Fantasy Beyond", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                </div>
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item nav-link">@Html.ActionLink("Characters", "Index", "Character")</li>
+                            <li class="nav-item nav-link">@Html.ActionLink("Equipment", "Index", "Items")</li>
+                        }
+                        <li class="nav-item nav-link">@Html.ActionLink("About", "About", "Home")</li>
+                        <li class="nav-item nav-link">@Html.ActionLink("Feedback", "Contact", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>*@
+
     <div class="container body-content">
         @RenderBody()
         <hr />

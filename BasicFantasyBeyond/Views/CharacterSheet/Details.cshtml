@@ -69,9 +69,23 @@
 
 
     <table class="table">
+        <tr>
+            <td>
+                Remove Item?
+            </td>
+            <td>
+                Item Name
+            </td>
+            <td>
+                Item Type
+            </td>
+        </tr>
         @foreach (var item in Model.Items)
         {
-            <tr>
+            <tr>@Html.HiddenFor(i => item.CharacterItemID)
+                <td>
+                    @Html.ActionLink("Delete","Delete",new { characterID = Model.CharacterID, characterItemID = item.CharacterItemID })
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ItemName)
                 </td>
@@ -84,7 +98,7 @@
 
 </div>
 <p>
-    @Html.ActionLink("Manage Items", "AddItems", new { id = Model.CharacterID }) |
+    @Html.ActionLink("Add Items", "AddItems", new { id = Model.CharacterID }) |
     @Html.ActionLink("Edit Character","Edit","Character",new { id = Model.CharacterID },"") |
     @Html.ActionLink("Back to Character List", "Index", "Character")
 </p>

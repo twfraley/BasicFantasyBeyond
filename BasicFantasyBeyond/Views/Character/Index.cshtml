@@ -28,6 +28,7 @@
 
 @foreach (var item in Model) {
     <tr>
+        @Html.HiddenFor(modelItem => item.CharacterID)
         <td>
             @Html.DisplayFor(modelItem => item.CharacterName)
         </td>

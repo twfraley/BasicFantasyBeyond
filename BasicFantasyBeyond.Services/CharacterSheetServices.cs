@@ -31,7 +31,7 @@ namespace BasicFantasyBeyond.Services
                         ItemID = itemID
                     };
 
-                ctx.CharacterSheet.Add(entity);
+                ctx.CharacterItems.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
@@ -71,18 +71,19 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-        public IEnumerable<ItemListItem> GetItemsByCharacterID(int characterID)
+        public IEnumerable<CharacterItemListItem> GetItemsByCharacterID(int characterID)
         {
-            List<ItemListItem> itemList = new List<ItemListItem>();
+            List<CharacterItemListItem> itemList = new List<CharacterItemListItem>();
 
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.CharacterSheet.Where(e => e.CharacterID == characterID);
+                var query = ctx.CharacterItems.Where(e => e.CharacterID == characterID);
 
                 foreach (var item in query)
                 {
-                    var listItem = new ItemListItem
+                    var listItem = new CharacterItemListItem
                     {
+                        CharacterItemID = item.CharacterItemsID,
                         ItemID = item.ItemID,
                         ItemName = item.Equipment.ItemName,
                         UsableBy = item.Equipment.UsableBy,
@@ -94,7 +95,7 @@ namespace BasicFantasyBeyond.Services
                         ItemNotes = item.Equipment.ItemNotes
                     };
 
-                    itemList.Add(listItem);
+                    if (!itemList.Contains(listItem)) itemList.Add(listItem);
                 }
             }
                 return itemList;
@@ -124,7 +125,7 @@ namespace BasicFantasyBeyond.Services
                             ArmorClassBonus = item.ArmorClassBonus,
                             ItemNotes = item.ItemNotes
                         };
-                        itemList.Add(listItem);
+                        if (!itemList.Contains(listItem)) itemList.Add(listItem);
                     }
                 }
                 if (character.CharacterClass == CharacterClass.Cleric)
@@ -144,7 +145,7 @@ namespace BasicFantasyBeyond.Services
                             ArmorClassBonus = item.ArmorClassBonus,
                             ItemNotes = item.ItemNotes
                         };
-                        itemList.Add(listItem);
+                        if (!itemList.Contains(listItem)) itemList.Add(listItem);
                     }
                 }
                 if (character.CharacterClass == CharacterClass.Thief)
@@ -164,7 +165,7 @@ namespace BasicFantasyBeyond.Services
                             ArmorClassBonus = item.ArmorClassBonus,
                             ItemNotes = item.ItemNotes
                         };
-                        itemList.Add(listItem);
+                        if (!itemList.Contains(listItem)) itemList.Add(listItem);
                     }
                 }
                 if (character.CharacterClass == CharacterClass.MagicUser)
@@ -184,7 +185,7 @@ namespace BasicFantasyBeyond.Services
                             ArmorClassBonus = item.ArmorClassBonus,
                             ItemNotes = item.ItemNotes
                         };
-                        itemList.Add(listItem);
+                        if (!itemList.Contains(listItem)) itemList.Add(listItem);
                     }
                 }
 
@@ -257,30 +258,18 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-        public bool UpdateCharacterItem(CharacterItemModel model)
+        public bool RemoveItemFromCharacter(int characterItemID)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.CharacterSheet.Single(e => e.CharacterItemsID == model.CharacterItemsID);
+                var entity = ctx.CharacterItems.Single(e => e.CharacterItemsID == characterItemID);
 
-                entity.ItemID = model.ItemID;
-                entity.CharacterID = model.CharacterID;
+                ctx.CharacterItems.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public bool RemoveItemFromCharacter(int equipmentID)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity = ctx.CharacterSheet.Single(e => e.CharacterItemsID == equipmentID);
-
-                ctx.CharacterSheet.Remove(entity);
-
-                return ctx.SaveChanges() == 1;
-            }
-        }
 
     }
 }

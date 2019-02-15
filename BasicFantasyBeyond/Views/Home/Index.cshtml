@@ -5,7 +5,7 @@
 <div class="jumbotron">
     <h1>Basic Fantasy Beyond</h1>
     <p class="lead">Basic Fantasy Beyond is an online character sheet application for use with the tabletop RPG "Basic Fantasy".  All of the rules and supplements are available to download for free from <a href="http://www.basicfantasy.org">BasicFantasy.org</a> with no strings attached.</p>
-    <p><a href="https://www.basicfantasy.org" target ="blank" class="btn btn-primary btn-lg">Learn more or download rules &raquo;</a></p>
+    <p><a href="https://www.basicfantasy.org" target="blank" class="btn btn-primary btn-lg">Learn more or download rules &raquo;</a></p>
 </div>
 
 <div class="row">
@@ -14,16 +14,38 @@
         <p>
             Basic Fantasy Beyond lets you create a character from scratch in less than ten minutes.  All you need is a set of dice and you're ready to go!
         </p>
-        <p><a class="btn btn-info" href='@Url.Action("Create","Character")'>Create a Character &raquo;</a></p>
+        <p>
+            @{
+                if (User.Identity.IsAuthenticated)
+                {
+                    <a class="btn btn-info" href='@Url.Action("Create", "Character")'>Create a Character &raquo;</a>
+                }
+                else
+                {
+                    @Html.ActionLink("Log in to create a Character", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-info" })
+                }
+            }
+        </p>
     </div>
     <div class="col-md-4">
         <h2>View My Characters</h2>
         <p>View a list of your created characters.</p>
-        <p><a class="btn btn-info" href='@Url.Action("Index","Character")'>View Characters &raquo;</a></p>
+        <p>
+            @{
+                if (User.Identity.IsAuthenticated)
+                {
+                    <a class="btn btn-info" href='@Url.Action("Index","Character")'>View Characters &raquo;</a>
+                }
+                else
+                {
+                    @Html.ActionLink("Log in to view your characters", "Login", "Account", "", new { id = "loginLink", @class = "btn btn-info" })
+                }
+            }
+        </p>
     </div>
     <div class="col-md-4">
         <h2>View list of Items</h2>
-        <p>Basic Fantasy Beyond comes with all of the Core items already created, but your Game Master can create his own custom items for anyone to use.</p>
+        <p>Basic Fantasy Beyond comes with all of the Core items already created, but your Game Master can create his or her own custom items for anyone to use.</p>
         <p><a class="btn btn-info" href='@Url.Action("Index","Equipments")'>View Items &raquo;</a></p>
     </div>
 </div>

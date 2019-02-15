@@ -22,13 +22,13 @@ namespace BasicFantasyBeyond.Controllers
             return View(model);
         }
 
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        public ActionResult Details(int id)
+        {
+            var svc = CharacterSheetServices();
+            var model = svc.GenerateCharacterSheet(id);
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
+            return View(model);
+        }
 
         [ActionName("Create")]
         public ActionResult Create(int characterID, int itemID)
@@ -49,14 +49,6 @@ namespace BasicFantasyBeyond.Controllers
             return RedirectToAction("AddItems");
         }
 
-        public ActionResult Details(int id)
-        {
-            var svc = CharacterSheetServices();
-            var model = svc.GenerateCharacterSheet(id);
-
-            return View(model);
-        }
-
         public ActionResult AddItems(int id)
         {
             var svc = CharacterSheetServices();
@@ -65,27 +57,32 @@ namespace BasicFantasyBeyond.Controllers
             return View(model);
         }
 
+        //[ActionName("Delete")]
+        //public ActionResult Delete(int id)
+        //{
+        //    var service = CharacterSheetServices();
+        //    var model = service.GetItemsByCharacterID(id);
+
+        //    return View(model);
+        //}
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         [ActionName("Delete")]
-        public ActionResult Delete(int id)
+        public ActionResult DeleteCharacterItem(int characterID, int characterItemID)
         {
-            var service = CharacterSheetServices();
-            var model = service.GetItemsByCharacterID(id);
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Details", new { id = characterID });
+            }
 
-            return View(model);
-        }
-
-        [HttpPost]
-        [ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteCharacterItem(int id)
-        {
             var service = CharacterSheetServices();
 
-            service.RemoveItemFromCharacter(id);
+            service.RemoveItemFromCharacter(characterItemID);
 
             TempData["SaveResult"] = "Item removed from character.";
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Details",new { id = characterID });
         }
 
         private CharacterSheetServices CharacterSheetServices()
