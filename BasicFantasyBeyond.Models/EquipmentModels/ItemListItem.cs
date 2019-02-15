@@ -16,6 +16,7 @@ namespace BasicFantasyBeyond.Models.EquipmentModels
         public ItemType ItemType { get; set; }
         public string Damage { get; set; }
         public DamageType? DamageType { get; set; }
+        public Size? Size { get; set; }
         public int? ArmorClassBonus { get; set; }
         public string ItemNotes { get; set; }
         public bool IsEquipped { get; set; }

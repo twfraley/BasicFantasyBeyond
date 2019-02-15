@@ -72,6 +72,29 @@
     <table class="table">
         @foreach (var item in Model.Items)
         {
+            <tr class="text-danger">
+                <td>
+                    @Html.DisplayNameFor(modelItem => item.ItemName)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(modelItem => item.ItemType)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(modelItem => item.Damage)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(modelItem => item.DamageType)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(modelItem => item.Size)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(modelItem => item.ArmorClassBonus)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(modelItem => item.ItemNotes)
+                </td>
+            </tr>
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.ItemName)
@@ -79,6 +102,29 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ItemType)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Damage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DamageType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Size)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArmorClassBonus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemNotes)
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
             </tr>
         }
     </table>

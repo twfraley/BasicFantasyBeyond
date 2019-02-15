@@ -29,6 +29,8 @@ namespace BasicFantasyBeyond.Data
 
         public DamageType? DamageType { get; set; }
 
+        public Size? Size { get; set; }
+
         public int? ArmorClassBonus { get; set; }
 
         public string ItemNotes { get; set; }
