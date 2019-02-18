@@ -72,6 +72,7 @@ namespace BasicFantasyBeyond.Controllers
                     Damage = detail.Damage,
                     DamageType = detail.DamageType,
                     ArmorClassBonus = detail.ArmorClassBonus,
+                    ArmorType = detail.ArmorType,
                     ItemNotes = detail.ItemNotes
                 };
             return View(model);

@@ -21,7 +21,7 @@ namespace BasicFantasyBeyond.Services
         public bool CreateCharacter(CharacterCreate model)
         {
             var characterAbilities = GenerateCharacterAbilities(model.CharacterClass, model.CharacterRace);
-
+            var level = GetLevelFromXP(model.CharacterClass,0);
             var entity =
                 new Character()
                 {
@@ -36,7 +36,8 @@ namespace BasicFantasyBeyond.Services
                     CharacterRace = model.CharacterRace,
                     CharacterClass = model.CharacterClass,
                     CharacterAbilities = characterAbilities,
-                    CharacterXP = 0
+                    CharacterXP = 0,
+                    CharacterLevel = level
                 };
 
             using (ApplicationDbContext ctx = new ApplicationDbContext())

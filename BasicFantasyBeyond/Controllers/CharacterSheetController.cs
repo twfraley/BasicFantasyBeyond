@@ -57,17 +57,7 @@ namespace BasicFantasyBeyond.Controllers
             return View(model);
         }
 
-        //[ActionName("Delete")]
-        //public ActionResult Delete(int id)
-        //{
-        //    var service = CharacterSheetServices();
-        //    var model = service.GetItemsByCharacterID(id);
-
-        //    return View(model);
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         [ActionName("Delete")]
         public ActionResult DeleteCharacterItem(int characterID, int characterItemID)
         {

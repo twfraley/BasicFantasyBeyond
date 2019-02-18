@@ -31,6 +31,7 @@ namespace BasicFantasyBeyond.Services
                 Damage = model.Damage,
                 DamageType = model.DamageType,
                 ArmorClassBonus = model.ArmorClassBonus,
+                ArmorType = model.ArmorType,
                 ItemNotes = model.ItemNotes
             };
 
@@ -54,6 +55,7 @@ namespace BasicFantasyBeyond.Services
                     Damage = e.Damage,
                     DamageType = e.DamageType,
                     ArmorClassBonus = e.ArmorClassBonus,
+                    ArmorType = e.ArmorType,
                     ItemNotes = e.ItemNotes
                 });
                 return query.ToArray();
@@ -84,6 +86,7 @@ namespace BasicFantasyBeyond.Services
                         Damage = entity.Damage,
                         DamageType = entity.DamageType,
                         ArmorClassBonus = entity.ArmorClassBonus,
+                        ArmorType = entity.ArmorType,
                         ItemNotes = entity.ItemNotes
                     };
             }
@@ -105,6 +108,7 @@ namespace BasicFantasyBeyond.Services
                 entity.Damage = model.Damage;
                 entity.DamageType = model.DamageType;
                 entity.ArmorClassBonus = model.ArmorClassBonus;
+                entity.ArmorType = model.ArmorType;
                 entity.ItemNotes = model.ItemNotes;
 
                 return ctx.SaveChanges() == 1;
