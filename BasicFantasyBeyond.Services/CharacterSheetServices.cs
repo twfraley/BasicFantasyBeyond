@@ -44,24 +44,37 @@ namespace BasicFantasyBeyond.Services
                 var detail = ctx.Characters.Single(e => e.CharacterID == characterID);
                 var items = GetItemsByCharacterID(characterID);
                 var weaponList = new List<CharacterItemListItem>();
+                var equippedWeaponList = new List<CharacterItemListItem>();
                 var armorList = new List<CharacterItemListItem>();
+                var equippedArmorList = new List<CharacterItemListItem>();
                 var gearList = new List<CharacterItemListItem>();
+                short characterSpeed = 40;
 
                 foreach (var item in items)
                 {
-                    if(item.ItemType == ItemType.Weapon)
+                    if (item.ItemType == ItemType.Weapon)
                     {
                         weaponList.Add(item);
+                        if (item.IsEquipped) equippedWeaponList.Add(item);
                     }
-                    if(item.ItemType == ItemType.Armor || item.ItemType == ItemType.Shield)
+                    if (item.ItemType == ItemType.Armor || item.ItemType == ItemType.Shield)
                     {
                         armorList.Add(item);
+                        if (item.IsEquipped)
+                        {
+                            equippedArmorList.Add(item);
+                            if (item.ArmorType.Equals(ArmorType.Leather)) characterSpeed = 30;
+                            if (item.ArmorType.Equals(ArmorType.Chain)) characterSpeed = 20;
+                            if (item.ArmorType.Equals(ArmorType.Plate)) characterSpeed = 20;
+                        }
                     }
-                    if(item.ItemType == ItemType.Gear)
+                    if (item.ItemType == ItemType.Gear)
                     {
                         gearList.Add(item);
                     }
                 }
+
+
                 var strMod = CalculateAbilityModifier(detail.CharacterStr);
                 var dexMod = CalculateAbilityModifier(detail.CharacterDex);
                 var conMod = CalculateAbilityModifier(detail.CharacterCon);
@@ -94,10 +107,13 @@ namespace BasicFantasyBeyond.Services
                     CharacterAC = detail.CharacterAC,
                     CharacterHP = detail.CharacterHP,
                     CharacterAttackBonus = detail.CharacterAttackBonus,
+                    CharacterSpeed = characterSpeed,
                     CharacterNotes = detail.CharacterNotes,
                     Items = items,
                     Weapons = weaponList,
+                    EquippedWeapons = equippedWeaponList,
                     Armor = armorList,
+                    EquippedArmor = equippedArmorList,
                     Gear = gearList
                 };
 
@@ -122,7 +138,7 @@ namespace BasicFantasyBeyond.Services
                         ItemName = item.Equipment.ItemName,
                         UsableBy = item.Equipment.UsableBy,
                         ItemType = item.Equipment.ItemType,
-                        IsEquipped = item.Equipment.IsEquipped,
+                        IsEquipped = item.IsEquipped,
                         Damage = item.Equipment.Damage,
                         DamageType = item.Equipment.DamageType,
                         Size = item.Equipment.Size,
@@ -130,10 +146,37 @@ namespace BasicFantasyBeyond.Services
                         ItemNotes = item.Equipment.ItemNotes
                     };
 
-                    if (!itemList.Contains(listItem)) itemList.Add(listItem);
+                    itemList.Add(listItem);
                 }
             }
             return itemList;
+        }
+
+        public bool UpdateCharacterItem (CharacterItemListItem model, int characterID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.CharacterItems.Single(e => e.CharacterItemsID == model.CharacterItemID);
+
+                entity.CharacterItemsID = model.CharacterItemID;
+                entity.CharacterID = characterID;
+                entity.ItemID = model.ItemID;
+                entity.IsEquipped = model.IsEquipped;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool RemoveItemFromCharacter(int characterItemID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.CharacterItems.Single(e => e.CharacterItemsID == characterItemID);
+
+                ctx.CharacterItems.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
         }
 
         public AddCharacterItemsModel GetAvailableEquipment(int characterID)
@@ -294,18 +337,6 @@ namespace BasicFantasyBeyond.Services
 
                 return model;
 
-            }
-        }
-
-        public bool RemoveItemFromCharacter(int characterItemID)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity = ctx.CharacterItems.Single(e => e.CharacterItemsID == characterItemID);
-
-                ctx.CharacterItems.Remove(entity);
-
-                return ctx.SaveChanges() == 1;
             }
         }
 
