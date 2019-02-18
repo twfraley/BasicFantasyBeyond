@@ -57,6 +57,17 @@ namespace BasicFantasyBeyond.Controllers
             return View(model);
         }
 
+        public ActionResult UpdateCharacterItem(CharacterItemListItem model, int characterID)
+        {
+            var service = CharacterSheetServices();
+
+            service.UpdateCharacterItem(model, characterID);
+
+            TempData["SaveResult"] = "Items Updated.";
+
+            return RedirectToAction("Details", new { id = characterID });
+        }
+
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
         public ActionResult DeleteCharacterItem(int characterID, int characterItemID)
