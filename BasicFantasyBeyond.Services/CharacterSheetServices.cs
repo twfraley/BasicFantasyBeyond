@@ -48,6 +48,14 @@ namespace BasicFantasyBeyond.Services
                 var armorList = new List<CharacterItemListItem>();
                 var equippedArmorList = new List<CharacterItemListItem>();
                 var gearList = new List<CharacterItemListItem>();
+
+                var strMod = CalculateAbilityModifier(detail.CharacterStr);
+                var dexMod = CalculateAbilityModifier(detail.CharacterDex);
+                var conMod = CalculateAbilityModifier(detail.CharacterCon);
+                var intMod = CalculateAbilityModifier(detail.CharacterInt);
+                var wisMod = CalculateAbilityModifier(detail.CharacterWis);
+                var chaMod = CalculateAbilityModifier(detail.CharacterCha);
+
                 short characterSpeed = 40;
 
                 foreach (var item in items)
@@ -74,13 +82,7 @@ namespace BasicFantasyBeyond.Services
                     }
                 }
 
-
-                var strMod = CalculateAbilityModifier(detail.CharacterStr);
-                var dexMod = CalculateAbilityModifier(detail.CharacterDex);
-                var conMod = CalculateAbilityModifier(detail.CharacterCon);
-                var intMod = CalculateAbilityModifier(detail.CharacterInt);
-                var wisMod = CalculateAbilityModifier(detail.CharacterWis);
-                var chaMod = CalculateAbilityModifier(detail.CharacterCha);
+                short characterAC = CalculateAC(equippedArmorList, dexMod);
 
                 CharacterSheetModel characterSheet = new CharacterSheetModel()
                 {
@@ -104,7 +106,7 @@ namespace BasicFantasyBeyond.Services
                     CharacterAbilities = detail.CharacterAbilities,
                     CharacterXP = detail.CharacterXP,
                     CharacterLevel = detail.CharacterLevel,
-                    CharacterAC = detail.CharacterAC,
+                    CharacterAC = characterAC,
                     CharacterHP = detail.CharacterHP,
                     CharacterAttackBonus = detail.CharacterAttackBonus,
                     CharacterSpeed = characterSpeed,
@@ -120,6 +122,7 @@ namespace BasicFantasyBeyond.Services
                 return characterSheet;
             }
         }
+
 
         public IEnumerable<CharacterItemListItem> GetItemsByCharacterID(int characterID)
         {
@@ -152,7 +155,7 @@ namespace BasicFantasyBeyond.Services
             return itemList;
         }
 
-        public bool UpdateCharacterItem (CharacterItemListItem model, int characterID)
+        public bool UpdateCharacterItem(CharacterItemListItem model, int characterID)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -162,6 +165,32 @@ namespace BasicFantasyBeyond.Services
                 entity.CharacterID = characterID;
                 entity.ItemID = model.ItemID;
                 entity.IsEquipped = model.IsEquipped;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool EquipItem(int characterItemID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.CharacterItems.Single(e => e.CharacterItemsID == characterItemID);
+
+                entity.CharacterItemsID = characterItemID;
+                entity.IsEquipped = true;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool UnequipItem(int characterItemsID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.CharacterItems.Single(e => e.CharacterItemsID == characterItemsID);
+
+                entity.CharacterItemsID = characterItemsID;
+                entity.IsEquipped = false;
 
                 return ctx.SaveChanges() == 1;
             }
@@ -185,6 +214,7 @@ namespace BasicFantasyBeyond.Services
             {
                 var character = ctx.Characters.Single(c => c.CharacterID == characterID);
                 List<ItemListItem> itemList = new List<ItemListItem>();
+                List<ItemListItem> itemsToBeRemoved = new List<ItemListItem>();
 
                 if (character.CharacterClass == CharacterClass.Fighter)
                 {
@@ -277,7 +307,7 @@ namespace BasicFantasyBeyond.Services
                     {
                         if (!item.UsableBy.HasFlag(UsableBy.Halfling))
                         {
-                            itemList.Remove(item);
+                            itemsToBeRemoved.Add(item);
                         }
                     }
                 }
@@ -287,7 +317,7 @@ namespace BasicFantasyBeyond.Services
                     {
                         if (!item.UsableBy.HasFlag(UsableBy.Dwarf))
                         {
-                            itemList.Remove(item);
+                            itemsToBeRemoved.Add(item);
                         }
                     }
                 }
@@ -297,7 +327,7 @@ namespace BasicFantasyBeyond.Services
                     {
                         if (!item.UsableBy.HasFlag(UsableBy.Elf))
                         {
-                            itemList.Remove(item);
+                            itemsToBeRemoved.Add(item);
                         }
                     }
                 }
@@ -307,9 +337,14 @@ namespace BasicFantasyBeyond.Services
                     {
                         if (!item.UsableBy.HasFlag(UsableBy.Human))
                         {
-                            itemList.Remove(item);
+                            itemsToBeRemoved.Add(item);
                         }
                     }
+                }
+
+                foreach (var item in itemsToBeRemoved)
+                {
+                    itemList.Remove(item);
                 }
 
                 AddCharacterItemsModel model = new AddCharacterItemsModel
@@ -351,6 +386,27 @@ namespace BasicFantasyBeyond.Services
             if (ability > 15 && ability <= 17) abilityMod = 2;
             if (ability > 17) abilityMod = 3;
             return abilityMod;
+        }
+
+        private short CalculateAC(List<CharacterItemListItem> equippedArmorList, short dexMod)
+        {
+            short ac = 11;
+            ac += dexMod;
+
+            List<CharacterItemListItem> noCheatingList = new List<CharacterItemListItem>();
+
+            foreach (var item in equippedArmorList)
+            {
+                if (!noCheatingList.Contains(item) && item.ArmorClassBonus != null)
+                    noCheatingList.Add(item);
+            }
+
+            foreach (var item in noCheatingList)
+            {
+                ac += Convert.ToInt16(item.ArmorClassBonus);
+            }
+
+            return ac;
         }
 
     }

@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Details";
 }
+@Html.AntiForgeryToken()
+@Html.HiddenFor(model => model.CharacterSheetID)
 <p></p>
 
 <h2>@Html.DisplayFor(model => model.CharacterName)</h2>
@@ -11,7 +13,7 @@
     <h4>Details</h4>
     <hr />
     <div class="container container-fluid border border-danger">
-        <div class=" row justify-content-between ">
+        <div class=" row ">
             <div id="characterAbilities" class="col col-lg-4 col-md-6 col-sm-12 border border-warning">
                 <div class=" row ">
                     <div class="col col-6 btn btn-secondary border border-danger">
@@ -68,8 +70,37 @@
                     </div>
                 </div>
             </div>
+            <div id="characterStats" class="col col-lg-4 col-md-6 col-sm-12 border border-danger">
+                <div class="row">
+                    <div class="col col-6 border border-warning text-center">
+                        <p>Speed:</p>
+                        @Html.DisplayFor(model => model.CharacterSpeed)
+                    </div>
+                    <div class="col col-6 border border-warning text-center">
+                        <p>Attack Bonus:</p>
+                        @Html.DisplayFor(model => model.CharacterAttackBonus)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-6 border border-warning text-center">
+                        <p>Hit Points:</p>
+                        @Html.DisplayFor(model => model.CharacterHP)
+                    </div>
+                    <div class="col col-6 border border-warning text-center">
+                        <p>Armor Class:</p>
+                        @Html.DisplayFor(model => model.CharacterAC)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-12 border border-warning text-center">
+                        <p> Special Abilities:</p>
+                        <p>@Html.DisplayFor(model => model.CharacterAbilities)</p>
+                    </div>
+                </div>
+            </div>
+
             <div id="characterDetails" class="col col-lg-4 col-md-6 col-sm-12 border border-warning">
-                <dl class=" dl-horizontal">
+                <dl class="col col-6 dl-horizontal">
                     <dt>
                         CharacterName:
                     </dt>
@@ -98,18 +129,23 @@
                         Level:
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model=> model.CharacterLevel)
+                        @Html.DisplayFor(model => model.CharacterLevel)
                     </dd>
                 </dl>
+
             </div>
         </div>
     </div>
 
+    <hr />
 
     <table class="table">
         <tr>
             <td>
-                Remove Item?
+                Manage
+            </td>
+            <td>
+                Discard Item?
             </td>
             <td>
                 Item Name
@@ -117,11 +153,20 @@
             <td>
                 Item Type
             </td>
+            <td>
+                Damage
+            </td>
+            <td>
+                AC bonus
+            </td>
         </tr>
-        @foreach (var item in Model.Items)
+        @foreach (var item in Model.EquippedWeapons)
         {
             <tr>
                 @Html.HiddenFor(i => item.CharacterItemID)
+                <td>
+                    @Html.ActionLink("Unequip", "UnEquip", new { id = item.CharacterItemID, characterID = Model.CharacterID })
+                </td>
                 <td>
                     @Html.ActionLink("Delete", "Delete", new { characterID = Model.CharacterID, characterItemID = item.CharacterItemID })
                 </td>
@@ -130,6 +175,119 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ItemType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Damage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArmorClassBonus)
+                </td>
+            </tr>
+        }
+    </table>
+
+    <hr />
+
+    <table class="table">
+        <tr>
+            <td> 
+                Manage 
+            </td>
+            <td>
+                Discard Item?
+            </td>
+            <td>
+                Item Name
+            </td>
+            <td>
+                Item Type
+            </td>
+            <td>
+                Damage
+            </td>
+            <td>
+                AC bonus
+            </td>
+        </tr>
+        @foreach (var item in Model.EquippedArmor)
+        {
+            <tr>
+                @Html.HiddenFor(i => item.CharacterItemID)
+                <td>
+                    @Html.ActionLink("Unequip", "UnEquip", new { model = item, characterID = Model.CharacterID })
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { characterID = Model.CharacterID, characterItemID = item.CharacterItemID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Damage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArmorClassBonus)
+                </td>
+            </tr>
+        }
+    </table>
+
+    <hr />
+
+    <table class="table">
+        <tr>
+            <td>
+                Manage
+            </td>
+            <td>
+                Discard Item?
+            </td>
+            <td>
+                Item Name
+            </td>
+            <td>
+                Item Type
+            </td>
+            <td>
+                Damage
+            </td>
+            <td>
+                AC bonus
+            </td>
+        </tr>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                @Html.HiddenFor(i => item.CharacterItemID)
+                <td>
+                    @{
+                        if (item.IsEquipped)
+                        {
+                            @Html.ActionLink("Unequip", "UnEquip", new { id = item.CharacterItemID, characterID = Model.CharacterID })
+                        }
+                        if (!item.IsEquipped)
+                        {
+                            @Html.ActionLink("Equip", "Equip", new { id = item.CharacterItemID, characterID = Model.CharacterID })
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { characterID = Model.CharacterID, characterItemID = item.CharacterItemID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Damage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArmorClassBonus)
                 </td>
             </tr>
         }

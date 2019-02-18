@@ -57,7 +57,31 @@ namespace BasicFantasyBeyond.Controllers
             return View(model);
         }
 
-        public ActionResult UpdateCharacterItem(CharacterItemListItem model, int characterID)
+        public ActionResult Equip(int id, int characterID)
+        {
+            var svc = CharacterSheetServices();
+
+            svc.EquipItem(id);
+
+            TempData["SaveResult"] = "Item equipped.";
+
+            return RedirectToAction("Details", new { id = characterID });
+
+        }
+
+        public ActionResult UnEquip(int id, int characterID)
+        {
+            var svc = CharacterSheetServices();
+
+            svc.UnequipItem(id);
+
+            TempData["SaveResult"] = "Item equipped.";
+
+            return RedirectToAction("Details", new { id = characterID });
+
+        }
+
+        public ActionResult Update(CharacterItemListItem model, int characterID)
         {
             var service = CharacterSheetServices();
 
@@ -68,7 +92,6 @@ namespace BasicFantasyBeyond.Controllers
             return RedirectToAction("Details", new { id = characterID });
         }
 
-        [ValidateAntiForgeryToken]
         [ActionName("Delete")]
         public ActionResult DeleteCharacterItem(int characterID, int characterItemID)
         {
