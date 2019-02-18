@@ -38,11 +38,30 @@ namespace BasicFantasyBeyond.Services
 
         public CharacterSheetModel GenerateCharacterSheet(int characterID)
         {
-            var items = GetItemsByCharacterID(characterID);
 
             using (var ctx = new ApplicationDbContext())
             {
                 var detail = ctx.Characters.Single(e => e.CharacterID == characterID);
+                var items = GetItemsByCharacterID(characterID);
+                var weaponList = new List<CharacterItemListItem>();
+                var armorList = new List<CharacterItemListItem>();
+                var gearList = new List<CharacterItemListItem>();
+
+                foreach (var item in items)
+                {
+                    if(item.ItemType == ItemType.Weapon)
+                    {
+                        weaponList.Add(item);
+                    }
+                    if(item.ItemType == ItemType.Armor || item.ItemType == ItemType.Shield)
+                    {
+                        armorList.Add(item);
+                    }
+                    if(item.ItemType == ItemType.Gear)
+                    {
+                        gearList.Add(item);
+                    }
+                }
 
                 CharacterSheetModel characterSheet = new CharacterSheetModel()
                 {
@@ -64,7 +83,10 @@ namespace BasicFantasyBeyond.Services
                     CharacterHP = detail.CharacterHP,
                     CharacterAttackBonus = detail.CharacterAttackBonus,
                     CharacterNotes = detail.CharacterNotes,
-                    Items = items
+                    Items = items,
+                    Weapons = weaponList,
+                    Armor = armorList,
+                    Gear = gearList
                 };
 
                 return characterSheet;
@@ -91,6 +113,7 @@ namespace BasicFantasyBeyond.Services
                         IsEquipped = item.Equipment.IsEquipped,
                         Damage = item.Equipment.Damage,
                         DamageType = item.Equipment.DamageType,
+                        Size = item.Equipment.Size,
                         ArmorClassBonus = item.Equipment.ArmorClassBonus,
                         ItemNotes = item.Equipment.ItemNotes
                     };
@@ -98,7 +121,7 @@ namespace BasicFantasyBeyond.Services
                     if (!itemList.Contains(listItem)) itemList.Add(listItem);
                 }
             }
-                return itemList;
+            return itemList;
         }
 
         public AddCharacterItemsModel GetAvailableEquipment(int characterID)
@@ -122,6 +145,7 @@ namespace BasicFantasyBeyond.Services
                             IsEquipped = item.IsEquipped,
                             Damage = item.Damage,
                             DamageType = item.DamageType,
+                            Size = item.Size,
                             ArmorClassBonus = item.ArmorClassBonus,
                             ItemNotes = item.ItemNotes
                         };
@@ -142,6 +166,7 @@ namespace BasicFantasyBeyond.Services
                             IsEquipped = item.IsEquipped,
                             Damage = item.Damage,
                             DamageType = item.DamageType,
+                            Size = item.Size,
                             ArmorClassBonus = item.ArmorClassBonus,
                             ItemNotes = item.ItemNotes
                         };
@@ -162,6 +187,7 @@ namespace BasicFantasyBeyond.Services
                             IsEquipped = item.IsEquipped,
                             Damage = item.Damage,
                             DamageType = item.DamageType,
+                            Size = item.Size,
                             ArmorClassBonus = item.ArmorClassBonus,
                             ItemNotes = item.ItemNotes
                         };
@@ -182,6 +208,7 @@ namespace BasicFantasyBeyond.Services
                             IsEquipped = item.IsEquipped,
                             Damage = item.Damage,
                             DamageType = item.DamageType,
+                            Size = item.Size,
                             ArmorClassBonus = item.ArmorClassBonus,
                             ItemNotes = item.ItemNotes
                         };

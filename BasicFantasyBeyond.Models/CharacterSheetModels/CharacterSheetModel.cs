@@ -42,5 +42,8 @@ namespace BasicFantasyBeyond.Models.CharacterSheetModels
         public short? CharacterAttackBonus { get; set; }
         public string CharacterNotes { get; set; }
         public IEnumerable<CharacterItemListItem> Items { get; set; }
+        public IEnumerable<CharacterItemListItem> Weapons { get; set; }
+        public IEnumerable<CharacterItemListItem> Armor { get; set; }
+        public IEnumerable<CharacterItemListItem> Gear { get; set; }
     }
 }

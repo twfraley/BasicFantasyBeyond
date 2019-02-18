@@ -12,8 +12,11 @@ namespace BasicFantasyBeyond.Models.CharacterSheetModels
     {
         public int ItemID { get; set; }
         public int CharacterItemID { get; set; }
+        [Required]
         public string ItemName { get; set; }
+        [Required]
         public UsableBy UsableBy { get; set; }
+        [Required]
         public ItemType ItemType { get; set; }
         public string Damage { get; set; }
         public DamageType? DamageType { get; set; }
