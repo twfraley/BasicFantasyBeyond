@@ -17,7 +17,7 @@ namespace BasicFantasyBeyond.Models.CharacterModels
         public short CharacterInt { get; set; }
         public short CharacterWis { get; set; }
         public short CharacterCha { get; set; }
-        public int? CharacterXP { get; set; }
+        public int CharacterXP { get; set; }
 
         public override string ToString() => CharacterName;
 

@@ -22,7 +22,7 @@ namespace BasicFantasyBeyond.Models.CharacterModels
         public CharacterRace CharacterRace { get; set; }
         public CharacterClass CharacterClass { get; set; }
         public CharacterAbilities? CharacterAbilities { get; set; }
-        public int? CharacterXP { get; set; }
+        public int CharacterXP { get; set; }
         public short? CharacterLevel { get; set; }
         public short? CharacterAC { get; set; }
         public short? CharacterHP { get; set; }

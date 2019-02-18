@@ -35,7 +35,8 @@ namespace BasicFantasyBeyond.Services
                     CharacterCha = model.CharacterCha,
                     CharacterRace = model.CharacterRace,
                     CharacterClass = model.CharacterClass,
-                    CharacterAbilities = characterAbilities
+                    CharacterAbilities = characterAbilities,
+                    CharacterXP = 0
                 };
 
             using (ApplicationDbContext ctx = new ApplicationDbContext())
@@ -112,6 +113,7 @@ namespace BasicFantasyBeyond.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var characterAbilities = GenerateCharacterAbilities(model.CharacterClass, model.CharacterRace);
+                var characterLevel = GetLevelFromXP(model.CharacterClass, model.CharacterXP);
 
                 var entity = ctx.Characters.Single(e => e.CharacterID == model.CharacterID && e.OwnerID == _userID);
 
@@ -126,7 +128,7 @@ namespace BasicFantasyBeyond.Services
                 entity.CharacterClass = model.CharacterClass;
                 entity.CharacterAbilities = characterAbilities;
                 entity.CharacterXP = model.CharacterXP;
-                entity.CharacterLevel = model.CharacterLevel;
+                entity.CharacterLevel = characterLevel;
                 entity.CharacterAC = model.CharacterAC;
                 entity.CharacterHP = model.CharacterHP;
                 entity.CharacterAttackBonus = model.CharacterAttackBonus;
@@ -187,5 +189,103 @@ namespace BasicFantasyBeyond.Services
             return characterAbilities;
         }
 
+        private short GetLevelFromXP(CharacterClass characterClass, int xp)
+        {
+            short characterLevel = 0;
+            if (characterClass == CharacterClass.Fighter)
+            {
+                if (xp < 2000) characterLevel = 1;
+                if (xp >= 2000 && xp < 4000) characterLevel = 2;
+                if (xp >= 4000 && xp < 8000) characterLevel = 3;
+                if (xp >= 8000 && xp < 16000) characterLevel = 4;
+                if (xp >= 16000 && xp < 32000) characterLevel = 5;
+                if (xp >= 32000 && xp < 64000) characterLevel = 6;
+                if (xp >= 64000 && xp < 120000) characterLevel = 7;
+                if (xp >= 120000 && xp < 240000) characterLevel = 8;
+                if (xp >= 240000 && xp < 360000) characterLevel = 9;
+                if (xp >= 360000 && xp < 480000) characterLevel = 10;
+                if (xp >= 480000 && xp < 600000) characterLevel = 11;
+                if (xp >= 600000 && xp < 720000) characterLevel = 12;
+                if (xp >= 720000 && xp < 840000) characterLevel = 13;
+                if (xp >= 840000 && xp < 960000) characterLevel = 14;
+                if (xp >= 960000 && xp < 1080000) characterLevel = 15;
+                if (xp >= 1080000 && xp < 1200000) characterLevel = 16;
+                if (xp >= 1200000 && xp < 1320000) characterLevel = 17;
+                if (xp >= 1320000 && xp < 1440000) characterLevel = 18;
+                if (xp >= 1440000 && xp < 1560000) characterLevel = 19;
+                if (xp >= 1560000) characterLevel = 20;
+            }
+            if (characterClass == CharacterClass.Cleric)
+            {
+                if (xp < 1500) characterLevel = 1;
+                if (xp >= 1500 && xp < 3000) characterLevel = 2;
+                if (xp >= 3000 && xp < 6000) characterLevel = 3;
+                if (xp >= 6000 && xp < 12000) characterLevel = 4;
+                if (xp >= 12000 && xp < 24000) characterLevel = 5;
+                if (xp >= 24000 && xp < 48000) characterLevel = 6;
+                if (xp >= 48000 && xp < 90000) characterLevel = 7;
+                if (xp >= 90000 && xp < 180000) characterLevel = 8;
+                if (xp >= 180000 && xp < 270000) characterLevel = 9;
+                if (xp >= 270000 && xp < 360000) characterLevel = 10;
+                if (xp >= 360000 && xp < 450000) characterLevel = 11;
+                if (xp >= 450000 && xp < 540000) characterLevel = 12;
+                if (xp >= 540000 && xp < 630000) characterLevel = 13;
+                if (xp >= 630000 && xp < 720000) characterLevel = 14;
+                if (xp >= 720000 && xp < 810000) characterLevel = 15;
+                if (xp >= 810000 && xp < 900000) characterLevel = 16;
+                if (xp >= 900000 && xp < 990000) characterLevel = 17;
+                if (xp >= 990000 && xp < 1080000) characterLevel = 18;
+                if (xp >= 1080000 && xp < 1170000) characterLevel = 19;
+                if (xp >= 1170000) characterLevel = 20;
+            }
+            if (characterClass == CharacterClass.Thief)
+            {
+                if (xp < 1250) characterLevel = 1;
+                if (xp >= 1250 && xp < 2500) characterLevel = 2;
+                if (xp >= 2500 && xp < 5000) characterLevel = 3;
+                if (xp >= 5000 && xp < 10000) characterLevel = 4;
+                if (xp >= 10000 && xp < 20000) characterLevel = 5;
+                if (xp >= 20000 && xp < 40000) characterLevel = 6;
+                if (xp >= 40000 && xp < 75000) characterLevel = 7;
+                if (xp >= 75000 && xp < 15000) characterLevel = 8;
+                if (xp >= 150000 && xp < 225000) characterLevel = 9;
+                if (xp >= 225000 && xp < 300000) characterLevel = 10;
+                if (xp >= 300000 && xp < 375000) characterLevel = 11;
+                if (xp >= 375000 && xp < 450000) characterLevel = 12;
+                if (xp >= 450000 && xp < 525000) characterLevel = 13;
+                if (xp >= 525000 && xp < 600000) characterLevel = 14;
+                if (xp >= 600000 && xp < 675000) characterLevel = 15;
+                if (xp >= 675000 && xp < 750000) characterLevel = 16;
+                if (xp >= 750000 && xp < 825000) characterLevel = 17;
+                if (xp >= 825000 && xp < 900000) characterLevel = 18;
+                if (xp >= 900000 && xp < 975000) characterLevel = 19;
+                if (xp >= 975000) characterLevel = 20;
+            }
+            if (characterClass == CharacterClass.MagicUser)
+            {
+                if (xp < 2500) characterLevel = 1;
+                if (xp >= 2500 && xp < 4000) characterLevel = 2;
+                if (xp >= 5000 && xp < 8000) characterLevel = 3;
+                if (xp >= 10000 && xp < 16000) characterLevel = 4;
+                if (xp >= 20000 && xp < 32000) characterLevel = 5;
+                if (xp >= 40000 && xp < 64000) characterLevel = 6;
+                if (xp >= 80000 && xp < 120000) characterLevel = 7;
+                if (xp >= 150000 && xp < 240000) characterLevel = 8;
+                if (xp >= 300000 && xp < 360000) characterLevel = 9;
+                if (xp >= 450000 && xp < 480000) characterLevel = 10;
+                if (xp >= 600000 && xp < 600000) characterLevel = 11;
+                if (xp >= 750000 && xp < 720000) characterLevel = 12;
+                if (xp >= 900000 && xp < 840000) characterLevel = 13;
+                if (xp >= 1050000 && xp < 960000) characterLevel = 14;
+                if (xp >= 1200000 && xp < 1080000) characterLevel = 15;
+                if (xp >= 1350000 && xp < 1200000) characterLevel = 16;
+                if (xp >= 1500000 && xp < 1320000) characterLevel = 17;
+                if (xp >= 1650000 && xp < 1440000) characterLevel = 18;
+                if (xp >= 1800000 && xp < 1560000) characterLevel = 19;
+                if (xp >= 1950000) characterLevel = 20;
+            }
+
+            return characterLevel;
+        }
     }
 }

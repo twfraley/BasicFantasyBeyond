@@ -20,22 +20,28 @@ namespace BasicFantasyBeyond.Models.CharacterSheetModels
         public string CharacterName { get; set; }
         [Required]
         public short CharacterStr { get; set; }
+        public short StrMod { get; set; }
         [Required]
         public short CharacterDex { get; set; }
+        public short DexMod { get; set; }
         [Required]
         public short CharacterCon { get; set; }
+        public short ConMod { get; set; }
         [Required]
         public short CharacterInt { get; set; }
+        public short IntMod { get; set; }
         [Required]
         public short CharacterWis { get; set; }
+        public short WisMod { get; set; }
         [Required]
         public short CharacterCha { get; set; }
+        public short ChaMod { get; set; }
         [Required]
         public CharacterRace CharacterRace { get; set; }
         [Required]
         public CharacterClass CharacterClass { get; set; }
         public CharacterAbilities? CharacterAbilities { get; set; }
-        public int? CharacterXP { get; set; }
+        public int CharacterXP { get; set; }
         public short? CharacterLevel { get; set; }
         public short? CharacterAC { get; set; }
         public short? CharacterHP { get; set; }

@@ -62,6 +62,12 @@ namespace BasicFantasyBeyond.Services
                         gearList.Add(item);
                     }
                 }
+                var strMod = CalculateAbilityModifier(detail.CharacterStr);
+                var dexMod = CalculateAbilityModifier(detail.CharacterDex);
+                var conMod = CalculateAbilityModifier(detail.CharacterCon);
+                var intMod = CalculateAbilityModifier(detail.CharacterInt);
+                var wisMod = CalculateAbilityModifier(detail.CharacterWis);
+                var chaMod = CalculateAbilityModifier(detail.CharacterCha);
 
                 CharacterSheetModel characterSheet = new CharacterSheetModel()
                 {
@@ -69,11 +75,17 @@ namespace BasicFantasyBeyond.Services
                     CharacterID = detail.CharacterID,
                     CharacterName = detail.CharacterName,
                     CharacterStr = detail.CharacterStr,
+                    StrMod = strMod,
                     CharacterDex = detail.CharacterDex,
+                    DexMod = dexMod,
                     CharacterCon = detail.CharacterCon,
+                    ConMod = conMod,
                     CharacterInt = detail.CharacterInt,
+                    IntMod = intMod,
                     CharacterWis = detail.CharacterWis,
+                    WisMod = wisMod,
                     CharacterCha = detail.CharacterCha,
+                    ChaMod = chaMod,
                     CharacterRace = detail.CharacterRace,
                     CharacterClass = detail.CharacterClass,
                     CharacterAbilities = detail.CharacterAbilities,
@@ -297,6 +309,18 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
+        private short CalculateAbilityModifier(short ability)
+        {
+            short abilityMod = 0;
+            if (ability <= 3) abilityMod = -3;
+            if (ability > 3 && ability <= 5) abilityMod = -2;
+            if (ability > 5 && ability <= 8) abilityMod = -1;
+            if (ability > 8 && ability <= 12) abilityMod = 0;
+            if (ability > 12 && ability <= 15) abilityMod = 1;
+            if (ability > 15 && ability <= 17) abilityMod = 2;
+            if (ability > 17) abilityMod = 3;
+            return abilityMod;
+        }
 
     }
 }

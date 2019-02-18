@@ -41,7 +41,7 @@ namespace BasicFantasyBeyond.Data
 
         public CharacterAbilities? CharacterAbilities { get; set; }
 
-        public int? CharacterXP { get; set; }
+        public int CharacterXP { get; set; }
 
         public short? CharacterLevel { get; set; }
 
