@@ -17,5 +17,7 @@ namespace BasicFantasyBeyond.Data
         [Required]
         public int ItemID { get; set; }
         public virtual Item Equipment {get;set;}
+        [Required]
+        public bool IsEquipped { get; set; }
     }
 }

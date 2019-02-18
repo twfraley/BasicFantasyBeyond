@@ -111,6 +111,10 @@
     <Compile Include="Migrations\201902150002177_AddedItemSizeToItem.Designer.cs">
       <DependentUpon>201902150002177_AddedItemSizeToItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902181729229_update.cs" />
+    <Compile Include="Migrations\201902181729229_update.Designer.cs">
+      <DependentUpon>201902181729229_update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -148,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902150002177_AddedItemSizeToItem.resx">
       <DependentUpon>201902150002177_AddedItemSizeToItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902181729229_update.resx">
+      <DependentUpon>201902181729229_update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
