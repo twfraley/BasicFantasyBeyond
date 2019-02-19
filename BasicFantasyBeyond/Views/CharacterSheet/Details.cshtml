@@ -138,6 +138,173 @@
     </div>
 
     <hr />
+    <div class="container container-fluid border-danger">
+        <div class="row">
+            <div class="col-12 text-center lead">
+                Equipped Weapons:
+            </div>
+        </div>
+        <div class="row text-light bg-dark">
+            <div class="col col-2 text-center lead">
+                Item Name
+            </div>
+            <div class="col col-2 text-center lead">
+                Item Type
+            </div>
+            <div class="col col-2 text-center lead">
+                To-Hit
+            </div>
+            <div class="col col-2 text-center lead">
+                Damage
+            </div>
+            <div class="col col-2 text-center lead">
+                Special
+            </div>
+            <div class="col col-2 text-center lead">
+                Manage
+            </div>
+        </div>
+        @{
+            foreach (var item in Model.EquippedWeapons)
+            {
+                @Html.HiddenFor(i => item.CharacterItemID)
+                <div class="row bg-light">
+                    <div class="col col-2 text-center lead">
+                        @Html.DisplayFor(modelItem => item.ItemName)
+                    </div>
+                    <div class="col col-2 text-center lead">
+                        @Html.DisplayFor(modelItem => item.ItemType)
+                    </div>
+                    <div class="col col-2 text-center lead">
+                        @Html.DisplayFor(modelItem => item.AttackBonus)
+                    </div>
+                    <div class="col col-2 text-center lead">
+                        @Html.DisplayFor(modelItem => item.Damage)
+                    </div>
+                    <div class="col col-2 text-center lead">
+                        @Html.DisplayFor(i => item.ItemNotes)
+                    </div>
+                    <div class="col col-2 text-center lead">
+                        @Html.ActionLink("Unequip", "Unequip", new { id = item.CharacterItemID, characterID = Model.CharacterID })
+                        @Html.ActionLink("Delete", "Delete", new { characterID = Model.CharacterID, characterItemID = item.CharacterItemID })
+                    </div>
+
+                </div>
+            }
+        }
+
+    </div>
+
+    <hr />
+    <div class="container container-fluid border-danger">
+        <div class="row">
+            <div class="col-12 text-center lead">
+                Equipped Weapons:
+            </div>
+        </div>
+        <div class="row text-light bg-dark">
+            <div class="col col-2 text-center lead">
+                Item Name
+            </div>
+            <div class="col col-2 text-center lead">
+                Item Type
+            </div>
+            <div class="col col-2 text-center lead">
+                AC Bonus
+            </div>
+            <div class="col col-2 text-center lead">
+                Special
+            </div>
+            <div class="col col-2 text-center lead">
+                Manage
+            </div>
+        </div>
+        @{
+            foreach (var item in Model.EquippedArmor)
+            {
+                @Html.HiddenFor(i => item.CharacterItemID)
+                <div class="row bg-light">
+                    <div class="col col-2 text-center lead">
+                        @Html.DisplayFor(modelItem => item.ItemName)
+                    </div>
+                    <div class="col col-2 text-center lead">
+                        @Html.DisplayFor(modelItem => item.ItemType)
+                    </div>
+                    <div class="col col-2 text-center lead">
+                        @Html.DisplayFor(modelItem => item.ArmorClassBonus)
+                    </div>
+                    <div class="col col-2 text-center lead">
+                        @Html.DisplayFor(modelItem => item.ItemNotes)
+                    </div>
+                    <div class="col col-2 text-center lead">
+                        @Html.ActionLink("Unequip", "Unequip", new { id = item.CharacterItemID, characterID = Model.CharacterID })
+                        @Html.ActionLink("Delete", "Delete", new { characterID = Model.CharacterID, characterItemID = item.CharacterItemID })
+                    </div>
+
+                </div>
+            }
+        }
+
+    </div>
+
+    <hr />
+    <div class="container container-fluid border-danger">
+        <div class="row">
+            <div class="col-12 text-center lead">
+                Equipped Weapons:
+            </div>
+        </div>
+        <div class="row text-light bg-dark">
+            <div class="col col-2 text-center lead">
+                Item Name
+            </div>
+            <div class="col col-2 text-center lead">
+                Item Type
+            </div>
+            <div class="col col-2 text-center lead">
+                To-Hit
+            </div>
+            <div class="col col-2 text-center lead">
+                Damage
+            </div>
+            <div class="col col-2 text-center lead">
+                Special
+            </div>
+            <div class="col col-2 text-center lead">
+                Manage
+            </div>
+        </div>
+        @{
+            foreach (var item in Model.EquippedWeapons)
+            {
+                @Html.HiddenFor(i => item.CharacterItemID)
+                <div class="row bg-light">
+                    <div class="col col-2 text-center lead">
+                        @Html.DisplayFor(modelItem => item.ItemName)
+                    </div>
+                    <div class="col col-2 text-center lead">
+                        @Html.DisplayFor(modelItem => item.ItemType)
+                    </div>
+                    <div class="col col-2 text-center lead">
+                        @Html.DisplayFor(modelItem => item.AttackBonus)
+                    </div>
+                    <div class="col col-2 text-center lead">
+                        @Html.DisplayFor(modelItem => item.Damage)
+                    </div>
+                    <div class="col col-2 text-center lead">
+                        @Html.DisplayFor(i => item.ItemNotes)
+                    </div>
+                    <div class="col col-2 text-center lead">
+                        @Html.ActionLink("Unequip", "Unequip", new { id = item.CharacterItemID, characterID = Model.CharacterID })
+                        @Html.ActionLink("Delete", "Delete", new { characterID = Model.CharacterID, characterItemID = item.CharacterItemID })
+                    </div>
+
+                </div>
+            }
+        }
+
+    </div>
+
 
     <table class="table">
         <tr>
@@ -190,8 +357,8 @@
 
     <table class="table">
         <tr>
-            <td> 
-                Manage 
+            <td>
+                Manage
             </td>
             <td>
                 Discard Item?
