@@ -121,7 +121,7 @@ namespace BasicFantasyBeyond.Services
                 entity.CharacterName = model.CharacterName;
                 entity.CharacterStr = model.CharacterStr;
                 entity.CharacterDex = model.CharacterDex;
-                entity.CharacterCon = model.CharacterDex;
+                entity.CharacterCon = model.CharacterCon;
                 entity.CharacterInt = model.CharacterInt;
                 entity.CharacterWis = model.CharacterWis;
                 entity.CharacterCha = model.CharacterCha;
