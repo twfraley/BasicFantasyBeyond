@@ -48,21 +48,6 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-        private int GetAttackBonus(CharacterClass characterClass, int characterLevel)
-        {
-            int attackBonus = 1;
-
-            if(characterClass == CharacterClass.Cleric)
-            {
-                if (CharacterLevel == 1)
-                {
-
-                }
-            }
-
-            return attackBonus;
-        }
-
         public IEnumerable<CharacterListItem> GetCharacters()
         {
             using (var ctx = new ApplicationDbContext())
@@ -130,6 +115,7 @@ namespace BasicFantasyBeyond.Services
             {
                 var characterAbilities = GenerateCharacterAbilities(model.CharacterClass, model.CharacterRace);
                 var characterLevel = GetLevelFromXP(model.CharacterClass, model.CharacterXP);
+                var attackBonus = GetAttackBonus(model.CharacterClass, Convert.ToInt32(model.CharacterLevel));
 
                 var entity = ctx.Characters.Single(e => e.CharacterID == model.CharacterID && e.OwnerID == _userID);
 
@@ -147,7 +133,7 @@ namespace BasicFantasyBeyond.Services
                 entity.CharacterLevel = characterLevel;
                 entity.CharacterAC = model.CharacterAC;
                 entity.CharacterHP = model.CharacterHP;
-                entity.CharacterAttackBonus = model.CharacterAttackBonus;
+                entity.CharacterAttackBonus = Convert.ToInt16(attackBonus);
                 entity.CharacterNotes = model.CharacterNotes;
 
                 return ctx.SaveChanges() == 1;
@@ -302,6 +288,48 @@ namespace BasicFantasyBeyond.Services
             }
 
             return characterLevel;
+        }
+
+        private int GetAttackBonus(CharacterClass characterClass, int characterLevel)
+        {
+            int attackBonus = 1;
+
+            if (characterClass == CharacterClass.Fighter)
+            {
+                if (characterLevel == 1) attackBonus = 1;
+                if (characterLevel == 2 || characterLevel == 3) attackBonus = 2;
+                if (characterLevel == 4) attackBonus = 3;
+                if (characterLevel == 5 || characterLevel == 6) attackBonus = 4;
+                if (characterLevel == 7) attackBonus = 5;
+                if (characterLevel >= 8 && characterLevel < 11) attackBonus = 6;
+                if (characterLevel >= 11 && characterLevel < 13) attackBonus = 7;
+                if (characterLevel >= 13 && characterLevel < 16) attackBonus = 8;
+                if (characterLevel >= 16 && characterLevel < 18) attackBonus = 9;
+                if (characterLevel >= 18) attackBonus = 10;
+            }
+            if (characterClass == CharacterClass.Cleric || characterClass == CharacterClass.Thief)
+            {
+                if (characterLevel >= 1 && characterLevel < 3) attackBonus = 1;
+                if (characterLevel >= 3 && characterLevel < 5) attackBonus = 2;
+                if (characterLevel >= 5 && characterLevel < 7) attackBonus = 3;
+                if (characterLevel >= 7 && characterLevel < 9) attackBonus = 4;
+                if (characterLevel >= 9 && characterLevel < 12) attackBonus = 5;
+                if (characterLevel >= 12 && characterLevel < 15) attackBonus = 6;
+                if (characterLevel >= 15 && characterLevel < 18) attackBonus = 7;
+                if (characterLevel >= 18) attackBonus = 8;
+            }
+            if (characterClass == CharacterClass.MagicUser)
+            {
+                if (characterLevel >= 1 && characterLevel < 4) attackBonus = 1;
+                if (characterLevel >= 4 && characterLevel < 6) attackBonus = 2;
+                if (characterLevel >= 6 && characterLevel < 9) attackBonus = 3;
+                if (characterLevel >= 9 && characterLevel < 13) attackBonus = 4;
+                if (characterLevel >= 13 && characterLevel < 16) attackBonus = 5;
+                if (characterLevel >= 16 && characterLevel < 19) attackBonus = 6;
+                if (characterLevel >= 19) attackBonus = 7;
+            }
+
+            return attackBonus;
         }
     }
 }
