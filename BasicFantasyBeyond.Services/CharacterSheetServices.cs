@@ -91,6 +91,16 @@ namespace BasicFantasyBeyond.Services
                     if (item.ItemType == ItemType.Weapon)
                     {
                         item.AttackBonus += attackBonus;
+
+                        if (item.WeaponType == WeaponType.Melee)
+                        {
+                            item.AttackBonus += strMod;
+                        }
+
+                        if (item.WeaponType == WeaponType.Ranged)
+                        {
+                            item.AttackBonus += dexMod;
+                        }
                     }
                 }
 
@@ -154,6 +164,7 @@ namespace BasicFantasyBeyond.Services
                         IsEquipped = item.IsEquipped,
                         Damage = item.Equipment.Damage,
                         DamageType = item.Equipment.DamageType,
+                        WeaponType = item.Equipment.WeaponType,
                         Size = item.Equipment.Size,
                         ArmorClassBonus = item.Equipment.ArmorClassBonus,
                         ItemNotes = item.Equipment.ItemNotes
@@ -240,6 +251,7 @@ namespace BasicFantasyBeyond.Services
                             IsEquipped = item.IsEquipped,
                             Damage = item.Damage,
                             DamageType = item.DamageType,
+                            WeaponType = item.WeaponType,
                             Size = item.Size,
                             ArmorClassBonus = item.ArmorClassBonus,
                             ItemNotes = item.ItemNotes
@@ -258,6 +270,7 @@ namespace BasicFantasyBeyond.Services
                             ItemName = item.ItemName,
                             UsableBy = item.UsableBy,
                             ItemType = item.ItemType,
+                            WeaponType = item.WeaponType,
                             IsEquipped = item.IsEquipped,
                             Damage = item.Damage,
                             DamageType = item.DamageType,
@@ -279,6 +292,7 @@ namespace BasicFantasyBeyond.Services
                             ItemName = item.ItemName,
                             UsableBy = item.UsableBy,
                             ItemType = item.ItemType,
+                            WeaponType = item.WeaponType,
                             IsEquipped = item.IsEquipped,
                             Damage = item.Damage,
                             DamageType = item.DamageType,
@@ -300,6 +314,7 @@ namespace BasicFantasyBeyond.Services
                             ItemName = item.ItemName,
                             UsableBy = item.UsableBy,
                             ItemType = item.ItemType,
+                            WeaponType = item.WeaponType,
                             IsEquipped = item.IsEquipped,
                             Damage = item.Damage,
                             DamageType = item.DamageType,

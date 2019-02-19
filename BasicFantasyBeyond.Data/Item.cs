@@ -33,6 +33,10 @@ namespace BasicFantasyBeyond.Data
 
         public int? ArmorClassBonus { get; set; }
 
+        public int? AttackBonus { get; set; }
+
+        public WeaponType? WeaponType { get; set; }
+
         public ArmorType? ArmorType { get; set; }
 
         public string ItemNotes { get; set; }

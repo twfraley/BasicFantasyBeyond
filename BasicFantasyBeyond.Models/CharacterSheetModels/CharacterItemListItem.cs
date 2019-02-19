@@ -20,6 +20,7 @@ namespace BasicFantasyBeyond.Models.CharacterSheetModels
         public ItemType ItemType { get; set; }
         public string Damage { get; set; }
         public DamageType? DamageType { get; set; }
+        public WeaponType? WeaponType { get; set; }
         public Size? Size { get; set; }
         public int? ArmorClassBonus { get; set; }
         public int AttackBonus { get; set; }

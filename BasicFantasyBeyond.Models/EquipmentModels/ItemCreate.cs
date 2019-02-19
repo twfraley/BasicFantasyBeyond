@@ -11,6 +11,7 @@ namespace BasicFantasyBeyond.Models.EquipmentModels
     public enum DamageType { Piercing, Bludgeoning, Slashing }
     public enum Size { Small, Medium, Large }
     public enum ArmorType { None, Leather, Chain, Plate }
+    public enum WeaponType { None, Ranged, Melee}
     [Flags]
     public enum UsableBy
     {
@@ -42,6 +43,7 @@ namespace BasicFantasyBeyond.Models.EquipmentModels
         public UsableBy? UsableBy { get; set; }
         [Required]
         public ItemType EquipmentType { get; set; }
+        public WeaponType? WeaponType { get; set; }
         public string Damage { get; set; }
         public DamageType? DamageType { get; set; }
         public ArmorType? ArmorType { get; set; }

@@ -28,6 +28,7 @@ namespace BasicFantasyBeyond.Services
                 ItemName = model.ItemName,
                 UsableBy = usableBy,
                 ItemType = model.EquipmentType,
+                WeaponType = model.WeaponType,
                 Damage = model.Damage,
                 DamageType = model.DamageType,
                 ArmorClassBonus = model.ArmorClassBonus,
@@ -52,6 +53,7 @@ namespace BasicFantasyBeyond.Services
                     ItemName = e.ItemName,
                     UsableBy = e.UsableBy,
                     ItemType = e.ItemType,
+                    WeaponType = e.WeaponType,
                     Damage = e.Damage,
                     DamageType = e.DamageType,
                     ArmorClassBonus = e.ArmorClassBonus,
@@ -83,6 +85,7 @@ namespace BasicFantasyBeyond.Services
                         UsableBy = entity.UsableBy,
                         ItemType = entity.ItemType,
                         IsEquipped = entity.IsEquipped,
+                        WeaponType = entity.WeaponType,
                         Damage = entity.Damage,
                         DamageType = entity.DamageType,
                         ArmorClassBonus = entity.ArmorClassBonus,
@@ -104,6 +107,7 @@ namespace BasicFantasyBeyond.Services
                 entity.ItemName = model.ItemName;
                 entity.UsableBy = usableBy;
                 entity.ItemType = model.ItemType;
+                entity.WeaponType = model.WeaponType;
                 entity.IsEquipped = model.IsEquipped;
                 entity.Damage = model.Damage;
                 entity.DamageType = model.DamageType;

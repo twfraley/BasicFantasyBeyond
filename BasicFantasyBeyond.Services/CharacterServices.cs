@@ -115,7 +115,7 @@ namespace BasicFantasyBeyond.Services
             {
                 var characterAbilities = GenerateCharacterAbilities(model.CharacterClass, model.CharacterRace);
                 var characterLevel = GetLevelFromXP(model.CharacterClass, model.CharacterXP);
-                var attackBonus = GetAttackBonus(model.CharacterClass, Convert.ToInt32(model.CharacterLevel));
+                var attackBonus = GetAttackBonus(model.CharacterClass, Convert.ToInt32(characterLevel));
 
                 var entity = ctx.Characters.Single(e => e.CharacterID == model.CharacterID && e.OwnerID == _userID);
 
@@ -146,7 +146,11 @@ namespace BasicFantasyBeyond.Services
             {
                 var entity = ctx.Characters.Single(e => e.CharacterID == characterID && e.OwnerID == _userID);
 
+                var cleanup = ctx.CharacterItems.Where(e => e.CharacterID == characterID);
+
                 ctx.Characters.Remove(entity);
+
+                foreach (var item in cleanup) ctx.CharacterItems.Remove(item);
 
                 return ctx.SaveChanges() == 1;
             }
