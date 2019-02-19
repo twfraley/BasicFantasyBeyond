@@ -87,6 +87,7 @@ namespace BasicFantasyBeyond.Services
                         CharacterLevel = entity.CharacterLevel,
                         CharacterAC = entity.CharacterAC,
                         CharacterHP = entity.CharacterHP,
+                        HitPointRange = GetHitPointRange(entity.CharacterClass, entity.CharacterRace, Convert.ToInt32(entity.CharacterLevel)),
                         CharacterAttackBonus = entity.CharacterAttackBonus,
                         CharacterNotes = entity.CharacterNotes
                     };
@@ -378,33 +379,33 @@ namespace BasicFantasyBeyond.Services
 
             if (characterClass == CharacterClass.Fighter && characterRace == CharacterRace.Human)
             {
-                range = Enumerable.Range(1 * characterLevel, 8 * characterLevel);
+                range = Enumerable.Range(1 * characterLevel, 7 * characterLevel +1);
             }
             if (characterClass == CharacterClass.Fighter && characterRace == CharacterRace.Elf)
             {
-                range = Enumerable.Range(1 * characterLevel, 6 * characterLevel);
+                range = Enumerable.Range(1 * characterLevel, 5 * characterLevel +1);
             }
             if (characterClass == CharacterClass.Fighter && characterRace == CharacterRace.Dwarf)
             {
-                range = Enumerable.Range(1 * characterLevel, 8 * characterLevel);
+                range = Enumerable.Range(1 * characterLevel, 7 * characterLevel +1);
             }
             if (characterClass == CharacterClass.Fighter && characterRace == CharacterRace.Halfling)
             {
-                range = Enumerable.Range(1 * characterLevel, 6 * characterLevel);
+                range = Enumerable.Range(1 * characterLevel, 5 * characterLevel +1);
             }
             if (characterClass == CharacterClass.Cleric)
             {
-                range = Enumerable.Range(1 * characterLevel, 6 * characterLevel);
+                range = Enumerable.Range(1 * characterLevel, 5 * characterLevel +1);
             }
             if (characterClass == CharacterClass.Thief)
             {
-                range = Enumerable.Range(1 * characterLevel, 4 * characterLevel);
+                range = Enumerable.Range(1 * characterLevel, 3 * characterLevel +1);
             }
             if (characterClass == CharacterClass.MagicUser)
             {
-                range = Enumerable.Range(1 * characterLevel, 4 * characterLevel);
+                range = Enumerable.Range(1 * characterLevel, 3 * characterLevel +1);
             }
-            else range = Enumerable.Range(1 * characterLevel, 6 * characterLevel);
+            else range = Enumerable.Range(1 * characterLevel, 5 * characterLevel +1);
 
             return range;
         }

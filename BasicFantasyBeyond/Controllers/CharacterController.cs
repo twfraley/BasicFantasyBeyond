@@ -84,6 +84,7 @@ namespace BasicFantasyBeyond.Controllers
                     CharacterLevel = detail.CharacterLevel,
                     CharacterAC = detail.CharacterAC,
                     CharacterHP = detail.CharacterHP,
+                    HitPointRange = detail.HitPointRange,
                     CharacterAttackBonus = detail.CharacterAttackBonus,
                     CharacterNotes = detail.CharacterNotes
                 };
