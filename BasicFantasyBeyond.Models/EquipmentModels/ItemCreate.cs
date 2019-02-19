@@ -10,7 +10,7 @@ namespace BasicFantasyBeyond.Models.EquipmentModels
     public enum ItemType { Weapon, Armor, Shield, Gear }
     public enum DamageType { Piercing, Bludgeoning, Slashing }
     public enum Size { Small, Medium, Large }
-    public enum ArmorType { Leather, Chain, Plate }
+    public enum ArmorType { None, Leather, Chain, Plate }
     [Flags]
     public enum UsableBy
     {

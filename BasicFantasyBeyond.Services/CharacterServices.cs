@@ -22,6 +22,7 @@ namespace BasicFantasyBeyond.Services
         {
             var characterAbilities = GenerateCharacterAbilities(model.CharacterClass, model.CharacterRace);
             var level = GetLevelFromXP(model.CharacterClass,0);
+            var attackBonus = GetAttackBonus(model.CharacterClass, 0);
             var entity =
                 new Character()
                 {
@@ -47,6 +48,20 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
+        private int GetAttackBonus(CharacterClass characterClass, int characterLevel)
+        {
+            int attackBonus = 1;
+
+            if(characterClass == CharacterClass.Cleric)
+            {
+                if (CharacterLevel == 1)
+                {
+
+                }
+            }
+
+            return attackBonus;
+        }
 
         public IEnumerable<CharacterListItem> GetCharacters()
         {

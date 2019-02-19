@@ -84,6 +84,16 @@ namespace BasicFantasyBeyond.Services
 
                 short characterAC = CalculateAC(equippedArmorList, dexMod);
 
+                int attackBonus = Convert.ToInt32(detail.CharacterAttackBonus);
+
+                foreach (var item in items)
+                {
+                    if (item.ItemType == ItemType.Weapon)
+                    {
+                        item.AttackBonus += attackBonus;
+                    }
+                }
+
                 CharacterSheetModel characterSheet = new CharacterSheetModel()
                 {
                     OwnerID = detail.OwnerID,
