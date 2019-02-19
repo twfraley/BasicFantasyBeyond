@@ -99,9 +99,10 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.CharacterAbilities, htmlAttributes: new { @class = "control-label col-md-2" })
+        Manage Hitpoints:
         <div class="col-md-10">
-            @Html.DisplayFor(model => model.CharacterAbilities)
+            @Html.DisplayFor(model => model.CharacterLevel)
+            @Html.EditorFor(model => model.CharacterHP)
         </div>
     </div>
 

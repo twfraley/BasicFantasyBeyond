@@ -35,16 +35,22 @@ namespace BasicFantasyBeyond.Models.CharacterModels
         public string CharacterName { get; set; }
 
         [Required]
+        [Range(3, 18, ErrorMessage = "Number is too high or too low")]
         public short CharacterStr { get; set; }
         [Required]
+        [Range(3, 18, ErrorMessage = "Number is too high or too low")]
         public short CharacterDex { get; set; }
         [Required]
+        [Range(3, 18, ErrorMessage = "Number is too high or too low")]
         public short CharacterCon { get; set; }
         [Required]
+        [Range(3, 18, ErrorMessage = "Number is too high or too low")]
         public short CharacterInt { get; set; }
         [Required]
+        [Range(3, 18, ErrorMessage = "Number is too high or too low")]
         public short CharacterWis { get; set; }
         [Required]
+        [Range(3, 18, ErrorMessage = "Number is too high or too low")]
         public short CharacterCha { get; set; }
 
         [Required]

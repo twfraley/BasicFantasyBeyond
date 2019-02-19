@@ -104,10 +104,20 @@ namespace BasicFantasyBeyond.Controllers
 
             var service = CharacterServices();
 
+            //var range = service.GetHitPointRange(model.CharacterClass, model.CharacterRace, Convert.ToInt32(model.CharacterLevel));
+
+            //if (model.CharacterHP != null || !Enumerable.Contains(range, Convert.ToInt32(model.CharacterHP)))
+            //{
+            //    ModelState.AddModelError("", "Your HP was too high or too low");
+            //    return View(model);
+            //}
+
             if (service.UpdateCharacter(model))
             {
+                int characterID = id;
+
                 TempData["SaveResult"] = "Your character was updated.";
-                return RedirectToAction("Index");
+                return RedirectToAction("Details","CharacterSheet",new { id = characterID });
             }
 
             ModelState.AddModelError("", "Your character could not be updated.");
