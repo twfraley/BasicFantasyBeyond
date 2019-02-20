@@ -39,7 +39,7 @@ namespace BasicFantasyBeyond.Data
         [Required]
         public CharacterClass CharacterClass { get; set; }
 
-        public CharacterAbilities? CharacterAbilities { get; set; }
+        public CharacterAbilities CharacterAbilities { get; set; }
 
         public int CharacterXP { get; set; }
 

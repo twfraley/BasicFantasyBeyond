@@ -34,7 +34,7 @@ namespace BasicFantasyBeyond.Models.CharacterSheetModels
         public CharacterRace CharacterRace { get; set; }
         [Required]
         public CharacterClass CharacterClass { get; set; }
-        public CharacterAbilities? CharacterAbilities { get; set; }
+        public CharacterAbilities CharacterAbilities { get; set; }
         public int? CharacterXP { get; set; }
         public int? CharacterLevel { get; set; }
         public int? CharacterAC { get; set; }

@@ -1,4 +1,5 @@
-﻿@model BasicFantasyBeyond.Models.CharacterSheetModels.CharacterSheetModel
+﻿@using BasicFantasyBeyond.Models.CharacterModels
+@model BasicFantasyBeyond.Models.CharacterSheetModels.CharacterSheetModel
 
 @{
     ViewBag.Title = "Details";
@@ -12,9 +13,9 @@
 <div>
     <h4>Details</h4>
     <hr />
-    <div class="container container-fluid border border-danger">
+    <div class="container container-fluid border">
         <div class=" row ">
-            <div id="characterAttributes" class="col col-lg-4 col-md-6 col-sm-12 border border-warning">
+            <div id="characterAttributes" class="col col-lg-4 col-md-6 col-sm-12 border">
                 <div class="row bg-dark text-light">
                     <div class="col-12 lead text-center">
                         Primary Attributes
@@ -111,7 +112,7 @@
                     </div>
                 </div>
             </div>
-            <div id="characterStats" class="col col-lg-4 col-md-6 col-sm-12 border border-danger">
+            <div id="characterStats" class="col col-lg-4 col-md-6 col-sm-12 border">
                 <div class="row bg-dark text-light">
                     <div class="col-12 lead text-center">
                         Character Stats
@@ -195,17 +196,9 @@
                         </div>
                     </div>
                 </div>
-
-
-                <div class="row">
-                    <div class="col col-12 border border-warning text-center">
-                        <p> Special Abilities:</p>
-                        <p>@Html.DisplayFor(model => model.CharacterAbilities)</p>
-                    </div>
-                </div>
             </div>
 
-            <div id="characterDetails" class="col col-lg-4 col-md-6 col-sm-12 border border-warning">
+            <div id="characterDetails" class="col col-lg-4 col-md-6 col-sm-12 border">
                 <div class="row bg-dark text-light lead">
                     <div class=" col-12">
                         Character Details
@@ -243,7 +236,29 @@
     </div>
 
     <hr />
-    <div class="container container-fluid border-danger">
+
+    <div class="container container-fluid">
+        <div class="row">
+            <div class="col col-12">
+                <div class="row bg-dark text-light lead px-4">
+                    Special Abilities:
+                </div>
+                <div class="row small-font">
+                        @Html.DisplayFor(model => model.CharacterAbilities)
+                    </div>
+                @{
+                    if (Model.CharacterAbilities.HasFlag(CharacterAbilities.HalflingACBonus))
+                    {
+                        @Html.Raw("Wassup?  You got Halfling Skillz!")
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="container container-fluid ">
         <div class="row">
             <div class="col-12 text-center lead">
                 Equipped Weapons:
@@ -273,7 +288,7 @@
             foreach (var item in Model.EquippedWeapons)
             {
                 @Html.HiddenFor(i => item.CharacterItemID)
-                <div class="row bg-light border-bottom">
+                <div class="row bg-light border-bottom small-font">
                     <div class="col col-2 text-center ">
                         @Html.DisplayFor(modelItem => item.ItemName)
                     </div>
@@ -328,7 +343,7 @@
             foreach (var item in Model.EquippedArmor)
             {
                 @Html.HiddenFor(i => item.CharacterItemID)
-                <div class="row bg-light border-bottom">
+                <div class="row bg-light border-bottom small-font">
                     <div class="col col-2 text-center ">
                         @Html.DisplayFor(modelItem => item.ItemName)
                     </div>
@@ -383,7 +398,7 @@
             foreach (var item in Model.Items)
             {
                 @Html.HiddenFor(i => item.CharacterItemID)
-                <div class="row bg-light border-bottom">
+                <div class="row bg-light border-bottom small-font">
                     <div class="col col-2 text-center ">
                         @Html.DisplayFor(modelItem => item.ItemName)
                     </div>

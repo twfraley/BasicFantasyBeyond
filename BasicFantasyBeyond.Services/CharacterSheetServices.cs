@@ -143,7 +143,6 @@ namespace BasicFantasyBeyond.Services
             }
         }
 
-
         public IEnumerable<CharacterItemListItem> GetItemsByCharacterID(int characterID)
         {
             List<CharacterItemListItem> itemList = new List<CharacterItemListItem>();
