@@ -22,10 +22,19 @@ namespace BasicFantasyBeyond
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/Content").Include(
                       "~/Content/CSS/bootstrap.css",
+                      "~/Content/CSS/bootstrap.css.map",
                       "~/Content/CSS/bootstrap.min.css",
                       "~/Content/CSS/bootstrap.min.css.map",
+                      "~/Content/CSS/bootstrap-grid.css",
+                      "~/Content/CSS/bootstrap-grid.css.map",
+                      "~/Content/CSS/bootstrap-grid.min.css",
+                      "~/Content/CSS/bootstrap-grid.min.css.map",
+                      "~/Content/CSS/bootstrap-reboot.css",
+                      "~/Content/CSS/bootstrap-reboot.css.map",
+                      "~/Content/CSS/bootstrap-reboot.min.css",
+                      "~/Content/CSS/bootstrap-reboot.min.css.map",
                       "~/Content/CSS/site.css"));
         }
     }
