@@ -24,6 +24,8 @@ namespace BasicFantasyBeyond
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/CSS/bootstrap.css",
+                      "~/Content/CSS/bootstrap.min.css",
+                      "~/Content/CSS/bootstrap.min.css.map",
                       "~/Content/CSS/site.css"));
         }
     }
