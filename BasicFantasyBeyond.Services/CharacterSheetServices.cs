@@ -100,6 +100,10 @@ namespace BasicFantasyBeyond.Services
                         if (item.WeaponType == WeaponType.Ranged)
                         {
                             item.AttackBonus += dexMod;
+                            if(detail.CharacterRace== CharacterRace.Halfling)
+                            {
+                                item.AttackBonus += 1;
+                            }
                         }
                     }
                 }

@@ -120,17 +120,20 @@
                 </div>
                 <div class=" row ">
                     <div class="col col-6 text-center border lead">
-                        <div class="row bg-light border-bottom ">
+
+                        <div class="row bg-light border-bottom">
                             <div class=" col-12 ">
-                                Speed:
+                                Armor Class
                             </div>
                         </div>
-                        <div class=" row border-bottom bg-white pb-3">
+                        <div class=" row border-bottom pb-3 bg-white">
                             <div class="col-12">
-                                @Html.DisplayFor(model => model.CharacterSpeed)
+                                @Html.DisplayFor(model => model.CharacterAC)
                             </div>
                         </div>
                     </div>
+
+
                     <div class="col col-6 text-center border lead">
                         <div class="row bg-light border-bottom">
                             <div class=" col-12 ">
@@ -156,7 +159,7 @@
                                 @{
                                     if (Model.CharacterHP == null || Model.CharacterHP == 0)
                                     {
-                                        @Html.ActionLink("Add HP", "Edit", "Character", new { id = Model.CharacterID},new { @class = "lead" })
+                                        @Html.ActionLink("Add HP", "Edit", "Character", new { id = Model.CharacterID }, new { @class = "lead" })
                                     }
                                     else
                                     {
@@ -166,18 +169,20 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col col-6 text-center border lead">
-                        <div class="row bg-light border-bottom">
+                        <div class="row bg-light border-bottom ">
                             <div class=" col-12 ">
-                                Armor Class
+                                Speed:
                             </div>
                         </div>
-                        <div class=" row border-bottom pb-3 bg-white">
+                        <div class=" row border-bottom bg-white pb-3">
                             <div class="col-12">
-                                @Html.DisplayFor(model => model.CharacterAC)
+                                @Html.DisplayFor(model => model.CharacterSpeed)
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <div class=" row bg-light">
                     <div class="col col-6 text-center border lead">
@@ -252,14 +257,64 @@
                     Special Abilities:
                 </div>
                 <div class="row small-font">
-                    @Html.DisplayFor(model => model.CharacterAbilities)
+                    <ul>
+                        @{
+
+                            if (Model.CharacterRace == CharacterRace.Dwarf)
+                            {
+                                <li>
+                                    @Html.Raw("All Dwarves have Darkvision with a 60' range.")
+                                </li>
+                                <li>
+                                    @Html.Raw("Dwarves are able to detect slanting passages, traps, shifting walls and new construction on a roll of 1-2 on 1d6; a search must be performed before this roll may be made.")
+                                </li>
+                            }
+                            if (Model.CharacterRace == CharacterRace.Elf)
+                            {
+                                <li>
+                                    @Html.Raw("All Elves have Darkvision with a 60' range.")
+                                </li>
+                                <li>
+                                    @Html.Raw("Elves are able to find secret doors more often than normal (1-2 on 1d6 rather than the usual 1 on 1d6). An Elf is so observant that one has a 1 on 1d6 chance to find a secret door with a cursory look.")
+                                </li>
+                                <li>
+                                    @Html.Raw("Elves are immune to the paralyzing attack of ghouls.")
+                                </li>
+                                <li>
+                                    @Html.Raw("Elves are less likely to be surprised in combat, reducing the chance of surprise by 1 in 1d6.")
+                                </li>
+                            }
+                            if (Model.CharacterRace == CharacterRace.Halfling)
+                            {
+                                <li>
+                                    @Html.Raw("Halflings are unusually accurate with all sorts of ranged weapons, gaining a + 1 attack bonus when employing them. (included in calculation)")
+                                </li>
+                                <li>
+                                    @Html.Raw("When attacked in melee by creatures larger than man - sized, Halflings gain a + 2 bonus to their Armor Class.")
+                                </li>
+                                <li>
+                                    @Html.Raw("Halflings are quick - witted, thus adding + 1 to Initiative die rolls.")
+                                </li>
+                                <li>
+                                    @Html.Raw("Outdoors in their preferred forest terrain, they are able to hide very effectively; so long as they remain still there is only a 10 % chance they will be detected. Even indoors, in dungeons or in non - preferred terrain they are able to hide such that there is only a 30 % chance of detection. Note that a Halfling Thief will roll only once, using either the Thief ability or the Halfling ability, whichever is better.")
+                                </li>
+                            }
+                            if (Model.CharacterRace == CharacterRace.Human)
+                            {
+                                <li>
+                                    @Html.Raw("Humans learn unusually quickly, gaining a bonus of 10 % to all experience points earned.")
+                                </li>
+                            }
+                            if (Model.CharacterClass == CharacterClass.Cleric)
+                            {
+                                <li>
+                                    @Html.Raw("Clerics have the ability to turn undead. (see pg. 49)")
+                                </li>
+                            }
+                        }
+                    </ul>
                 </div>
-                @{
-                    if (Model.CharacterAbilities == CharacterAbilities.HalflingACBonus)
-                    {
-                        @Html.Raw("Wassup?  You got Halfling Skillz!")
-                    }
-                }
+
             </div>
         </div>
     </div>

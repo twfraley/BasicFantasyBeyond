@@ -1,5 +1,4 @@
 ﻿using BasicFantasyBeyond.Models.CharacterModels;
-using MvcEnumFlags;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +17,6 @@ namespace BasicFantasyBeyond
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            ModelBinders.Binders.Add(typeof(CharacterAbilities), new EnumFlagsModelBinder());
         }
     }
 }

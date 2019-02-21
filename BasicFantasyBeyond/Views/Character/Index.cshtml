@@ -4,13 +4,13 @@
     ViewBag.Title = "Characters";
 }
 <p />
-<h2>Characters</h2>
-
+<h2>Your Created Characters</h2>
 <p>
     @Html.ActionLink("Create New Character", "Create", "", new { @class = "btn btn-dark rounded-0" })
 </p>
+
 <table class="table">
-    <tr>
+    <tr class="bg-light">
         <th>
             Name:
         </th>
@@ -43,9 +43,17 @@
                 @Html.DisplayFor(modelItem => item.CharacterClass)
             </td>
             <td>
-                @Html.ActionLink("Edit Character", "Edit", new { id = item.CharacterID }) |
-                @Html.ActionLink("View Character Sheet", "Details", "CharacterSheet", new { id = item.CharacterID }, "") |
-                @Html.ActionLink("Delete Character", "Delete", new { id = item.CharacterID })
+                <div class="btn-group rounded-0">
+                    <button type="button" class="btn btn-light border rounded-0">
+                    @Html.ActionLink("Edit Character", "Edit", new { id = item.CharacterID }, new { @class ="button btn-light"})
+                    </button>
+                    <button type="button" class="btn btn-light border rounded-0">
+                    @Html.ActionLink("View Character Sheet", "Details", "CharacterSheet", new { id = item.CharacterID }, new { @class ="button btn-light"})
+                    </button>
+                    <button type="button" class="btn btn-light border rounded-0">
+                    @Html.ActionLink("Delete Character", "Delete", new { id = item.CharacterID }, new { @class = "button btn-light" })
+                    </button>
+                </div>
             </td>
         </tr>
     }

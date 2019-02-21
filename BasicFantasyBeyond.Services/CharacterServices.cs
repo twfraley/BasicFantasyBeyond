@@ -114,12 +114,19 @@ namespace BasicFantasyBeyond.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
+                var entity = ctx.Characters.Single(e => e.CharacterID == model.CharacterID && e.OwnerID == _userID);
+
                 var characterAbilities = GenerateCharacterAbilities(model.CharacterClass, model.CharacterRace);
                 var characterLevel = GetLevelFromXP(model.CharacterClass, model.CharacterXP);
                 var attackBonus = GetAttackBonus(model.CharacterClass, Convert.ToInt32(characterLevel));
                 var averageHP = GetAverageHitPoints(model.CharacterClass, model.CharacterRace, Convert.ToInt32(model.CharacterLevel));
+                var xpDifference = Convert.ToInt32(model.CharacterXP - entity.CharacterXP);
 
-                var entity = ctx.Characters.Single(e => e.CharacterID == model.CharacterID && e.OwnerID == _userID);
+                if (model.CharacterRace == CharacterRace.Human)
+                {
+                    xpDifference = Convert.ToInt32(xpDifference * 1.1);
+                }
+
 
                 entity.CharacterName = model.CharacterName;
                 entity.CharacterStr = model.CharacterStr;
@@ -131,7 +138,7 @@ namespace BasicFantasyBeyond.Services
                 entity.CharacterRace = model.CharacterRace;
                 entity.CharacterClass = model.CharacterClass;
                 entity.CharacterAbilities = characterAbilities;
-                entity.CharacterXP = model.CharacterXP;
+                entity.CharacterXP = entity.CharacterXP + xpDifference;
                 entity.CharacterLevel = characterLevel;
                 entity.CharacterAC = model.CharacterAC;
                 entity.CharacterHP = model.CharacterHP;
