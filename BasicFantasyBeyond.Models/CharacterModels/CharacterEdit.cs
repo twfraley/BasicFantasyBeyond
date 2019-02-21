@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace BasicFantasyBeyond.Models.CharacterModels
 {
@@ -36,7 +37,11 @@ namespace BasicFantasyBeyond.Models.CharacterModels
         public short CharacterCha { get; set; }
 
         public int CharacterXP { get; set; }
-        public IEnumerable<int> HitPointRange { get; set; }
+
+        [AllowHtml]
+        public List<int> HitPointRange { get; set; }
+
+        [Required]
         public int CharacterHP { get; set; }
 
         public override string ToString() => CharacterName;

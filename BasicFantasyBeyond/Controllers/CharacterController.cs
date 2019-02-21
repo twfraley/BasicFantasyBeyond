@@ -95,6 +95,12 @@ namespace BasicFantasyBeyond.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, CharacterDetails model)
         {
+            var service = CharacterServices();
+
+            // Avoids "potentially dangerous characters" error when passing through model.HitPointRange"
+            var hitPointRange = service.GetCharacterByID(id).HitPointRange;
+            model.HitPointRange = hitPointRange;
+
             if (!ModelState.IsValid) return View(model);
 
             if (model.CharacterID != id)
@@ -103,15 +109,11 @@ namespace BasicFantasyBeyond.Controllers
                 return View(model);
             }
 
-            var service = CharacterServices();
-
-            //var range = service.GetHitPointRange(model.CharacterClass, model.CharacterRace, Convert.ToInt32(model.CharacterLevel));
-
-            //if (model.CharacterHP != null || !Enumerable.Contains(range, Convert.ToInt32(model.CharacterHP)))
-            //{
-            //    ModelState.AddModelError("", "Your HP was too high or too low");
-            //    return View(model);
-            //}
+            if (model.CharacterHP < model.HitPointRange.Min() || model.CharacterHP > model.HitPointRange.Max())
+            {
+                ModelState.AddModelError("", "Your HP was too high or too low");
+                return View(model);
+            }
 
             if (service.UpdateCharacter(model))
             {
