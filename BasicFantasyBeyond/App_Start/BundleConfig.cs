@@ -16,14 +16,14 @@ namespace BasicFantasyBeyond
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
+
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
-            bundles.Add(new StyleBundle("~/Content").Include(
-                      "~/Content/CSS/bootstrap.css",
+            bundles.Add(new StyleBundle("~/Content/CSS/css").Include(
                       "~/Content/CSS/bootstrap.css.map",
                       "~/Content/CSS/bootstrap.min.css",
                       "~/Content/CSS/bootstrap.min.css.map",
@@ -35,7 +35,8 @@ namespace BasicFantasyBeyond
                       "~/Content/CSS/bootstrap-reboot.css.map",
                       "~/Content/CSS/bootstrap-reboot.min.css",
                       "~/Content/CSS/bootstrap-reboot.min.css.map",
-                      "~/Content/CSS/site.css"));
+                      "~/Content/CSS/bootstrap.css",
+                      "~/Content/CSS/Site.css"));
         }
     }
 }

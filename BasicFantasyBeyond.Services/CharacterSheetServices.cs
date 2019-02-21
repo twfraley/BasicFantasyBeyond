@@ -149,7 +149,7 @@ namespace BasicFantasyBeyond.Services
 
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.CharacterItems.Where(e => e.CharacterID == characterID);
+                var query = ctx.CharacterItems.Where(e => e.CharacterID == characterID).ToList();
 
                 foreach (var item in query)
                 {
@@ -172,6 +172,7 @@ namespace BasicFantasyBeyond.Services
                     itemList.Add(listItem);
                 }
             }
+
             return itemList;
         }
 
