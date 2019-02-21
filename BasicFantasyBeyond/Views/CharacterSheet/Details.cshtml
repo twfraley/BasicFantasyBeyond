@@ -153,7 +153,16 @@
                         </div>
                         <div class=" row border-bottom bg-white pb-3">
                             <div class="col-12">
-                                @Html.DisplayFor(model => model.CharacterHP)
+                                @{
+                                    if (Model.CharacterHP == null || Model.CharacterHP == 0)
+                                    {
+                                        @Html.ActionLink("Add HP", "Edit", "Character", new { id = Model.CharacterID},new { @class = "lead" })
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(model => model.CharacterHP)
+                                    }
+                                }
                             </div>
                         </div>
                     </div>
@@ -197,7 +206,6 @@
                     </div>
                 </div>
             </div>
-
             <div id="characterDetails" class="col col-lg-4 col-md-6 col-sm-12 border">
                 <div class="row bg-dark text-light lead">
                     <div class=" col-12">
@@ -244,10 +252,10 @@
                     Special Abilities:
                 </div>
                 <div class="row small-font">
-                        @Html.DisplayFor(model => model.CharacterAbilities)
-                    </div>
+                    @Html.DisplayFor(model => model.CharacterAbilities)
+                </div>
                 @{
-                    if (Model.CharacterAbilities.HasFlag(CharacterAbilities.HalflingACBonus))
+                    if (Model.CharacterAbilities == CharacterAbilities.HalflingACBonus)
                     {
                         @Html.Raw("Wassup?  You got Halfling Skillz!")
                     }
