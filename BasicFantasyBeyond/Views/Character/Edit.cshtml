@@ -4,143 +4,178 @@
     ViewBag.Title = "Edit";
 }
 
+<p />
 <h2>Edit Character</h2>
 
-<div class="dropdown" style="display:inline-block">
-    <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" value="@Model.Id" runat="server"><span class="glyphicon glyphicon-user"></span> Assign <span class="caret"></span></button>
-    <ul class="dropdown-menu" onclick="location.href='@Url.Action("AssignTicket", "Home", new {AssignId = Model.Id })'">
-        @foreach (var user in (IEnumerable<SelectListItem>)ViewBag.User)
-        {
-            <li>@Html.S</li>
-        }
-    </ul>
-</div>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="container container-fluid">
-        <h4>Character</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(m => m.CharacterID)
-        @Html.HiddenFor(m => m.CharacterLevel)
+    <h4>Character</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(m => m.CharacterID)
+    @Html.HiddenFor(m => m.CharacterLevel)
 
-        <div class="row">
-            <div class="col-md-12 form-group mb-0">
-                <label for="inputCharacterName">Character Name:</label>
-            </div>
-            <div class="col-md-12">
-                @Html.EditorFor(model => model.CharacterName, new { htmlAttributes = new { @class = "form-control", id = "inputCharacterName" } })
-                @Html.ValidationMessageFor(model => model.CharacterName, "", new { @class = "text-danger" })
+    <div class="container container-fluid">
+
+        <div class="row col-md-12">
+            <div class="row col-12 bg-light border-bottom border-top py-3">
+                <div class="col-md-6 lead bg-light">
+                    Character Name:
+                </div>
+                <div class="col-md-6 ">
+                    @Html.EditorFor(model => model.CharacterName, new { htmlAttributes = new { @class = "form-control lead" } })
+                    @Html.ValidationMessageFor(model => model.CharacterName, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
-        <div class="row col-12 border">
+        <div class="row col-md-12 py-3">
 
-            <div class="row col-12">
-                <div class="col-md-6 mb-0 border">
-                    <label for="inputCharacterName">Character Race:</label>
+            <div class="row col-12 bg-light border-top">
+                <div class="col-md-6 lead bg-light ">
+                    Character Class:
                 </div>
-                <div class="col-md-6 mb-0 border">
-                    <label for="inputCharacterName">Character Class:</label>
+                <div class="col-md-6 lead bg-light">
+                    Character Race:
                 </div>
             </div>
-            <div class="row col-12">
-                <div class="col-md-6 border">
-                    @Html.EnumDropDownListFor(model => model.CharacterClass, new { htmlAttributes = new { @class = "form-control" } })
+
+            <div class="row col-12 bg-light py-2 mb-2 border-bottom ">
+                <div class="col-md-6 ">
+                    @Html.EnumDropDownListFor(model => model.CharacterClass, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.CharacterClass, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-md-6 border">
-                    @Html.EnumDropDownListFor(model => model.CharacterRace, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="col-md-6  ">
+                    @Html.EnumDropDownListFor(model => model.CharacterRace, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.CharacterRace, "", new { @class = "text-danger" })
                 </div>
+            </div>
 
+        </div>
+
+
+        <div class="row col-12 ">
+
+            <div class=" row col-12 bg-light border-bottom border-top py-2">
+
+                <div class=" row col-12">
+
+                    <div class="col-4 ">
+                        <div class="row col-12 lead">
+                            Strength:
+                        </div>
+                        <div class="row col-12">
+                            @Html.EditorFor(model => model.CharacterStr, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CharacterStr, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="row col-12 lead">
+                            Dexterity:
+                        </div>
+                        <div class="row col-12">
+                            @Html.EditorFor(model => model.CharacterDex, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CharacterDex, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="row col-12 lead">
+                            Constitution:
+                        </div>
+                        <div class="row col-12">
+                            @Html.EditorFor(model => model.CharacterCon, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CharacterCon, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class=" row col-12">
+
+                    <div class="col-4 ">
+                        <div class="row col-12 lead">
+                            Intelligence:
+                        </div>
+                        <div class="row col-12">
+                            @Html.EditorFor(model => model.CharacterInt, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CharacterInt, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="row col-12 lead">
+                            Wisdom:
+                        </div>
+                        <div class="row col-12">
+                            @Html.EditorFor(model => model.CharacterWis, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CharacterWis, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="row col-12 lead">
+                            Charisma:
+                        </div>
+                        <div class="row col-12">
+                            @Html.EditorFor(model => model.CharacterCha, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CharacterCha, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="row col-12">
+            <div class="row col-md-12 py-3 my-3 border-bottom border-top bg-light">
+
+                <div class="col-6">
+                    <div class="row col-12 lead">
+                        Experience Points:
+                    </div>
+                    <div class="row col-12">
+                        @Html.EditorFor(model => model.CharacterXP, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CharacterXP, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-6 ">
+                    <div class="row col-12 lead">
+                        <div class="col-4">
+                            Hit Points:
+                        </div>
+                        <div class="col-8">
+                            Range:
+                            @Html.Raw($"{Model.HitPointRange.Min()} - {Model.HitPointRange.Max()}")
+                        </div>
+                    </div>
+                    <div class="row col-12  ">
+                        <div class="row col-12">
+                            @Html.EditorFor(model => model.CharacterHP, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            Strength:
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CharacterStr, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CharacterStr, "", new { @class = "text-danger" })
+        <div class="btn-group btn-dark row col-12">
+            <div class="col-6">
+                <button type="submit" value="Save Changes" class="btn btn-dark rounded-0">Save Changes</button>
             </div>
-        </div>
-
-        <div class="form-group">
-            Dexterity:
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CharacterDex, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CharacterDex, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            Constitution:
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CharacterCon, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CharacterCon, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            Intelligence:
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CharacterInt, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CharacterInt, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            Wisdom:
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CharacterWis, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CharacterWis, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            Charisma:
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CharacterCha, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CharacterCha, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            Experience Points:
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CharacterXP, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CharacterXP, "", new { @class = "text-danger" })
-            </div>
-            <div>
-                Current Level:
-                @Html.DisplayFor(model => model.CharacterLevel)
-            </div>
-        </div>
-
-        <div class="form-group">
-            Manage Hitpoints:
-            <div class="col-md-10">
-                Range:
-                @Html.Raw($"{Model.HitPointRange.Min()} - {Model.HitPointRange.Max()}")
-                <p />
-                @Html.EditorFor(model => model.CharacterHP)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save Changes" class="btn btn-dark rounded-0 " />
+            <div class="col-6">
+                @Html.ActionLink("Back to List", "Index", "", new { htmlAttributes = new { @class = "btn btn-dark rounded-0" } })
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
