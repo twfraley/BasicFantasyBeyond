@@ -82,7 +82,7 @@ namespace BasicFantasyBeyond.Services
                         gearList.Add(item);
                     }
                 }
-
+                
                 short characterAC = CalculateAC(equippedArmorList, dexMod);
 
                 int attackBonus = Convert.ToInt32(detail.CharacterAttackBonus);

@@ -41,7 +41,7 @@
                     }
                     else
                     {
-                        @Html.ActionLink("Log in to view your characters", "Login", "Account", "", new { id = "loginLink", @class = "btn btn-dark rounded-0" })
+                        @Html.ActionLink("Log in to view your Characters", "Login", "Account", "", new { id = "loginLink", @class = "btn btn-dark rounded-0" })
                     }
                 }
             </p>
@@ -50,7 +50,18 @@
             <h3>View list of Items</h3>
             <hr />
             <p>Basic Fantasy Beyond comes with all of the Core items already created, but your Game Master can create his or her own custom items for anyone to use.</p>
-            <p><a class="btn btn-dark rounded-0" href='@Url.Action("Index","Items")'>View Items &raquo;</a></p>
+            <p>
+                @{
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="btn btn-dark rounded-0" href='@Url.Action("Index","Items")'>View Items &raquo;</a>
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Log in to view Items", "Login", "Account", "", new { id = "loginLink", @class = "btn btn-dark rounded-0" })
+                    }
+                }
+            </p>
         </div>
     </div>
 </div>
