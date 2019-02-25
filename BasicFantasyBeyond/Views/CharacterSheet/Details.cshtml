@@ -323,16 +323,13 @@
 
     <div class="container container-fluid ">
         <div class="row">
-            <div class="col-12 text-center lead">
+            <div class="col-12 lead">
                 Equipped Weapons:
             </div>
         </div>
         <div class="row text-light bg-dark">
-            <div class="col col-2 text-center lead">
+            <div class="col col-4 text-center lead">
                 Item Name
-            </div>
-            <div class="col col-2 text-center lead">
-                Item Type
             </div>
             <div class="col col-2 text-center lead">
                 To-Hit
@@ -352,11 +349,8 @@
             {
                 @Html.HiddenFor(i => item.CharacterItemID)
                 <div class="row bg-light border-bottom small-font">
-                    <div class="col col-2 text-center ">
+                    <div class="col col-4 text-center ">
                         @Html.DisplayFor(modelItem => item.ItemName)
-                    </div>
-                    <div class="col col-2 text-center ">
-                        @Html.DisplayFor(modelItem => item.ItemType)
                     </div>
                     <div class="col col-2 text-center ">
                         @Html.DisplayFor(modelItem => item.AttackBonus)
@@ -381,16 +375,13 @@
     <hr />
     <div class="container container-fluid border-danger">
         <div class="row">
-            <div class="col-12 text-center lead">
+            <div class="col-12 lead">
                 Equipped Armor:
             </div>
         </div>
         <div class="row text-light bg-dark">
-            <div class="col col-2 text-center lead">
+            <div class="col col-4 text-center lead">
                 Item Name
-            </div>
-            <div class="col col-2 text-center lead">
-                Item Type
             </div>
             <div class="col col-2 text-center lead">
                 AC Bonus
@@ -407,11 +398,8 @@
             {
                 @Html.HiddenFor(i => item.CharacterItemID)
                 <div class="row bg-light border-bottom small-font">
-                    <div class="col col-2 text-center ">
+                    <div class="col col-4 text-center ">
                         @Html.DisplayFor(modelItem => item.ItemName)
-                    </div>
-                    <div class="col col-2 text-center ">
-                        @Html.DisplayFor(modelItem => item.ItemType)
                     </div>
                     <div class="col col-2 text-center ">
                         @Html.DisplayFor(modelItem => item.ArmorClassBonus)
@@ -433,7 +421,7 @@
     <hr />
     <div class="container container-fluid border-danger">
         <div class="row">
-            <div class="col-12 text-center lead">
+            <div class="col-12 lead">
                 All Items:
             </div>
         </div>
@@ -499,16 +487,16 @@
 
 </div>
 
-<div class="my-2 pt-xl-3">
-    <div class="btn-group btn-dark px-3">
-        <div class="btn btn-dark text-decoration-none text-light">
-        @Html.ActionLink("Add Items", "AddItems", new { id = Model.CharacterID }, new { htmlAttributes = new { @class = "btn btn-dark text-light lead" } })
+<div class="mt-4 mb-1">
+    <div class="btn-group btn-group-sm ">
+        <div class="btn btn-outline-dark btn-sm rounded-0 bg-light">
+            @Html.ActionLink("Add Items", "AddItems", new { id = Model.CharacterID }, new { @class = " text-decoration-none text-dark lead" })
         </div>
-        <div class="btn btn-dark text-decoration-none text-light">
-        @Html.ActionLink("Edit Character", "Edit", "Character", new { id = Model.CharacterID }, new { htmlAttributes = new { @class = "btn btn-dark text-light lead" } })
+        <div class="btn btn-outline-dark btn-sm rounded-0 bg-light">
+            @Html.ActionLink("Edit Character", "Edit", "Character", new { id = Model.CharacterID }, new { @class = "text-decoration-none text-dark lead" })
         </div>
-        <div class="btn btn-dark text-decoration-none text-light">
-        @Html.ActionLink("Back to Character List", "Index", "Character", new { htmlAttributes = new { @class = "btn btn-dark text-light lead" } })
+        <div class="btn btn-outline-dark btn-sm rounded-0 bg-light">
+            @Html.ActionLink("Back to Character List", "Index", "Character", new { @class = "text-decoration-none text-dark lead" })
         </div>
     </div>
 </div>
