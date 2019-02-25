@@ -42,6 +42,7 @@ namespace BasicFantasyBeyond.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var detail = ctx.Characters.Single(e => e.CharacterID == characterID);
+
                 var items = GetItemsByCharacterID(characterID);
                 var weaponList = new List<CharacterItemListItem>();
                 var equippedWeaponList = new List<CharacterItemListItem>();

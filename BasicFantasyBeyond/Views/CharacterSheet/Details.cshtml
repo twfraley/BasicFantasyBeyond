@@ -328,7 +328,7 @@
             </div>
         </div>
         <div class="row text-light bg-dark">
-            <div class="col col-4 text-center lead">
+            <div class="col col-3 text-center lead">
                 Item Name
             </div>
             <div class="col col-2 text-center lead">
@@ -340,7 +340,7 @@
             <div class="col col-2 text-center lead">
                 Special
             </div>
-            <div class="col col-2 text-center lead">
+            <div class="col col-3 text-center lead">
                 Manage
             </div>
         </div>
@@ -349,7 +349,7 @@
             {
                 @Html.HiddenFor(i => item.CharacterItemID)
                 <div class="row bg-light border-bottom small-font">
-                    <div class="col col-4 text-center ">
+                    <div class="col col-3 text-center ">
                         @Html.DisplayFor(modelItem => item.ItemName)
                     </div>
                     <div class="col col-2 text-center ">
@@ -361,9 +361,13 @@
                     <div class="col col-2 text-center ">
                         @Html.DisplayFor(i => item.ItemNotes)
                     </div>
-                    <div class="col col-2 text-center ">
-                        @Html.ActionLink("Unequip", "Unequip", new { id = item.CharacterItemID, characterID = Model.CharacterID }) |
-                        @Html.ActionLink("Delete", "Delete", new { characterID = Model.CharacterID, characterItemID = item.CharacterItemID })
+                    <div class="col col-3 btn-group-sm rounded-0 text-center">
+                        <div class="btn btn-sm btn-light rounded-0">
+                            @Html.ActionLink("Unequip", "Unequip", new { id = item.CharacterItemID, characterID = Model.CharacterID }, new { @class = "text-decoration-none text-dark" })
+                        </div>
+                        <div class="btn btn-sm btn-light rounded-0">
+                            @Html.ActionLink("Delete", "Delete", new { characterID = Model.CharacterID, characterItemID = item.CharacterItemID }, new { @class = "text-decoration-none text-dark" })
+                        </div>
                     </div>
 
                 </div>
@@ -386,10 +390,10 @@
             <div class="col col-2 text-center lead">
                 AC Bonus
             </div>
-            <div class="col col-4 text-center lead">
+            <div class="col col-3 text-center lead">
                 Special
             </div>
-            <div class="col col-2 text-center lead">
+            <div class="col col-3 text-center lead">
                 Manage
             </div>
         </div>
@@ -404,12 +408,16 @@
                     <div class="col col-2 text-center ">
                         @Html.DisplayFor(modelItem => item.ArmorClassBonus)
                     </div>
-                    <div class="col col-4 text-center ">
+                    <div class="col col-3 text-center ">
                         @Html.DisplayFor(modelItem => item.ItemNotes)
                     </div>
-                    <div class="col col-2 text-center ">
-                        @Html.ActionLink("Unequip", "Unequip", new { id = item.CharacterItemID, characterID = Model.CharacterID }) |
-                        @Html.ActionLink("Delete", "Delete", new { characterID = Model.CharacterID, characterItemID = item.CharacterItemID })
+                    <div class="col col-3 btn-group-sm rounded-0 text-center">
+                        <div class="btn btn-sm btn-light rounded-0">
+                            @Html.ActionLink("Unequip", "Unequip", new { id = item.CharacterItemID, characterID = Model.CharacterID }, new { @class = "text-decoration-none text-dark" })
+                        </div>
+                        <div class="btn btn-sm btn-light rounded-0">
+                            @Html.ActionLink("Delete", "Delete", new { characterID = Model.CharacterID, characterItemID = item.CharacterItemID }, new { @class = "text-decoration-none text-dark" })
+                        </div>
                     </div>
 
                 </div>
@@ -465,18 +473,22 @@
                     <div class="col col-2 text-center ">
                         @Html.DisplayFor(i => item.ItemNotes)
                     </div>
-                    <div class="col col-2 text-center ">
-                        @{
-                            if (item.IsEquipped)
-                            {
-                                @Html.ActionLink("Unequip", "UnEquip", new { id = item.CharacterItemID, characterID = Model.CharacterID })
+                    <div class="col col-2 btn-group-sm rounded-0 text-center">
+                        <div class="btn btn-sm btn-light rounded-0">
+                            @{
+                                if (item.IsEquipped)
+                                {
+                                    @Html.ActionLink("Unequip", "Unequip", new { id = item.CharacterItemID, characterID = Model.CharacterID }, new { @class = "text-decoration-none text-dark small-font" })
+                                }
+                                if (!item.IsEquipped)
+                                {
+                                    @Html.ActionLink("Equip", "Equip", new { id = item.CharacterItemID, characterID = Model.CharacterID }, new { @class = "text-decoration-none text-dark small-font" })
+                                }
                             }
-                            if (!item.IsEquipped)
-                            {
-                                @Html.ActionLink("Equip", "Equip", new { id = item.CharacterItemID, characterID = Model.CharacterID })
-                            }
-                        } |
-                        @Html.ActionLink("Delete", "Delete", new { characterID = Model.CharacterID, characterItemID = item.CharacterItemID })
+                        </div>
+                        <div class="btn btn-sm btn-light rounded-0">
+                            @Html.ActionLink("Delete", "Delete", new { characterID = Model.CharacterID, characterItemID = item.CharacterItemID }, new { @class = "text-decoration-none text-dark small-font" })
+                        </div>
                     </div>
 
                 </div>
