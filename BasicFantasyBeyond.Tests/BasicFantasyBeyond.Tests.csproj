@@ -119,6 +119,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharacterItemServiceTests.cs" />
+    <Compile Include="CharacterServicesTests.cs" />
+    <Compile Include="ItemServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
