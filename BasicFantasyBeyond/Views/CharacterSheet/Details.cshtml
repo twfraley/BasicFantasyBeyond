@@ -498,8 +498,17 @@
     </div>
 
 </div>
-<p>
-    @Html.ActionLink("Add Items", "AddItems", new { id = Model.CharacterID }) |
-    @Html.ActionLink("Edit Character", "Edit", "Character", new { id = Model.CharacterID }, "") |
-    @Html.ActionLink("Back to Character List", "Index", "Character")
-</p>
+
+<div class="my-2 pt-xl-3">
+    <div class="btn-group btn-dark px-3">
+        <div class="btn btn-dark text-decoration-none text-light">
+        @Html.ActionLink("Add Items", "AddItems", new { id = Model.CharacterID }, new { htmlAttributes = new { @class = "btn btn-dark text-light lead" } })
+        </div>
+        <div class="btn btn-dark text-decoration-none text-light">
+        @Html.ActionLink("Edit Character", "Edit", "Character", new { id = Model.CharacterID }, new { htmlAttributes = new { @class = "btn btn-dark text-light lead" } })
+        </div>
+        <div class="btn btn-dark text-decoration-none text-light">
+        @Html.ActionLink("Back to Character List", "Index", "Character", new { htmlAttributes = new { @class = "btn btn-dark text-light lead" } })
+        </div>
+    </div>
+</div>

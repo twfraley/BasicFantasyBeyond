@@ -3,61 +3,171 @@
 @{
     ViewBag.Title = "Items";
 }
-
-<h2>Equipment</h2>
-
+<p />
+<h2>Item List</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New Item", "Create", "", new { @class = "btn btn-dark rounded-0" })
 </p>
+
+<div class="col-12 border-top bg-dark text-light">
+    <div class="lead ">Weapons:</div>
+</div>
+
 <table class="table">
-    <tr>
+    <tr class="bg-light">
         <th>
-            @Html.DisplayNameFor(model => model.ItemName)
+            Name:
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ItemType)
+            Damage:
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Damage)
+            Damage Type:
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DamageType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ArmorClassBonus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ItemNotes)
+            Notes:
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ItemName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ItemType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Damage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DamageType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ArmorClassBonus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ItemNotes)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ItemID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ItemID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ItemID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        if (item.ItemType == BasicFantasyBeyond.Models.EquipmentModels.ItemType.Weapon)
+        {
 
+            <tr>
+                @Html.HiddenFor(modelItem => item.ItemID)
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Damage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DamageType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemNotes)
+                </td>
+                <td>
+                    <div class="btn-group rounded-0">
+                        <button type="button" class="btn btn-light border rounded-0">
+                            @Html.ActionLink("Edit Item", "Edit", new { id = item.ItemID }, new { @class = "button btn-light" })
+                        </button>
+                        <button type="button" class="btn btn-light border rounded-0">
+                            @Html.ActionLink("Delete Item", "Delete", new { id = item.ItemID }, new { @class = "button btn-light" })
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        }
+    }
 </table>
+
+
+<div class="col-12 border-top bg-dark text-light">
+    <div class="lead ">Armor:</div>
+</div>
+
+<table class="table">
+    <tr class="bg-light">
+        <th>
+            Name:
+        </th>
+        <th>
+            AC Bonus:
+        </th>
+        <th>
+            Armor Type:
+        </th>
+        <th>
+            Notes:
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.ItemType == BasicFantasyBeyond.Models.EquipmentModels.ItemType.Armor ||
+            item.ItemType == BasicFantasyBeyond.Models.EquipmentModels.ItemType.Shield)
+        {
+
+            <tr>
+                @Html.HiddenFor(modelItem => item.ItemID)
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArmorClassBonus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArmorType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemNotes)
+                </td>
+                <td>
+                    <div class="btn-group rounded-0">
+                        <button type="button" class="btn btn-light border rounded-0">
+                            @Html.ActionLink("Edit Item", "Edit", new { id = item.ItemID }, new { @class = "button btn-light" })
+                        </button>
+                        <button type="button" class="btn btn-light border rounded-0">
+                            @Html.ActionLink("Delete Item", "Delete", new { id = item.ItemID }, new { @class = "button btn-light" })
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+
+<div class="col-12 border-top bg-dark text-light">
+    <div class="lead ">Equipment:</div>
+</div>
+
+<table class="table">
+    <tr class="bg-light">
+        <th>
+            Name:
+        </th>
+        <th>
+            AC Bonus:
+        </th>
+        <th>
+            Notes:
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.ItemType == BasicFantasyBeyond.Models.EquipmentModels.ItemType.Gear)
+        {
+
+            <tr>
+                @Html.HiddenFor(modelItem => item.ItemID)
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArmorClassBonus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemNotes)
+                </td>
+                <td>
+                    <div class="btn-group rounded-0">
+                        <button type="button" class="btn btn-light border rounded-0">
+                            @Html.ActionLink("Edit Item", "Edit", new { id = item.ItemID }, new { @class = "button btn-light" })
+                        </button>
+                        <button type="button" class="btn btn-light border rounded-0">
+                            @Html.ActionLink("Delete Item", "Delete", new { id = item.ItemID }, new { @class = "button btn-light" })
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        }
+    }
+</table>
+
