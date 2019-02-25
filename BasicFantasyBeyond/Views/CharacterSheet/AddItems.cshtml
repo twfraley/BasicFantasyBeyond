@@ -3,115 +3,156 @@
     ViewBag.Title = "AddItems";
 }
 
-<h2>AddItems</h2>
+<p />
 
-<div>
-    <h4>Character</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Character Name:
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CharacterName)
-        </dd>
-        <dt>
-            Strength:
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CharacterStr)
-        </dd>
-        <dt>
-            Dexterity:
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CharacterDex)
-        </dd>
-        <dt>
-            Constitution:
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CharacterCon)
-        </dd>
-        <dt>
-            Intelligence:
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CharacterInt)
-        </dd>
-        <dt>
-            Wisdom:
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CharacterWis)
-        </dd>
-        <dt>
-            Charisma:
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CharacterCha)
-        </dd>
-        <dt>
-            Race:
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CharacterRace)
-        </dd>
-        <dt>
-            Class:
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CharacterClass)
-        </dd>
+<div class="container container-fluid">
 
-    </dl>
+    <div class="row col-md-12 ">
+        <div class="row col-12 bg-light border-dark border-top py-3">
+            <div class="col-md-6 lead bg-light">
+                Character Name:
+            </div>
+            <div class="col-md-6 lead ">
+                @Html.DisplayFor(model => model.CharacterName, new { @class = " lead" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row col-md-12 py-3">
+
+        <div class="row col-12 bg-light border-top">
+            <div class="col-md-6 lead bg-light border-bottom">
+                Character Class:
+            </div>
+            <div class="col-md-6 lead bg-light border-bottom">
+                Character Race:
+            </div>
+        </div>
+
+        <div class="row col-12 bg-light py-2 mb-2 border-bottom ">
+            <div class="col-md-6 lead">
+                @Html.DisplayFor(model => model.CharacterClass, new { @class = "lead" })
+            </div>
+            <div class="col-md-6 lead ">
+                @Html.DisplayFor(model => model.CharacterRace, new { @class = "lead" })
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row col-12 mb-5">
+
+        <div class=" row col-12 bg-light border-dark border-bottom py-2">
+
+            <div class=" row col-12">
+
+                <div class="col-4 ">
+                    <div class="row col-12 lead border-bottom">
+                        Strength:
+                    </div>
+                    <div class="row col-12 lead">
+                        @Html.DisplayFor(model => model.CharacterStr, new { @class = "lead" })
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="row col-12 lead border-bottom">
+                        Dexterity:
+                    </div>
+                    <div class="row col-12 lead">
+                        @Html.DisplayFor(model => model.CharacterDex, new { htmlAttributes = new { @class = "lead" } })
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="row col-12 lead border-bottom">
+                        Constitution:
+                    </div>
+                    <div class="row col-12 lead">
+                        @Html.DisplayFor(model => model.CharacterCon, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+            </div>
+
+            <div class=" row col-12">
+
+                <div class="col-4 ">
+                    <div class="row col-12 lead border-bottom">
+                        Intelligence:
+                    </div>
+                    <div class="row col-12 lead">
+                        @Html.DisplayFor(model => model.CharacterInt, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="row col-12 lead border-bottom">
+                        Wisdom:
+                    </div>
+                    <div class="row col-12 lead">
+                        @Html.DisplayFor(model => model.CharacterWis, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="row col-12 lead border-bottom">
+                        Charisma:
+                    </div>
+                    <div class="row col-12 lead">
+                        @Html.DisplayFor(model => model.CharacterCha, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
+
+<div class="mb-3">
+    <h2>Add Items to @Html.DisplayFor(model => model.CharacterName)</h2>
+</div>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div>
-        <h4>Items</h4>
-        <table class="table">
-            @foreach (var item in Model.Items)
+
+    <div class="col-12 border-top bg-dark text-light">
+        <div class="lead ">Weapons:</div>
+    </div>
+
+    <table class="table">
+        <tr class="bg-light">
+            <th>
+                Name:
+            </th>
+            <th>
+                Damage:
+            </th>
+            <th>
+                Damage Type:
+            </th>
+            <th>
+                Notes:
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Items)
+        {
+            if (item.ItemType == BasicFantasyBeyond.Models.EquipmentModels.ItemType.Weapon)
             {
-                @Html.HiddenFor(model => item.ItemID)
-                @Html.HiddenFor(model => model.CharacterID)
-                <tr class="text-danger">
-                    <td>
-                        Add Items to Character
-                    </td>
-                    <td>
-                        @Html.DisplayNameFor(modelItem => item.ItemName)
-                    </td>
-                    <td>
-                        @Html.DisplayNameFor(modelItem => item.ItemType)
-                    </td>
-                    <td>
-                        @Html.DisplayNameFor(modelItem => item.Damage)
-                    </td>
-                    <td>
-                        @Html.DisplayNameFor(modelItem => item.DamageType)
-                    </td>
-                    <td>
-                        @Html.DisplayNameFor(modelItem => item.Size)
-                    </td>
-                    <td>
-                        @Html.DisplayNameFor(modelItem => item.ArmorClassBonus)
-                    </td>
-                    <td>
-                        @Html.DisplayNameFor(modelItem => item.ItemNotes)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.ActionLink("Add", "Create", new { characterID = Model.CharacterID, itemID = item.ItemID })
-                    </td>
+
+                <tr class="small-font">
+                    @Html.HiddenFor(modelItem => item.ItemID)
+                    @Html.HiddenFor(model => model.CharacterID)
+
                     <td>
                         @Html.DisplayFor(modelItem => item.ItemName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ItemType)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Damage)
@@ -120,7 +161,105 @@
                         @Html.DisplayFor(modelItem => item.DamageType)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Size)
+                        @Html.DisplayFor(modelItem => item.ItemNotes)
+                    </td>
+                    <td>
+                        <div class="">
+                            <button type="button" class="btn btn-sm btn-light border rounded-0">
+                                @Html.ActionLink("Add to character", "Create", new { characterID = Model.CharacterID, itemID = item.ItemID }, new { @class = "text-decoration-none text-dark" })
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+
+
+    <div class="col-12 border-top bg-dark text-light">
+        <div class="lead ">Armor:</div>
+    </div>
+
+    <table class="table">
+        <tr class="bg-light">
+            <th>
+                Name:
+            </th>
+            <th>
+                AC Bonus:
+            </th>
+            <th>
+                Armor Type:
+            </th>
+            <th>
+                Notes:
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Items)
+        {
+            if (item.ItemType == BasicFantasyBeyond.Models.EquipmentModels.ItemType.Armor ||
+                item.ItemType == BasicFantasyBeyond.Models.EquipmentModels.ItemType.Shield)
+            {
+
+                <tr class="small-font">
+                    @Html.HiddenFor(modelItem => item.ItemID)
+                    @Html.HiddenFor(model => model.CharacterID)
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ItemName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ArmorClassBonus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ArmorType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ItemNotes)
+                    </td>
+                    <td>
+                        <div class="">
+                            <button type="button" class="btn btn-sm btn-light border rounded-0">
+                                @Html.ActionLink("Add to character", "Create", new { characterID = Model.CharacterID, itemID = item.ItemID }, new { @class = "text-decoration-none text-dark" })
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+
+
+    <div class="col-12 border-top bg-dark text-light">
+        <div class="lead ">Equipment:</div>
+    </div>
+
+    <table class="table">
+        <tr class="bg-light">
+            <th>
+                Name:
+            </th>
+            <th>
+                AC Bonus:
+            </th>
+            <th>
+                Notes:
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Items)
+        {
+            if (item.ItemType == BasicFantasyBeyond.Models.EquipmentModels.ItemType.Gear)
+            {
+
+                <tr class="small-font">
+                    @Html.HiddenFor(model => item.ItemID)
+                    @Html.HiddenFor(model => model.CharacterID)
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ItemName)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ArmorClassBonus)
@@ -128,22 +267,16 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.ItemNotes)
                     </td>
-                </tr>
-                <tr>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
+                    <td>
+                        <div class="">
+                            <button type="button" class="btn btn-sm btn-light border rounded-0">
+                                @Html.ActionLink("Add to character", "Create", new { characterID = Model.CharacterID, itemID = item.ItemID }, new { @class = "text-decoration-none text-dark" })
+                            </button>
+                        </div>
+                    </td>
                 </tr>
             }
-        </table>
+        }
+    </table>
 
-    </div>
 }
-<p>
-    @Html.ActionLink("Edit Character", "Edit", "Character", new { id = Model.CharacterID }, "") |
-    @Html.ActionLink("Back to Character List", "Index", "Character")
-</p>

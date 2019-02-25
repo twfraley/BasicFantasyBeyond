@@ -28,7 +28,7 @@
 
     @foreach (var item in Model)
     {
-        <tr>
+        <tr class="small-font">
             @Html.HiddenFor(modelItem => item.CharacterID)
             <td>
                 @Html.DisplayFor(modelItem => item.CharacterName)
@@ -43,15 +43,15 @@
                 @Html.DisplayFor(modelItem => item.CharacterClass)
             </td>
             <td>
-                <div class="btn-group rounded-0">
+                <div class="btn-group-sm rounded-0">
                     <button type="button" class="btn btn-light border rounded-0">
-                    @Html.ActionLink("Edit Character", "Edit", new { id = item.CharacterID }, new { @class ="button btn-light"})
+                    @Html.ActionLink("Edit Character", "Edit", new { id = item.CharacterID }, new { @class ="text-decoration-none text-dark"})
                     </button>
                     <button type="button" class="btn btn-light border rounded-0">
-                    @Html.ActionLink("View Character Sheet", "Details", "CharacterSheet", new { id = item.CharacterID }, new { @class ="button btn-light"})
+                    @Html.ActionLink("View Character Sheet", "Details", "CharacterSheet", new { id = item.CharacterID }, new { @class ="text-decoration-none text-dark"})
                     </button>
                     <button type="button" class="btn btn-light border rounded-0">
-                    @Html.ActionLink("Delete Character", "Delete", new { id = item.CharacterID }, new { @class = "button btn-light" })
+                    @Html.ActionLink("Delete Character", "Delete", new { id = item.CharacterID }, new { @class = "text-decoration-none text-dark " })
                     </button>
                 </div>
             </td>

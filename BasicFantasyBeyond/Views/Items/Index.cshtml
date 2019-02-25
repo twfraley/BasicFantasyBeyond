@@ -35,7 +35,7 @@
         if (item.ItemType == BasicFantasyBeyond.Models.EquipmentModels.ItemType.Weapon)
         {
 
-            <tr>
+            <tr class="small-font">
                 @Html.HiddenFor(modelItem => item.ItemID)
                 <td>
                     @Html.DisplayFor(modelItem => item.ItemName)
@@ -50,12 +50,12 @@
                     @Html.DisplayFor(modelItem => item.ItemNotes)
                 </td>
                 <td>
-                    <div class="btn-group rounded-0">
+                    <div class="btn-group btn-group-sm rounded-0">
                         <button type="button" class="btn btn-light border rounded-0">
-                            @Html.ActionLink("Edit Item", "Edit", new { id = item.ItemID }, new { @class = "button btn-light" })
+                            @Html.ActionLink("Edit Item", "Edit", new { id = item.ItemID }, new { @class = "text-dark text-decoration-none" })
                         </button>
                         <button type="button" class="btn btn-light border rounded-0">
-                            @Html.ActionLink("Delete Item", "Delete", new { id = item.ItemID }, new { @class = "button btn-light" })
+                            @Html.ActionLink("Delete Item", "Delete", new { id = item.ItemID }, new { @class = "text-dark text-decoration-none" })
                         </button>
                     </div>
                 </td>
@@ -92,7 +92,7 @@
             item.ItemType == BasicFantasyBeyond.Models.EquipmentModels.ItemType.Shield)
         {
 
-            <tr>
+            <tr class="small-font">
                 @Html.HiddenFor(modelItem => item.ItemID)
                 <td>
                     @Html.DisplayFor(modelItem => item.ItemName)
@@ -107,12 +107,12 @@
                     @Html.DisplayFor(modelItem => item.ItemNotes)
                 </td>
                 <td>
-                    <div class="btn-group rounded-0">
+                    <div class="btn-group btn-group-sm rounded-0">
                         <button type="button" class="btn btn-light border rounded-0">
-                            @Html.ActionLink("Edit Item", "Edit", new { id = item.ItemID }, new { @class = "button btn-light" })
+                            @Html.ActionLink("Edit Item", "Edit", new { id = item.ItemID }, new { @class = "text-decoration-none text-dark" })
                         </button>
                         <button type="button" class="btn btn-light border rounded-0">
-                            @Html.ActionLink("Delete Item", "Delete", new { id = item.ItemID }, new { @class = "button btn-light" })
+                            @Html.ActionLink("Delete Item", "Delete", new { id = item.ItemID }, new { @class = "text-decoration-none text-dark" })
                         </button>
                     </div>
                 </td>
@@ -145,7 +145,7 @@
         if (item.ItemType == BasicFantasyBeyond.Models.EquipmentModels.ItemType.Gear)
         {
 
-            <tr>
+            <tr class="small-font">
                 @Html.HiddenFor(modelItem => item.ItemID)
                 <td>
                     @Html.DisplayFor(modelItem => item.ItemName)
@@ -157,12 +157,12 @@
                     @Html.DisplayFor(modelItem => item.ItemNotes)
                 </td>
                 <td>
-                    <div class="btn-group rounded-0">
+                    <div class="btn-group btn-group-sm rounded-0">
                         <button type="button" class="btn btn-light border rounded-0">
-                            @Html.ActionLink("Edit Item", "Edit", new { id = item.ItemID }, new { @class = "button btn-light" })
+                            @Html.ActionLink("Edit Item", "Edit", new { id = item.ItemID }, new { @class = "text-decoration-none text-dark" })
                         </button>
                         <button type="button" class="btn btn-light border rounded-0">
-                            @Html.ActionLink("Delete Item", "Delete", new { id = item.ItemID }, new { @class = "button btn-light" })
+                            @Html.ActionLink("Delete Item", "Delete", new { id = item.ItemID }, new { @class = "text-decoration-none text-dark" })
                         </button>
                     </div>
                 </td>
