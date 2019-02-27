@@ -10,6 +10,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using BasicFantasyBeyond.WebAPI.Providers;
 using BasicFantasyBeyond.WebAPI.Models;
+using BasicFantasyBeyond.Data;
 
 namespace BasicFantasyBeyond.WebAPI
 {

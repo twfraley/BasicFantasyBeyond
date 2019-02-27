@@ -219,7 +219,6 @@
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -312,6 +311,20 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BasicFantasyBeyond.Data\BasicFantasyBeyond.Data.csproj">
+      <Project>{73a2fbab-a5ba-499d-b7b0-de49cd316302}</Project>
+      <Name>BasicFantasyBeyond.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BasicFantasyBeyond.Models\BasicFantasyBeyond.Models.csproj">
+      <Project>{bfc6227d-e832-4900-8668-a9b2f3a38741}</Project>
+      <Name>BasicFantasyBeyond.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BasicFantasyBeyond.Services\BasicFantasyBeyond.Services.csproj">
+      <Project>{1e0827db-7204-4728-a129-995f7481a59b}</Project>
+      <Name>BasicFantasyBeyond.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
