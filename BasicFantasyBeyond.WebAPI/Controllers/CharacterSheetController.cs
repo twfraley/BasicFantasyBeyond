@@ -7,6 +7,7 @@ using System.Web.Http;
 
 namespace BasicFantasyBeyond.WebAPI.Controllers
 {
+
     public class CharacterSheetController : ApiController
     {
     }
