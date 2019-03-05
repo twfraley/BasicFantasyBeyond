@@ -22,7 +22,7 @@ namespace BasicFantasyBeyond.WebAPI.Controllers
         }
 
         [Route("Single/{id:int}")]
-        public IHttpActionResult GetById(int id)
+        public IHttpActionResult GetByID(int id)
         {
             var service = new CharacterServices(Guid.Parse(User.Identity.GetUserId()));
             var character = service.GetCharacterByID(id);
