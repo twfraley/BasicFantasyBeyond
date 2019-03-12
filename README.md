@@ -10,4 +10,4 @@ More information will be added as the project is constructed.
 _________________________________________________
 Currently working on: <p>
 
-Adding spells to the web app; otherwise the magic classes are worthless.
+Currently adding spells to the web app. Otherwise the magic classes are worthless.
